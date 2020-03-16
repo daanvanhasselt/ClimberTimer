@@ -1,5 +1,6 @@
-import React, { Component, useState } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text } from 'react-native'
+import * as WebBrowser from 'expo-web-browser'
 import { Divider } from 'react-native-elements'
 import { createDrawerNavigator, DrawerItemList, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
@@ -36,7 +37,7 @@ function CustomDrawerContent(props) {
       <Divider />
       <DrawerItem
         label="About"
-        onPress={() => Linking.openUrl('http://www.pulseinteractive.io')}
+        onPress={() => WebBrowser.openBrowserAsync('http://www.pulseinteractive.io')}
         labelStyle={{ fontFamily: 'Roboto' }}
       />
     </DrawerContentScrollView>
