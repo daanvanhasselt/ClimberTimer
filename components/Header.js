@@ -1,45 +1,28 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native'
-import { Icon } from 'react-native-elements'
+import { Header } from 'react-native-elements'
+import { withNavigation } from 'react-navigation'
+import { DrawerActions } from '@react-navigation/drawer'
 
-const styles = StyleSheet.create({
-    container: {
-      width: '100%',
-      height: 60 + StatusBar.currentHeight,
-      paddingTop: StatusBar.currentHeight,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      backgroundColor: '#2E2E2E',
-    },
-    header: {
-      flex: 1,
-      fontSize: 20,
-      fontWeight: 'bold',
-      textAlign: 'left',
-      marginLeft: 25,
-      color: '#DDDDDD'
-    },
-    hamburger: {
-        marginLeft: 20
-    }
-});
+class AppHeader extends React.Component {
+    render() {
+        let leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => this.props.navigation.toggleDrawer() }
+        if(this.props.backButton) {
+            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Timer') }
+        }
 
-function Header({ handleHamburgerTap }) {
-    return (
-        <View style={styles.container}>
-            <StatusBar barStyle='light-content'/>
-            <TouchableOpacity onPress={handleHamburgerTap}>
-            <Icon
-                name='bars'
-                type='font-awesome'
-                color='#EEEEEE'
-                containerStyle={styles.hamburger}
-                />
-            </TouchableOpacity>
-            <Text style={styles.header}>ClimberTimer</Text>
-        </View>
-    )
+        let rightComponent = null
+        if(this.props.settingsButton) {
+            rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Settings') }
+        }
+
+        return (
+            <Header placement="left"
+                containerStyle={{ backgroundColor: '#2E2E2E' }}
+                leftComponent={leftComponent}
+                centerComponent={{ text: this.props.title, style: { color: '#fff', fontWeight: 'bold', fontSize: 17 } }}
+                rightComponent={rightComponent}/>
+            )
+        }
 }
 
-export default Header
+export default AppHeader
