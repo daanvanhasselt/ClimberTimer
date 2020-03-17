@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import Header from './Header'
 import DurationPicker from './DurationPicker'
+import Stopwatch from './StopwatchClass'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -9,22 +10,20 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center'
     },
-    buttonContainer: {
+    stopwatchContainer: {
         // backgroundColor: 'purple',
         flex: 1,
-        width: 200,
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: '100%'
     }
   })
 
 
 function TimerScreen(props) {
     const [workMinutes, setWorkMinutes] = useState(0)
-    const [workSeconds, setWorkSeconds] = useState(0)
+    const [workSeconds, setWorkSeconds] = useState(7)
     const [restMinutes, setRestMinutes] = useState(0)
-    const [restSeconds, setRestSeconds] = useState(0)
-    const [reps, setReps] = useState(0)
+    const [restSeconds, setRestSeconds] = useState(3)
+    const [reps, setReps] = useState(10)
     
     return (
         <React.Fragment>
@@ -49,9 +48,13 @@ function TimerScreen(props) {
                     minutes={reps}
                     setMinutes={setReps} />
                 
-                <View style={styles.buttonContainer}>
-                    <Button title="Start" 
-                        onPress={() => { console.log({ workMinutes, workSeconds, restMinutes, restSeconds, reps }) }}/>
+                <View style={styles.stopwatchContainer}>
+                    <Stopwatch 
+                        workMinutes={workMinutes} 
+                        workSeconds={workSeconds} 
+                        restMinutes={restMinutes} 
+                        restSeconds={restSeconds} 
+                        reps={reps}/>
                 </View>
             </View>
         </React.Fragment>

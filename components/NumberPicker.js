@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
+import NumericInput from 'react-native-numeric-input'
 
 const styles = StyleSheet.create({
     input: {
@@ -28,12 +29,12 @@ function DurationPicker({ title, value, valueSetter }) {
     <React.Fragment>
         <Text>{title}</Text>
         <View>
-            <TextInput 
-                keyboardType='numeric'
-                caretHidden={true}
+            <NumericInput type='plus-minus' value={value} onChange={v => valueSetter(v)} />
+            {/* <TextInput 
+                keyboardType='number-pad'
                 value={format(value)}
                 onChangeText={(t) => valueSetter(unformat(t))}
-                style={styles.input}></TextInput>
+                style={styles.input}></TextInput> */}
         </View>
     </React.Fragment>
     )
