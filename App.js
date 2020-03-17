@@ -44,7 +44,7 @@ function AppDrawer() {
       activeTintColor: '#555555',
       labelStyle: { fontFamily: 'Roboto' },
     }} drawerContent={props => CustomDrawerContent(props)}>
-      <Drawer.Screen name="Timer" component={TimerScreen} />
+      <Drawer.Screen name="Simple Timer" component={TimerScreen} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
   )

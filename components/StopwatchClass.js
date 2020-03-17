@@ -44,10 +44,11 @@ class Stopwatch extends React.Component {
 
     run(t) {
         if (this.lastT != undefined) {
-            if(this.state.state !== states.stopped) {
+            if(this.state.state !== states.stopped) {   // is the stopwatch running?
                 // delta time
                 const dt = (t - this.lastT) / 1000;
 
+                // countdown
                 if(this.state.state == states.countdown) {
                     // trigger audio
                     const newT = this.state.countdownSecondsLeft - dt
@@ -60,6 +61,7 @@ class Stopwatch extends React.Component {
                         }
                     }
 
+                    // update state
                     this.setState({
                         countdownSecondsLeft: newT
                     }, ()=>{
@@ -72,6 +74,7 @@ class Stopwatch extends React.Component {
                         }
                     })
                 }
+                // working
                 else if(this.state.state == states.working) {
                     // trigger audio
                     const newT = this.state.workSecondsLeft - dt
@@ -84,16 +87,17 @@ class Stopwatch extends React.Component {
                         }
                     }
 
+                    // update state
                     this.setState({
                         workSecondsLeft: newT
                     }, ()=>{
                         if(this.state.workSecondsLeft <= 0) {
                             const newRepsLeft = this.state.repsLeft - 1
-                            if(newRepsLeft >= 1) {  // if we go to resting we will always work after that
+                            if(newRepsLeft >= 1) {  // skip the last rest since we're done
                                 console.log('reps left: resting')
                                 this.setState({
                                     state: states.resting,
-                                    workSecondsLeft: (this.props.workMinutes * 60) + this.props.workSeconds                                    ,
+                                    workSecondsLeft: (this.props.workMinutes * 60) + this.props.workSeconds,    // reset initial work seconds
                                     repsLeft: newRepsLeft
                                 })
                             }
@@ -104,6 +108,7 @@ class Stopwatch extends React.Component {
                         }
                     })
                 }
+                // resting
                 else if(this.state.state == states.resting) {
                     // trigger audio
                     const newT = this.state.restSecondsLeft - dt
@@ -116,6 +121,7 @@ class Stopwatch extends React.Component {
                         }
                     }
 
+                    // update state
                     this.setState({
                         restSecondsLeft: newT
                     }, ()=>{
@@ -124,25 +130,29 @@ class Stopwatch extends React.Component {
                             // after resting we always go to work, regardless of reps
                             this.setState({
                                 state: states.working,
-                                restSecondsLeft: (this.props.restMinutes * 60) + this.props.restSeconds
+                                restSecondsLeft: (this.props.restMinutes * 60) + this.props.restSeconds // reset initial rest seconds
                             })
                         }
                     })
                 }
             }
             else {
+                // reset if we're not running so we stay up to date with props
                 this.reset()
             }
         }
 
+        // update lastT and request next frame
         this.lastT = t;
         this.frameReq = requestAnimationFrame(this.run)
     }
 
+    // 3 -> 03
     pad(num) {
         return ("0"+num).slice(-2)
     }
     
+    // number of seconds -> [mm, ss, ms]
     formatTime(secs) {
         let minutes = Math.floor(secs / 60) % 60
         let seconds = Math.floor(secs) % 60
@@ -151,6 +161,7 @@ class Stopwatch extends React.Component {
     }
 
     render() {
+        // cherry pick our data based on state
         const running = this.state.state !== states.stopped
         const [countdownMinutes, countdownSeconds, countdownMilliseconds] = this.formatTime(this.state.countdownSecondsLeft)
         const [workMinutes, workSeconds, workMilliseconds] = this.formatTime(this.state.workSecondsLeft)
@@ -189,13 +200,16 @@ class Stopwatch extends React.Component {
         return (
             <View style={styles.contentContainer}>
 
+                {/* custom button */}
                 <TouchableOpacity 
                  style={styles.buttonContainer}
                     onPress={() => this.setState({ state: running ? states.stopped : states.countdown })}>
                         <Text style={styles.button}>{!running ? "Start" : "Stop"}</Text>
                 </TouchableOpacity>
                 
+                {/* timers */}
                 <View style={[styles.timerContainer, timerStyle]}>
+                    {/* reps */}
                     <View style={styles.repsContainer}>
                         <Text style={[styles.timerText, timerStyle, styles.repsText]}>
                             {this.state.repsLeft}
@@ -204,6 +218,8 @@ class Stopwatch extends React.Component {
                             reps
                         </Text>
                     </View>
+
+                    {/* timers */}
                     <Text style={[styles.timerText, timerStyle]}>
                         {m}
                     </Text>
@@ -217,12 +233,15 @@ class Stopwatch extends React.Component {
                     </Text>
                 </View>
 
+                {/* bottom text */}
                 <Text style={[styles.title, timerStyle]}>{title}</Text>
 
             </View>
         )
     }
 }
+
+// styles
 
 const styles = StyleSheet.create({
     contentContainer: {

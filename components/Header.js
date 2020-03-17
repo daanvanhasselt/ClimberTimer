@@ -7,7 +7,7 @@ class AppHeader extends React.Component {
     render() {
         let leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => this.props.navigation.toggleDrawer() }
         if(this.props.backButton) {
-            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Timer') }
+            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Simple Timer') }
         }
 
         let rightComponent = null

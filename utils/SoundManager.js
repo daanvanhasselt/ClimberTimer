@@ -8,31 +8,29 @@ class SoundManager {
             work: require("../assets/audio/short/3.wav")
         }
         
-        this.players = this.load(this.Sounds)
+        this.load(this.Sounds)
     }
 
-    load(sounds) {
+    async load(sounds) {
         let players = {}
         for(let s in sounds) {
             const soundObject = new Audio.Sound()
             try {
-                soundObject.loadAsync(sounds[s])
+                await soundObject.loadAsync(sounds[s])
                 players[sounds[s]] = soundObject
             }
             catch(e) {
                 console.error(e)
             }
         }
-        return players
+        this.players = players
     }
 
     async play(sound) {
-        console.log(`Play sound '${sound}'`)
+        // console.log(`Play sound '${sound}'`)
         const player = this.players[sound]
         if(player === undefined) {
             console.log(`Invalid sound ${sound}`)
-            //console.log(this.Sounds)
-            //console.log(this.players)
             return
         }
         await player.replayAsync()
