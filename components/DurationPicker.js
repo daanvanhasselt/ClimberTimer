@@ -1,23 +1,51 @@
 import React from 'react'
-import { View, Text, Picker } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
-const pickerItems = Array(60).fill().map((_, i) => {
-    return <Picker.Item key={i} label={i.toString()} value={i}/>
-})
+import NumberPicker from './NumberPicker'
 
-function DurationPicker({ title, selectedValue, valueSetter }) {
+
+const styles = StyleSheet.create({
+    pickerContainer: {
+        // backgroundColor: 'blue',
+        flex: 1,
+        width: '100%',
+        alignItems: 'center'
+    },
+    pickerHeader: {
+        // backgroundColor: 'red',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        width: '100%',
+        marginTop: 20,
+        marginBottom: 10
+    },
+    picker: {
+        // backgroundColor: 'green',
+        flex: 1,
+        flexDirection: 'row'
+    },
+    colon: {
+        width: 20,
+        fontSize: 32,
+        marginTop: 12,
+        textAlign: 'center'
+    }
+  })
+
+function DurationPicker({ title, minutes, setMinutes, seconds, setSeconds }) {
+    const firstPicker = <NumberPicker title="" value={minutes} valueSetter={setMinutes}/>
+    const colon = <Text style={styles.colon}>:</Text>
+    const secondPicker = <NumberPicker title="" value={seconds} valueSetter={setSeconds}/>
+
     return (
-    <React.Fragment>
-        <Text>{title}</Text>
-        <View>
-            <Picker
-                style={{width: 100}}
-                selectedValue={selectedValue}
-                onValueChange={(v) => valueSetter(v)}>
-                {pickerItems}
-            </Picker>
+        <View style={styles.pickerContainer}>
+            <Text style={styles.pickerHeader}>{title}</Text>
+            <View style={styles.picker}>
+                {firstPicker}
+                {seconds !== undefined && colon}
+                {seconds !== undefined && secondPicker}
+            </View>
         </View>
-    </React.Fragment>
     )
 }
 
