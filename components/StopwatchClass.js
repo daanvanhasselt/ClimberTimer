@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import SoundManager from '../utils/SoundManager'
 
 const states = {
     stopped: 0,
@@ -34,7 +35,7 @@ class Stopwatch extends React.Component {
 
     componentDidMount() {
         this.reset()
-        this.frameReq = requestAnimationFrame(this.run)
+        this.frameReq = requestAnimationFrame(this.run)        
     }
 
     componentWillUnmount() {
@@ -48,8 +49,19 @@ class Stopwatch extends React.Component {
                 const dt = (t - this.lastT) / 1000;
 
                 if(this.state.state == states.countdown) {
+                    // trigger audio
+                    const newT = this.state.countdownSecondsLeft - dt
+                    if(Math.floor(this.state.countdownSecondsLeft) !== Math.floor(newT)) {
+                        if(Math.ceil(newT) > 0) {
+                            SoundManager.play(SoundManager.Sounds.countdown)
+                        }
+                        else {
+                            SoundManager.play(SoundManager.Sounds.work)
+                        }
+                    }
+
                     this.setState({
-                        countdownSecondsLeft: this.state.countdownSecondsLeft - dt
+                        countdownSecondsLeft: newT
                     }, ()=>{
                         if(this.state.countdownSecondsLeft <= 0) {
                             console.log('countdown done: working')
@@ -61,8 +73,19 @@ class Stopwatch extends React.Component {
                     })
                 }
                 else if(this.state.state == states.working) {
+                    // trigger audio
+                    const newT = this.state.workSecondsLeft - dt
+                    if(Math.floor(this.state.workSecondsLeft) !== Math.floor(newT)) {
+                        if(Math.ceil(newT) > 0 && Math.ceil(newT) <= 3) {
+                            SoundManager.play(SoundManager.Sounds.countdown)
+                        }
+                        else if(Math.ceil(newT) == 0) {
+                            SoundManager.play(SoundManager.Sounds.rest)
+                        }
+                    }
+
                     this.setState({
-                        workSecondsLeft: this.state.workSecondsLeft - dt
+                        workSecondsLeft: newT
                     }, ()=>{
                         if(this.state.workSecondsLeft <= 0) {
                             const newRepsLeft = this.state.repsLeft - 1
@@ -82,8 +105,19 @@ class Stopwatch extends React.Component {
                     })
                 }
                 else if(this.state.state == states.resting) {
+                    // trigger audio
+                    const newT = this.state.restSecondsLeft - dt
+                    if(Math.floor(this.state.restSecondsLeft) !== Math.floor(newT)) {
+                        if(Math.ceil(newT) > 0 && Math.ceil(newT) <= 3) {
+                            SoundManager.play(SoundManager.Sounds.countdown)
+                        }
+                        else if(Math.ceil(newT) == 0) {
+                            SoundManager.play(SoundManager.Sounds.work)
+                        }
+                    }
+
                     this.setState({
-                        restSecondsLeft: this.state.restSecondsLeft - dt
+                        restSecondsLeft: newT
                     }, ()=>{
                         if(this.state.restSecondsLeft <= 0) {
                             console.log('resting done: working')
