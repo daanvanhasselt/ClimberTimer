@@ -1,40 +1,49 @@
 import { Audio } from 'expo-av'
 
-class SoundManager {
-    constructor() {
-        this.Sounds = {
-            countdown: require("../assets/audio/short/2.wav"),
-            rest: require("../assets/audio/short/1.wav"),
-            work: require("../assets/audio/short/3.wav")
-        }
-        
-        this.load(this.Sounds)
-    }
+const soundObjects = {}
 
-    async load(sounds) {
-        let players = {}
-        for(let s in sounds) {
-            const soundObject = new Audio.Sound()
+class SoundManager {
+
+    static async load(sounds) {
+        for(const s in sounds) {
+            const sound = sounds[s]
+            soundObjects[s] = new Audio.Sound()
+
+            // load the sound and play it muted as a forced preloader
             try {
-                await soundObject.loadAsync(sounds[s])
-                players[sounds[s]] = soundObject
+                await soundObjects[s].loadAsync(sounds[s])
+                await soundObjects[s].setStatusAsync({
+                    isMuted: true,
+                    shouldPlay: true
+                })
             }
             catch(e) {
                 console.error(e)
             }
         }
-        this.players = players
     }
 
-    async play(sound) {
-        // console.log(`Play sound '${sound}'`)
-        const player = this.players[sound]
-        if(player === undefined) {
-            console.log(`Invalid sound ${sound}`)
-            return
+    static async play(sound) {
+        try {
+            if(soundObjects[sound]) {
+                // unmute and replay
+                await soundObjects[sound].setStatusAsync({
+                    isMuted: false
+                })
+                await soundObjects[sound].replayAsync()
+            }
         }
-        await player.replayAsync()
+        catch(e) {
+            console.warn(e)
+        }
     }
 }
 
-export default new SoundManager()
+const sounds = {
+    countdown: require("../assets/audio/short/2.wav"),
+    rest: require("../assets/audio/short/1.wav"),
+    work: require("../assets/audio/short/3.wav")
+}
+SoundManager.load(sounds)
+
+export default SoundManager

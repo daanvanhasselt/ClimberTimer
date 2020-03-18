@@ -54,10 +54,10 @@ class Stopwatch extends React.Component {
                     const newT = this.state.countdownSecondsLeft - dt
                     if(Math.floor(this.state.countdownSecondsLeft) !== Math.floor(newT)) {
                         if(Math.ceil(newT) > 0) {
-                            SoundManager.play(SoundManager.Sounds.countdown)
+                            SoundManager.play('countdown')
                         }
                         else {
-                            SoundManager.play(SoundManager.Sounds.work)
+                            SoundManager.play('work')
                         }
                     }
 
@@ -80,10 +80,10 @@ class Stopwatch extends React.Component {
                     const newT = this.state.workSecondsLeft - dt
                     if(Math.floor(this.state.workSecondsLeft) !== Math.floor(newT)) {
                         if(Math.ceil(newT) > 0 && Math.ceil(newT) <= 3) {
-                            SoundManager.play(SoundManager.Sounds.countdown)
+                            SoundManager.play('countdown')
                         }
                         else if(Math.ceil(newT) == 0) {
-                            SoundManager.play(SoundManager.Sounds.rest)
+                            SoundManager.play('rest')
                         }
                     }
 
@@ -114,10 +114,10 @@ class Stopwatch extends React.Component {
                     const newT = this.state.restSecondsLeft - dt
                     if(Math.floor(this.state.restSecondsLeft) !== Math.floor(newT)) {
                         if(Math.ceil(newT) > 0 && Math.ceil(newT) <= 3) {
-                            SoundManager.play(SoundManager.Sounds.countdown)
+                            SoundManager.play('countdown')
                         }
                         else if(Math.ceil(newT) == 0) {
-                            SoundManager.play(SoundManager.Sounds.work)
+                            SoundManager.play('work')
                         }
                     }
 
