@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         fontSize: 60,
         flex: 1,
         textAlign: 'center',
-        fontFamily: 'monospace'
+        fontFamily: 'Roboto'
     },
     timerDivider: {
         fontSize: 60
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 32,
-        fontFamily: 'monospace',
+        fontFamily: 'Roboto',
         flex: 1,
     },
     countdown: {

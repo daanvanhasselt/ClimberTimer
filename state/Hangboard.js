@@ -10,10 +10,10 @@ const initialState = {
 const HangboardReducer = (state = initialState, action) => {
     const { type } = action
     switch(type) {
-        case 'SET':
+        case 'SET_HANGBOARD':
             return {
                 ...state,
-                hangboard: !action.hangboard
+                hangboard: action.hangboard
             }
         default:
             return state
@@ -21,3 +21,4 @@ const HangboardReducer = (state = initialState, action) => {
 }
 
 export default HangboardReducer
+export { Hangboards }

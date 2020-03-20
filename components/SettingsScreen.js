@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import Header from './Header'
 
@@ -17,9 +18,14 @@ function TimerScreen(props) {
             <Header title="Settings" backButton={true} navigation={props.navigation} />
             <View style={styles.mainContent}>
                 <Text>Settings screen</Text>
+                <Text>{props.hangboard}</Text>
             </View>
         </React.Fragment>
     )
 }
 
-export default TimerScreen
+const mapStateToProps = (state) => ({
+    hangboard: state.hangboard.hangboard
+})
+
+export default connect(mapStateToProps)(TimerScreen)
