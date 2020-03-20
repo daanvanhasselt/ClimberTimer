@@ -1,60 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text } from 'react-native'
-import * as WebBrowser from 'expo-web-browser'
-import { Divider } from 'react-native-elements'
-import { createDrawerNavigator, DrawerItemList, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
-import { NavigationContainer } from '@react-navigation/native'
-import TimerScreen from './components/TimerScreen'
-import SettingsScreen from './components/SettingsScreen'
+import React from 'react'
+import { Provider as ReduxProvider } from 'react-redux'
+import { createStore } from 'redux'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  drawerHeader: {
-    fontSize: 18,
-    fontWeight: "bold",
-    margin: 15
-  }
-})
+import NavigationStack from './components/NavigationStack'
 
-const Drawer = createDrawerNavigator()
+const initialState = {}
 
-function CustomDrawerContent(props) {
-  return (
-    <DrawerContentScrollView {...props}>
-      <Text style={styles.drawerHeader}>ClimberTimer</Text>
-      <DrawerItemList {...props} />
-      <Divider />
-      <DrawerItem
-        label="About"
-        onPress={() => WebBrowser.openBrowserAsync('http://www.pulseinteractive.io')}
-        labelStyle={{ fontFamily: 'Roboto' }}
-      />
-    </DrawerContentScrollView>
-  );
+const appState = (state = initialState, action) => {
+  return state
 }
 
-function AppDrawer() {
-  return (
-    <Drawer.Navigator style={styles.container} initialRouteName="Timer" drawerContentOptions={{
-      activeTintColor: '#555555',
-      labelStyle: { fontFamily: 'Roboto' },
-    }} drawerContent={props => CustomDrawerContent(props)}>
-      <Drawer.Screen name="Simple Timer" component={TimerScreen} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
-    </Drawer.Navigator>
-  )
-}
+const appStore = createStore(appState)
 
 function App () {
   return (
-    <NavigationContainer>
-      <AppDrawer />
-    </NavigationContainer>
+    <ReduxProvider store={appStore}>
+      <NavigationStack />
+    </ReduxProvider>
   )
 }
 export default App
