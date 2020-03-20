@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStore } from 'redux'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import Header from './Header'
 
@@ -18,9 +18,14 @@ function HangboardScreen(props) {
             <Header title="Hangboard Training" backButton={true} navigation={props.navigation} />
             <View style={styles.mainContent}>
                 <Text>Hangboarding</Text>
+                <Text>You have selected the {props.hangboard}</Text>
             </View>
         </React.Fragment>
     )
 }
 
-export default HangboardScreen
+const mapStateToProps = (state) => ({
+    hangboard: state.hangboard.hangboard
+})
+
+export default connect(mapStateToProps)(HangboardScreen)

@@ -1,6 +1,6 @@
 const Hangboards = {
-    Beastmaker1000: 'beastmaker-1000',
-    Beastmaker2000: 'beastmaker-2000'
+    Beastmaker1000: 'Beastmaker 1000',
+    Beastmaker2000: 'Beastmaker 2000'
 }
 
 const initialState = {

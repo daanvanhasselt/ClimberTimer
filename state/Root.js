@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import TestReducer from './TestReducer'
-import HangboardReducer from './HangboardReducer'
+import TestReducer from './Test'
+import HangboardReducer from './Hangboard'
 
 const RootReducer = combineReducers({
-    TestReducer,
-    HangboardReducer
+    test: TestReducer,
+    hangboard: HangboardReducer
 })
 
 const RootStore = createStore(
