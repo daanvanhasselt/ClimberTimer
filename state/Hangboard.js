@@ -1,9 +1,5 @@
 import { SET_HANGBOARD } from './Actions'
-
-const Hangboards = {
-    Beastmaker1000: 'Beastmaker 1000',
-    Beastmaker2000: 'Beastmaker 2000'
-}
+import Hangboards from '../model/Hangboards'
 
 const initialState = {
     hangboard: Hangboards.Beastmaker1000
@@ -23,4 +19,3 @@ const HangboardReducer = (state = initialState, action) => {
 }
 
 export default HangboardReducer
-export { Hangboards }
