@@ -17,9 +17,13 @@ const styles = StyleSheet.create({
 })
 
 // single workout list item
-function Item({ workout }) {
+function Item({ navigation, workout }) {
     return (
-    <ListItem key={workout.id}>
+    <ListItem 
+        onPress={() => {
+            navigation.push('Workout', { workout: workout })
+        }}
+        key={workout.id}>
         <Text>{workout.title}</Text>
     </ListItem>
     )
@@ -29,7 +33,7 @@ function WorkoutList(props) {
     // workouts for selected hangboard
     const workouts = HangboardDetails[props.hangboard].workouts
     const items = workouts.map((workout) => {
-        return <Item workout={workout}/>
+        return <Item navigation={props.navigation} workout={workout}/>
     })
 
     return (

@@ -17,7 +17,7 @@ for(const board in Hangboards) {
 hangboardSelectionTitles.push("Cancel")
 
 // show the selector
-const showSelector = () => {
+const showSelector = (props) => {
     ActionSheet.show(
         {
             title: "Select your hangboard",
@@ -38,13 +38,13 @@ function HangboardSelector(props) {
     return (
         <React.Fragment>
             <Button full
-                onPress={showSelector}>
+                onPress={() => showSelector(props)}>
                 <Text>{props.hangboard}</Text>
             </Button>
             <Image 
                 width={Dimensions.get('window').width} 
                 source={HangboardDetails[props.hangboard].img}
-                onPress={showSelector}/>
+                onPress={() => showSelector(props)}/>
         </React.Fragment>
     )
 }
