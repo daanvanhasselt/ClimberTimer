@@ -1,3 +1,5 @@
+import { SET_HANGBOARD } from './Actions'
+
 const Hangboards = {
     Beastmaker1000: 'Beastmaker 1000',
     Beastmaker2000: 'Beastmaker 2000'
@@ -10,7 +12,7 @@ const initialState = {
 const HangboardReducer = (state = initialState, action) => {
     const { type } = action
     switch(type) {
-        case 'SET_HANGBOARD':
+        case SET_HANGBOARD:
             return {
                 ...state,
                 hangboard: action.hangboard

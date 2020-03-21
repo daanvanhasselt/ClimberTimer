@@ -1,17 +1,20 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import TestReducer from './Test'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
+
 import HangboardReducer from './Hangboard'
 
 const RootReducer = combineReducers({
-    test: TestReducer,
     hangboard: HangboardReducer
 })
+
+const middleware = [logger, thunk]
 
 const RootStore = createStore(
     RootReducer,            // main reducer
     {},                     // initial state
-    composeWithDevTools()   // middleware
+    composeWithDevTools(applyMiddleware(...middleware)) // middleware
 )
 
 export {
