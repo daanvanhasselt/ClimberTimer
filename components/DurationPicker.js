@@ -21,13 +21,14 @@ const styles = StyleSheet.create({
     },
     picker: {
         // backgroundColor: 'green',
-        flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     colon: {
         width: 20,
         fontSize: 32,
         marginTop: 12,
+        marginLeft: 10,
+        marginRight: 10,
         textAlign: 'center'
     }
   })

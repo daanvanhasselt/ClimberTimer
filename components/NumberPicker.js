@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
-import NumericInput from 'react-native-numeric-input'
+import { Button, Icon } from 'native-base'
 
 const styles = StyleSheet.create({
     input: {
@@ -8,6 +8,22 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         fontSize: 32,
+        textAlign: 'center',
+        marginLeft: -10,
+        marginRight: -10
+    },
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    button: {
+        width: 44,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonText: {
+        fontSize: 24,
         textAlign: 'center'
     }
   })
@@ -25,16 +41,28 @@ function unformat(str) {
 }
 
 function DurationPicker({ title, value, valueSetter }) {
+    const setter = (v) => {
+        if(v >= 0) {
+            valueSetter(v)
+        }
+    }
     return (
     <React.Fragment>
         <Text>{title}</Text>
-        <View>
-            <NumericInput type='plus-minus' value={value} onChange={v => valueSetter(v)} />
-            {/* <TextInput 
+        <View style={styles.container}>
+            <Button light style={styles.button}
+                onPress={() => setter(value - 1)}>
+                <Text style={styles.buttonText}>-</Text>
+            </Button>
+            <TextInput 
                 keyboardType='number-pad'
                 value={format(value)}
-                onChangeText={(t) => valueSetter(unformat(t))}
-                style={styles.input}></TextInput> */}
+                onChangeText={(t) => setter(unformat(t))}
+                style={styles.input}></TextInput>
+            <Button light style={styles.button}
+                onPress={() => setter(value + 1)}>
+                <Text style={styles.buttonText}>+</Text>
+            </Button>
         </View>
     </React.Fragment>
     )
