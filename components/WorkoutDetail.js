@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
 
-import { Details as HangboardDetails } from '../model/Hangboards'
-import HangboardSelector from './HangboardSelector'
+import { addStep } from '../state/Actions'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -13,25 +13,82 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
+    },
+    header: {
+        height: 48,
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    headerText: {
+        fontSize: 18,
+        paddingRight: 20
+    },
+    listItem: {
+        flexDirection: 'column'
     }
 })
 
-function WorkoutList(props) {
+// single step list item
+function Item({ navigation, step, index }) {
     return (
-        <View style={styles.mainContent}>
-            <Button iconLeft light
-                onPress={() => props.navigation.goBack()}>
-                <Icon name='arrow-back' />
-                <Text>Back</Text>
-            </Button>
-            <Text>{props.route.params.workout.title}</Text>
-        </View>
+        <ListItem style={styles.listItem}
+            onPress={() => {
+                navigation.push('Step', { step: step })
+            }}>
+            <Text>{"Step " + index}</Text>
+            <Text>{"Work: " + step.workDuration}</Text>
+            <Text>{"Rest: " + step.restDuration}</Text>
+            <Text>{"Reps: " + step.reps}</Text>
+            <Text>{"Holds: " + (step.holds && step.holds.toString())}</Text>
+        </ListItem>
+    )
+}
+
+function WorkoutDetail(props) {
+    const workout = props.hangboard.workouts.find((workout) => workout.id === props.route.params.workout.id)
+    const items = workout.steps && workout.steps.map((step, i) => {
+        return <Item key={i} index={i} navigation={props.navigation} step={step} />
+    })
+
+    return (
+        <>
+            <View style={styles.header}>
+                <Button iconLeft light
+                    onPress={() => props.navigation.goBack()}>
+                    <Icon name='arrow-back' />
+                    <Text>Back</Text>
+                </Button>
+                <Text style={styles.headerText}>{workout.title}</Text>
+            </View>
+
+            <View style={styles.mainContent}>
+                <ScrollView style={{ width: '100%' }}>
+                    <List>
+                        {items}
+                    </List>
+                    <Button full success
+                        onPress={() => {
+                            // dispatch action
+                            props.addStep(workout)
+                        }}>
+                        <Text>Add step</Text>
+                    </Button>
+                </ScrollView>
+            </View>
+        </>
     )
 }
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboard: state.hangboard.hangboard
+    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard]
 })
 
-export default connect(mapStateToProps)(WorkoutList)
+// set state through props
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    addStep
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutDetail)

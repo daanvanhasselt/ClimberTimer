@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, List, ListItem } from 'native-base'
 
-import { Details as HangboardDetails } from '../model/Hangboards'
 import HangboardSelector from './HangboardSelector'
 
 const styles = StyleSheet.create({
@@ -22,8 +21,7 @@ function Item({ navigation, workout }) {
     <ListItem 
         onPress={() => {
             navigation.push('Workout', { workout: workout })
-        }}
-        key={workout.id}>
+        }}>
         <Text>{workout.title}</Text>
     </ListItem>
     )
@@ -31,9 +29,9 @@ function Item({ navigation, workout }) {
 
 function WorkoutList(props) {
     // workouts for selected hangboard
-    const workouts = HangboardDetails[props.hangboard].workouts
-    const items = workouts.map((workout) => {
-        return <Item navigation={props.navigation} workout={workout}/>
+    const workouts = props.hangboard.workouts
+    const items = workouts.map((workout, i) => {
+        return <Item key={i} navigation={props.navigation} workout={workout}/>
     })
 
     return (
@@ -50,7 +48,7 @@ function WorkoutList(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboard: state.hangboard.hangboard
+    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard]
 })
 
 export default connect(mapStateToProps)(WorkoutList)

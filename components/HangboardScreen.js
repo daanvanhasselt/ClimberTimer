@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Header from './Header'
 import WorkoutList from './WorkoutList'
 import WorkoutDetail from './WorkoutDetail'
+import WorkoutStepEditor from './WorkoutStepEditor'
 
 // navigation stack
 const Stack = createStackNavigator()
@@ -15,6 +16,7 @@ function HangboardScreen(props) {
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Workouts" component={WorkoutList} />
                 <Stack.Screen name="Workout" component={WorkoutDetail} />
+                <Stack.Screen name="Step" component={WorkoutStepEditor} />
             </Stack.Navigator>
         </>
     )
