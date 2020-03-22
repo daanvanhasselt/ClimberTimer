@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 
 import Header from './Header'
 import WorkoutList from './WorkoutList'
@@ -14,9 +14,15 @@ function HangboardScreen(props) {
         <>
             <Header title="Hangboard Training" backButton={false} navigation={props.navigation} />
             <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name="Workouts" component={WorkoutList} />
-                <Stack.Screen name="Workout" component={WorkoutDetail} />
-                <Stack.Screen name="Step" component={WorkoutStep} />
+                <Stack.Screen name="Workouts" component={WorkoutList} options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS ,
+                }}/>
+                <Stack.Screen name="Workout" component={WorkoutDetail} options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS ,
+                }}/>
+                <Stack.Screen name="Step" component={WorkoutStep} options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS ,
+                }}/>
             </Stack.Navigator>
         </>
     )
