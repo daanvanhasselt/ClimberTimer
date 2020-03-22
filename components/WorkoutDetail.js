@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { addStep } from '../state/Actions'
 
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
-
-import { addStep } from '../state/Actions'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -19,7 +18,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#dedede'
     },
     headerText: {
         fontSize: 18,
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
 })
 
 // single step list item
-function Item({ navigation, step, index }) {
+function Item({ navigation, workout, step, index }) {
     return (
         <ListItem style={styles.listItem}
             onPress={() => {
-                navigation.push('Step', { step: step })
+                navigation.push('Step', { workout, step })
             }}>
             <Text>{"Step " + index}</Text>
             <Text>{"Work: " + step.workDuration}</Text>
@@ -47,9 +47,10 @@ function Item({ navigation, step, index }) {
 }
 
 function WorkoutDetail(props) {
-    const workout = props.hangboard.workouts.find((workout) => workout.id === props.route.params.workout.id)
+    // retrieve the data from state
+    const workout = props.hangboard.workouts.find((workout) => workout.id === props.route.params.workout)
     const items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} index={i} navigation={props.navigation} step={step} />
+        return <Item key={i} index={i} navigation={props.navigation} workout={workout.id} step={step} />
     })
 
     return (
@@ -71,7 +72,7 @@ function WorkoutDetail(props) {
                     <Button full success
                         onPress={() => {
                             // dispatch action
-                            props.addStep(workout)
+                            props.addStep(workout.id)
                         }}>
                         <Text>Add step</Text>
                     </Button>

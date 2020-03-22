@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import Header from './Header'
-import DurationPicker from './DurationPicker'
+
 import Stopwatch from './StopwatchClass'
+import WorkoutStepEditor from './WorkoutStepEditor'
 
 const styles = StyleSheet.create({
     mainContent: {
       backgroundColor: '#F5FCFF',
       flex: 1,
       alignItems: 'center'
+    },
+    pickers: {
+        flex: 3,
+        alignItems: 'center'        
     },
     stopwatchContainer: {
         // backgroundColor: 'purple',
@@ -29,24 +34,19 @@ function TimerScreen(props) {
         <React.Fragment>
             <Header title="ClimberTimer" settingsButton={true} navigation={props.navigation} />
             <View style={styles.mainContent}>
-                <DurationPicker 
-                    title="Work duration" 
-                    minutes={workMinutes}
-                    setMinutes={setWorkMinutes}
-                    seconds={workSeconds}
-                    setSeconds={setWorkSeconds} />
-
-                <DurationPicker 
-                    title="Rest duration" 
-                    minutes={restMinutes}
-                    setMinutes={setRestMinutes}
-                    seconds={restSeconds}
-                    setSeconds={setRestSeconds} />
-
-                <DurationPicker 
-                    title="Reps" 
-                    minutes={reps}
-                    setMinutes={setReps} />
+                <View style={styles.pickers}>
+                    <WorkoutStepEditor 
+                        workMinutes={workMinutes} 
+                        setWorkMinutes={setWorkMinutes}
+                        workSeconds={workSeconds} 
+                        setWorkSeconds={setWorkSeconds}
+                        restMinutes={restMinutes} 
+                        setRestMinutes={setRestMinutes}
+                        restSeconds={restSeconds} 
+                        setRestSeconds={setRestSeconds}
+                        reps={reps}
+                        setReps={setReps}/>
+                </View>
                 
                 <View style={styles.stopwatchContainer}>
                     <Stopwatch 

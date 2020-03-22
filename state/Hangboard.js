@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { SET_HANGBOARD, ADD_STEP } from './Actions'
+import { SET_HANGBOARD, ADD_STEP, UPDATE_STEP } from './Actions'
 
 const initialState = {
     hangboards: [
@@ -13,6 +13,7 @@ const initialState = {
                     title: 'Beasty 5A',
                     steps: [
                         {
+                            id: 0,
                             workDuration: 7,
                             restDuration: 3,
                             reps: 5,
@@ -21,6 +22,7 @@ const initialState = {
                             ]
                         },
                         {
+                            id: 1,
                             workDuration: 6,
                             restDuration: 4,
                             reps: 2,
@@ -29,6 +31,7 @@ const initialState = {
                             ]
                         },
                         {
+                            id: 2,
                             workDuration: 5,
                             restDuration: 5,
                             reps: 3,
@@ -162,41 +165,81 @@ const initialState = {
     selectedHangboard: 0
 }
 
-const initialWorkoutStep = {
+const initialWorkoutStep = () => ({
+    id: uuid(),
     workDuration: 7,
     restDuration: 3,
     reps: 1,
     holds: []
-}
+})
 
 const HangboardReducer = (state = initialState, action) => {
     const { type } = action
     switch(type) {
+        
         case SET_HANGBOARD:
             return {
                 ...state,
                 selectedHangboard: action.hangboard.id
             }
-        case ADD_STEP:
-            let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
-            const workouts = updatedBoard.workouts.map((workout) => {
-                if(workout.id === action.workout.id) {
-                    workout.steps.push(initialWorkoutStep)
-                }
-                return workout
-            })
-            updatedBoard.workouts = workouts
-            
-            const boards = state.hangboards.map((board) => {
-                if(board.id === updatedBoard.id) {
-                    return updatedBoard
-                }
-                return board
-            })
 
-            return {
-                ...state,
-                hangboards: boards
+        case ADD_STEP:
+            {
+                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
+                const workouts = updatedBoard.workouts.map((workout) => {
+                    if(workout.id === action.workout) {
+                        workout.steps.push(initialWorkoutStep())
+                    }
+                    return workout
+                })
+                updatedBoard.workouts = workouts
+                
+                const boards = state.hangboards.map((board) => {
+                    if(board.id === updatedBoard.id) {
+                        return updatedBoard
+                    }
+                    return board
+                })
+
+                return {
+                    ...state,
+                    hangboards: boards
+                }
+            }
+        case UPDATE_STEP:
+            {
+                console.log('UPDATE')
+                console.log(action)
+                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
+                const workouts = updatedBoard.workouts.map((workout) => {
+                    if(workout.id === action.workout) {
+                        console.log('workout hit')
+                        const steps = workout.steps.map((step) => {
+                            if(step.id == action.step.id) {
+                                console.log('step hit')
+                                step.workDuration = action.step.workDuration
+                                step.restDuration = action.step.restDuration
+                                step.reps = action.step.reps
+                            }
+                            return step
+                        })
+                        workout.steps = steps
+                    }
+                    return workout
+                })
+                updatedBoard.workouts = workouts
+                
+                const boards = state.hangboards.map((board) => {
+                    if(board.id === updatedBoard.id) {
+                        return updatedBoard
+                    }
+                    return board
+                })
+
+                return {
+                    ...state,
+                    hangboards: boards
+                }
             }
         default:
             return state
