@@ -26,7 +26,7 @@ function HangboardSelector(props) {
                 if(buttonIndex >= hangboardSelectionTitles.length - 1) return
 
                 // dispatch action
-                props.setHangboard(props.hangboards[buttonIndex])
+                props.setHangboard(props.hangboards[buttonIndex].id)
             }
         )
     }
