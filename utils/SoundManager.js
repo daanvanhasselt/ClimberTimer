@@ -18,7 +18,7 @@ class SoundManager {
                 })
             }
             catch(e) {
-                console.error(e)
+                console.log(`Error loading sound: ${e}`)
             }
         }
     }

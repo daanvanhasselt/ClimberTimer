@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import Header from './Header'
 
-import Stopwatch from './StopwatchClass'
+import Stopwatch from './Stopwatch'
 import WorkoutStepEditor from './WorkoutStepEditor'
 
 const styles = StyleSheet.create({
