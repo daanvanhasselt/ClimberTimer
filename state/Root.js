@@ -9,7 +9,8 @@ const RootReducer = combineReducers({
     hangboard: HangboardReducer
 })
 
-const middleware = [logger, thunk]
+//const middleware = [logger, thunk]
+const middleware = []
 
 const RootStore = createStore(
     RootReducer,            // main reducer

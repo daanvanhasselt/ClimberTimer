@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 
 import { Dimensions } from 'react-native'
 import { ActionSheet, Button, Text } from 'native-base'
-import Image from 'react-native-scalable-image'
 
 import { setHangboard } from '../state/Actions'
+import HangboardView from './HangboardView'
 
 function HangboardSelector(props) {
     // hangboard names
@@ -37,10 +37,11 @@ function HangboardSelector(props) {
                 onPress={() => showSelector(props)}>
                 <Text>{props.selectedHangboard.name}</Text>
             </Button>
-            <Image 
-                width={Dimensions.get('window').width} 
-                source={props.selectedHangboard.img}
-                onPress={() => showSelector(props)}/>
+            <HangboardView
+                width={Dimensions.get('window').width}
+                onPress={() => showSelector(props)}
+                hangboard={props.selectedHangboard}
+                showHolds={props.showHolds} />
         </React.Fragment>
     )
 }

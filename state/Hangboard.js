@@ -1,169 +1,6 @@
 import uuid from 'uuid'
-import { SET_HANGBOARD, ADD_STEP, UPDATE_STEP } from './Actions'
-
-const initialState = {
-    hangboards: [
-        {
-            id: 0,
-            name: 'Beastmaker 1000',
-            img: require('../assets/img/beastmaker-1000.jpg'),
-            workouts: [
-                {
-                    id: 0,
-                    title: 'Beasty 5A',
-                    steps: [
-                        {
-                            id: 0,
-                            workDuration: 7,
-                            restDuration: 3,
-                            reps: 5,
-                            holds:[
-                                0, 1
-                            ]
-                        },
-                        {
-                            id: 1,
-                            workDuration: 6,
-                            restDuration: 4,
-                            reps: 2,
-                            holds:[
-                                2, 3
-                            ]
-                        },
-                        {
-                            id: 2,
-                            workDuration: 5,
-                            restDuration: 5,
-                            reps: 3,
-                            holds:[
-                                4, 5
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    title: 'Beasty 5B',
-                    steps: []
-                },
-                {
-                    id: 2,
-                    title: 'Beasty 5C',
-                    steps: []
-                },
-                {
-                    id: 3,
-                    title: 'Beasty 6A',
-                    steps: []
-                },
-                {
-                    id: 4,
-                    title: 'Beasty 6B',
-                    steps: []
-                },
-                {
-                    id: 5,
-                    title: 'Beasty 6C',
-                    steps: []
-                },
-                {
-                    id: 6,
-                    title: 'Beasty 7A',
-                    steps: []
-                },
-                {
-                    id: 7,
-                    title: 'Beasty 7B',
-                    steps: []
-                },
-                {
-                    id: 8,
-                    title: 'Beasty 7B+',
-                    steps: []
-                },
-                {
-                    id: 9,
-                    title: 'Beasty 7C',
-                    steps: []
-                },
-            ]
-        },
-        {
-            id: 1,
-            name: 'Beastmaker 2000',
-            img: require('../assets/img/beastmaker-2000.jpg'),
-            workouts: [
-                {
-                    id: 0,
-                    title: 'Beasty 6Cish',
-                    steps: []
-                },
-                {
-                    id: 1,
-                    title: 'Beasty 7Aish',
-                    steps: []
-                },
-                {
-                    id: 2,
-                    title: 'Beasty 7Bish',
-                    steps: []
-                },
-                {
-                    id: 3,
-                    title: 'Beasty 7Cish',
-                    steps: []
-                },
-                {
-                    id: 4,
-                    title: 'Beasty 7C+ish',
-                    steps: []
-                },
-                {
-                    id: 5,
-                    title: 'Beasty 8Aish',
-                    steps: []
-                },
-                {
-                    id: 6,
-                    title: 'Beasty 8A+ish',
-                    steps: []
-                },
-                {
-                    id: 7,
-                    title: 'Crimpcentric Hard',
-                    steps: []
-                },
-                {
-                    id: 8,
-                    title: 'Crimpcentric Medium',
-                    steps: []
-                }
-                ,
-                {
-                    id: 9,
-                    title: 'Pocketcentric Hard',
-                    steps: []
-                },
-                {
-                    id: 10,
-                    title: 'Pocketcentric Medium',
-                    steps: []
-                },
-                {
-                    id: 11,
-                    title: 'Slopercentric Hard',
-                    steps: []
-                },
-                {
-                    id: 12,
-                    title: 'Slopercentric Medium',
-                    steps: []
-                }
-            ]
-        }
-    ],
-    selectedHangboard: 0
-}
+import { SET_HANGBOARD, ADD_STEP, UPDATE_STEP, SET_HOLD_SELECTION, CLEAR_HOLD_SELECTION, TOGGLE_HOLD_SELECTION } from './Actions'
+import initialState from './HangboardData'
 
 const initialWorkoutStep = () => ({
     id: uuid(),
@@ -235,6 +72,78 @@ const HangboardReducer = (state = initialState, action) => {
                     }
                     return workout
                 })
+
+                // create new hangboards array
+                const boards = state.hangboards.map((board) => {
+                    if(board.id === updatedBoard.id) {
+                        return updatedBoard
+                    }
+                    return board
+                })
+
+                // return state with new boards
+                return {
+                    ...state,
+                    hangboards: boards
+                }
+            }
+        case SET_HOLD_SELECTION:
+            {
+                // find the selected board
+                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
+
+                // update its selected holds
+                updatedBoard.selectedHolds = action.holds
+
+                // create new hangboards array
+                const boards = state.hangboards.map((board) => {
+                    if(board.id === updatedBoard.id) {
+                        return updatedBoard
+                    }
+                    return board
+                })
+
+                // return state with new boards
+                return {
+                    ...state,
+                    hangboards: boards
+                }
+            }
+        case CLEAR_HOLD_SELECTION:
+            {
+                // find the selected board
+                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
+
+                // update its selected holds
+                updatedBoard.selectedHolds = []
+
+                // create new hangboards array
+                const boards = state.hangboards.map((board) => {
+                    if(board.id === updatedBoard.id) {
+                        return updatedBoard
+                    }
+                    return board
+                })
+
+                // return state with new boards
+                return {
+                    ...state,
+                    hangboards: boards
+                }
+            }
+        case TOGGLE_HOLD_SELECTION:
+            {
+                // find the selected board
+                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
+
+                // update its selected holds
+                let searchIndex = updatedBoard.selectedHolds.indexOf(action.hold)
+                if(searchIndex === -1) {
+                    updatedBoard.selectedHolds.push(action.hold)
+                }
+                else {
+                    updatedBoard.selectedHolds.splice(searchIndex, 1)
+                }
 
                 // create new hangboards array
                 const boards = state.hangboards.map((board) => {
