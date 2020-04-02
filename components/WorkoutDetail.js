@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addStep } from '../state/Actions'
 
-import { StyleSheet, ScrollView, View } from 'react-native'
-import { Text, Button, Icon, List, ListItem } from 'native-base'
+import { StyleSheet, ScrollView, View, Text } from 'react-native'
+import { Button, Icon, List, ListItem } from 'native-base'
 
 const styles = StyleSheet.create({
     mainContent: {

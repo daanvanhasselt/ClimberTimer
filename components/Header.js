@@ -1,7 +1,5 @@
 import React from 'react'
 import { Header } from 'react-native-elements'
-import { withNavigation } from 'react-navigation'
-import { DrawerActions } from '@react-navigation/drawer'
 
 class AppHeader extends React.Component {
     render() {

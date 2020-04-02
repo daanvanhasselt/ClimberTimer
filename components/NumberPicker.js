@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
-import { Button, Icon } from 'native-base'
+import { Button } from 'native-base'
 
 const styles = StyleSheet.create({
     input: {

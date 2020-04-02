@@ -15,12 +15,16 @@ function App () {
 
   // load fonts
   useEffect(() => {
-    Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    })
-    setIsReady(true) 
+    async function loadFonts() {
+      await Font.loadAsync({
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        ...Ionicons.font,
+      })
+      setIsReady(true) 
+    }
+
+    loadFonts()
   }, [])
 
   if(!isReady) {

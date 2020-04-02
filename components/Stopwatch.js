@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import SoundManager from '../utils/SoundManager'
 
 const states = {
