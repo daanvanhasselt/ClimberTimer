@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateStep } from '../state/Actions'
 
-import { View, StyleSheet, Text } from 'react-native'
-import { Button, Icon } from 'native-base'
+import { View, StyleSheet } from 'react-native'
+import { Text, Button, Icon } from 'native-base'
 import WorkoutStepEditor from './WorkoutStepEditor'
 
 const styles = StyleSheet.create({

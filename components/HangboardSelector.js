@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { Dimensions } from 'react-native'
-import { ActionSheet, Button } from 'native-base'
-import { Text } from 'react-native'
+import { ActionSheet, Button, Text } from 'native-base'
 import Image from 'react-native-scalable-image'
 
 import { setHangboard } from '../state/Actions'

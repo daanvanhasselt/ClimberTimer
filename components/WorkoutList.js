@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { StyleSheet, ScrollView, View, Text } from 'react-native'
-import { List, ListItem } from 'native-base'
+import { StyleSheet, ScrollView, View } from 'react-native'
+import { Text, List, ListItem } from 'native-base'
 
 import HangboardSelector from './HangboardSelector'
 

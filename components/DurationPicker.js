@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import { Text } from 'native-base'
 
 import NumberPicker from './NumberPicker'
-
 
 const styles = StyleSheet.create({
     pickerContainer: {
