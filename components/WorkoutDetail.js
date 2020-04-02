@@ -19,11 +19,14 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#dedede'
+        backgroundColor: '#F5FCFF',
+        paddingBottom: 1,
+        borderBottomWidth: 1,
+        borderBottomColor: '#d2d2d2'
     },
     headerText: {
         fontSize: 18,
-        paddingRight: 20
+        fontWeight: 'bold'
     },
     listItem: {
         flexDirection: 'column'
@@ -62,14 +65,21 @@ function WorkoutDetail(props) {
                     <Text>Back</Text>
                 </Button>
                 <Text style={styles.headerText}>{workout.title}</Text>
+                <Button iconLeft success
+                    onPress={() => props.navigation.goBack()}>
+                    <Icon name='arrow-dropright-circle' />
+                    <Text>Start</Text>
+                </Button>
             </View>
 
             <View style={styles.mainContent}>
                 <ScrollView style={{ width: '100%' }}>
-                    <List>
+                    <List className="steps">
                         {items}
                     </List>
-                    <Button full success
+                    <Button 
+                        className="addStep"
+                        full success
                         onPress={() => {
                             // dispatch action
                             props.addStep(workout.id)

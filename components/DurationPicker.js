@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   })
 
 function DurationPicker({ title, minutes, setMinutes, seconds, setSeconds }) {
-    const firstPicker = <NumberPicker title="" value={minutes} valueSetter={setMinutes}/>
+    const firstPicker = <NumberPicker value={minutes} valueSetter={setMinutes}/>
     const colon = <Text style={styles.colon}>:</Text>
-    const secondPicker = <NumberPicker title="" value={seconds} valueSetter={setSeconds}/>
+    const secondPicker = <NumberPicker value={seconds} valueSetter={setSeconds}/>
 
     return (
         <View style={styles.pickerContainer}>

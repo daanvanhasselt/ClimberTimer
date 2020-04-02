@@ -66,7 +66,6 @@ class Stopwatch extends React.Component {
                         countdownSecondsLeft: newT
                     }, ()=>{
                         if(this.state.countdownSecondsLeft <= 0) {
-                            console.log('countdown done: working')
                             // after countdown we always go to work, regardless of reps
                             this.setState({
                                 state: states.working
@@ -94,7 +93,6 @@ class Stopwatch extends React.Component {
                         if(this.state.workSecondsLeft <= 0) {
                             const newRepsLeft = this.state.repsLeft - 1
                             if(newRepsLeft >= 1) {  // skip the last rest since we're done
-                                console.log('reps left: resting')
                                 this.setState({
                                     state: states.resting,
                                     workSecondsLeft: (this.props.workMinutes * 60) + this.props.workSeconds,    // reset initial work seconds
@@ -102,7 +100,6 @@ class Stopwatch extends React.Component {
                                 })
                             }
                             else {
-                                console.log('done!')
                                 this.setState({ state: states.stopped })
                                 this.reset()
                             }
@@ -127,7 +124,6 @@ class Stopwatch extends React.Component {
                         restSecondsLeft: newT
                     }, ()=>{
                         if(this.state.restSecondsLeft <= 0) {
-                            console.log('resting done: working')
                             // after resting we always go to work, regardless of reps
                             this.setState({
                                 state: states.working,

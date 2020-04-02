@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   })
 
 function format(num) {
-    let str = num.toString()
+    let str = Math.max(0, num).toString()
     if(num < 10) {
         str = "0" + str
     }
@@ -40,26 +40,30 @@ function unformat(str) {
     return parseInt(str)
 }
 
-function DurationPicker({ title, value, valueSetter }) {
+function DurationPicker({ value, valueSetter }) {
     const setter = (v) => {
-        if(v >= 0) {
+        if(valueSetter && v >= 0) {
             valueSetter(v)
         }
     }
     return (
     <React.Fragment>
-        <Text>{title}</Text>
         <View style={styles.container}>
-            <Button light style={styles.button}
+            <Button 
+                className="decrement"
+                light style={styles.button}
                 onPress={() => setter(value - 1)}>
                 <Text style={styles.buttonText}>-</Text>
             </Button>
             <TextInput 
+                className="value"
                 keyboardType='number-pad'
-                value={format(value)}
+                value={format(value ? value : 0)}
                 onChangeText={(t) => setter(unformat(t))}
                 style={styles.input}></TextInput>
-            <Button light style={styles.button}
+            <Button 
+                className="increment"
+                light style={styles.button}
                 onPress={() => setter(value + 1)}>
                 <Text style={styles.buttonText}>+</Text>
             </Button>
