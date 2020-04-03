@@ -40,8 +40,11 @@ const HangboardView = (props) => {
                 borderRadius: hold.cornerRadius
             }
         })
-        const style = [holdStyle.hold, styles.hold, (props.hangboard.selectedHolds || []).includes(hold.id) && styles.selectedHold]
-        return <View key={i} style={style}></View>
+
+        const holdIsSelected = (props.selectedHolds || []).includes(hold.id)
+
+        const style = [holdStyle.hold, styles.hold, holdIsSelected && styles.selectedHold]
+        return (props.showNonSelectedHolds || holdIsSelected) && <View key={i} style={style}></View>
     })
 
     const holdsContainer = (

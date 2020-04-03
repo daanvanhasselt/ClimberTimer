@@ -41,7 +41,9 @@ function HangboardSelector(props) {
                 width={Dimensions.get('window').width}
                 onPress={() => showSelector(props)}
                 hangboard={props.selectedHangboard}
-                showHolds={props.showHolds} />
+                selectedHolds={props.selectedHangboard.selectedHolds}
+                showHolds={true}
+                showNonSelectedHolds={true} />
         </React.Fragment>
     )
 }
