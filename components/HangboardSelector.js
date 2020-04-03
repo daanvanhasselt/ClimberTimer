@@ -15,6 +15,8 @@ function HangboardSelector(props) {
 
     // show the selector
     const showSelector = (props) => {
+        if(props.disableHangboardSwitch) return
+        
         ActionSheet.show(
             {
                 title: "Select your hangboard",

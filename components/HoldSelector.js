@@ -63,7 +63,11 @@ function HoldSelector(props) {
         <React.Fragment>
             <Header title="Select Holds" menuButton={false} doneButton={true} done={props.close} navigation={props.navigation} />
                 <View style={styles.mainContent}>
-                    <HangboardSelector showHolds={true} showNonSelectedHolds={true} selectedHolds={props.selectedHolds}/>
+                    <HangboardSelector 
+                        showHolds={true} 
+                        showNonSelectedHolds={true} 
+                        selectedHolds={props.selectedHolds}
+                        disableHangboardSwitch={props.disableHangboardSwitch}/>
                     <ScrollView>
                         <List>
                             {items}

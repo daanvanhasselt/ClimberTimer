@@ -44,7 +44,11 @@ const styles = StyleSheet.create({
     itemLabelContainer: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        alignContent: 'center',
+        // backgroundColor: 'red',
+        height: 35,
+        marginTop: 10
     }
 })
 

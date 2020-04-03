@@ -83,6 +83,7 @@ function WorkoutStep(props) {
                         hangboard={props.route.params.hangboard} 
                         selectedHolds={holds} 
                         setHolds={setHolds}
+                        disableHangboardSwitch={true}
                         close={()=>setShowHoldsModal(false)} />
                 </Modal>
                 <WorkoutStepEditor 
