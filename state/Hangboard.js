@@ -66,6 +66,7 @@ const HangboardReducer = (state = initialState, action) => {
                                 step.workDuration = action.step.workDuration
                                 step.restDuration = action.step.restDuration
                                 step.reps = action.step.reps
+                                step.holds = action.step.holds
                             }
                             return step
                         })

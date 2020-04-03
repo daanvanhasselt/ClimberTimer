@@ -32,7 +32,7 @@ function TimerScreen(props) {
     
     return (
         <React.Fragment>
-            <Header title="ClimberTimer" settingsButton={true} navigation={props.navigation} />
+            <Header title="ClimberTimer" menuButton={true} settingsButton={true} navigation={props.navigation} />
             <View style={styles.mainContent}>
                 <View style={styles.pickers}>
                     <WorkoutStepEditor 

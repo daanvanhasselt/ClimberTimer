@@ -53,7 +53,7 @@ function Item({ navigation, hangboard, workout, step }) {
     return (
         <ListItem style={styles.listItem}>
             <HangboardView
-                onPress={() => navigation.push('Step', { workout, step })}
+                onPress={() => navigation.push('Step', { hangboard, workout, step })}
                 hangboard={hangboard}
                 selectedHolds={step.holds}
                 showHolds={true}

@@ -3,14 +3,20 @@ import { Header } from 'react-native-elements'
 
 class AppHeader extends React.Component {
     render() {
-        let leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => this.props.navigation.toggleDrawer() }
+        let leftComponent = null
         if(this.props.backButton) {
-            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.navigation.goBack() }
+            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.goBack ? this.props.goBack() : this.props.navigation.goBack() }
+        }
+        else if(this.props.menuButton) {
+            leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => this.props.navigation.toggleDrawer() }
         }
 
         let rightComponent = null
         if(this.props.settingsButton) {
             rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Settings') }
+        }
+        else if(this.props.doneButton) {
+            rightComponent = { icon: 'check', color: '#EEEEEE', onPress:() => this.props.done && this.props.done() }
         }
 
         return (

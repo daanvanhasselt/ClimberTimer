@@ -5,7 +5,10 @@ import { updateStep } from '../state/Actions'
 
 import { View, StyleSheet } from 'react-native'
 import { Text, Button, Icon } from 'native-base'
+import Modal from 'react-native-modal'
 import WorkoutStepEditor from './WorkoutStepEditor'
+import HangboardView from './HangboardView'
+import HoldSelector from './HoldSelector'
 
 const styles = StyleSheet.create({
     header: {
@@ -15,6 +18,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#efefef'
+    },
+    modal: {
+        margin: 0,
+        flex:1,
+        paddingRight: 0,
+        alignItems: 'flex-start'
     },
     editorContainer: { 
         flex: 1,
@@ -33,6 +42,9 @@ function WorkoutStep(props) {
     const [restSeconds, setRestSeconds] = useState(seconds(step.restDuration))
     const [reps, setReps] = useState(step.reps)
 
+    const [showHoldsModal, setShowHoldsModal] = useState(false)
+    const [holds, setHolds] = useState(step.holds)
+
     return (
         <React.Fragment>
             <View style={styles.header}>
@@ -47,7 +59,8 @@ function WorkoutStep(props) {
                             id: step.id,
                             workDuration: (workMinutes * 60) + workSeconds,
                             restDuration: (restMinutes * 60) + restSeconds,
-                            reps: reps
+                            reps: reps,
+                            holds: holds
                         })
                         props.navigation.goBack()
                     }}>
@@ -57,6 +70,21 @@ function WorkoutStep(props) {
             </View>
 
             <View style={styles.editorContainer}>
+                <HangboardView 
+                    hangboard={props.route.params.hangboard} 
+                    showHolds={true} 
+                    selectedHolds={holds}
+                    onPress={()=> {
+                        setShowHoldsModal(!showHoldsModal)
+                    }}/>
+
+                <Modal style={styles.modal} isVisible={showHoldsModal}>
+                    <HoldSelector 
+                        hangboard={props.route.params.hangboard} 
+                        selectedHolds={holds} 
+                        setHolds={setHolds}
+                        close={()=>setShowHoldsModal(false)} />
+                </Modal>
                 <WorkoutStepEditor 
                     workMinutes={workMinutes} 
                     setWorkMinutes={setWorkMinutes}

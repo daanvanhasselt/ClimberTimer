@@ -13,7 +13,7 @@ const horizontalSlide = { cardStyleInterpolator: CardStyleInterpolators.forHoriz
 function HangboardScreen(props) {
     return (
         <>
-            <Header title="Hangboard Training" backButton={false} navigation={props.navigation} />
+            <Header title="Hangboard Training" backButton={false} menuButton={true} navigation={props.navigation} />
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Workouts" component={WorkoutList} options={horizontalSlide}/>
                 <Stack.Screen name="Workout" component={WorkoutDetail} options={horizontalSlide}/>
