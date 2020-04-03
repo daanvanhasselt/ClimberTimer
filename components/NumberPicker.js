@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import { Text, Button } from 'native-base'
+import { pad } from '../utils/Formatting'
 
 const styles = StyleSheet.create({
     input: {
@@ -28,18 +29,6 @@ const styles = StyleSheet.create({
     }
   })
 
-function format(num) {
-    let str = Math.max(0, num).toString()
-    if(num < 10) {
-        str = "0" + str
-    }
-    return str
-}
-
-function unformat(str) {
-    return parseInt(str)
-}
-
 function DurationPicker({ value, valueSetter }) {
     const setter = (v) => {
         if(valueSetter && v >= 0) {
@@ -58,8 +47,8 @@ function DurationPicker({ value, valueSetter }) {
             <TextInput 
                 className="value"
                 keyboardType='number-pad'
-                value={format(value ? value : 0)}
-                onChangeText={(t) => setter(unformat(t))}
+                value={pad(value ? value : 0)}
+                onChangeText={(t) => setter(parseInt(t))}
                 style={styles.input}></TextInput>
             <Button 
                 className="increment"

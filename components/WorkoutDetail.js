@@ -6,10 +6,13 @@ import { addStep } from '../state/Actions'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
 
+import HangboardView from './HangboardView'
+import { formatTime } from '../utils/Formatting'
+
 const styles = StyleSheet.create({
     mainContent: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
     },
@@ -28,22 +31,38 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
+    list: {
+    },
     listItem: {
-        flexDirection: 'column'
+        marginLeft: 0,
+        flex:1,
+        paddingRight: 0,
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        borderBottomWidth: 2
+    },
+    itemLabelContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 })
 
 // single step list item
-function Item({ navigation, workout, step, index }) {
+function Item({ navigation, hangboard, workout, step }) {
     return (
-        <ListItem style={styles.listItem}
-            onPress={() => {
-                navigation.push('Step', { workout, step })
-            }}>
-            <Text>{"Work: " + step.workDuration}</Text>
-            <Text>{"Rest: " + step.restDuration}</Text>
-            <Text>{"Reps: " + step.reps}</Text>
-            <Text>{"Holds: " + (step.holds && step.holds.toString())}</Text>
+        <ListItem style={styles.listItem}>
+            <HangboardView
+                onPress={() => navigation.push('Step', { workout, step })}
+                hangboard={hangboard}
+                selectedHolds={step.holds}
+                showHolds={true}
+                showNonSelectedHolds={false} />
+            <View style={styles.itemLabelContainer}>
+                <Text>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
+                <Text>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
+                <Text>{"Reps: " + step.reps}</Text>
+            </View>
         </ListItem>
     )
 }
@@ -52,7 +71,7 @@ function WorkoutDetail(props) {
     // retrieve the data from state
     const workout = props.hangboard.workouts.find((workout) => workout.id === props.route.params.workout)
     const items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} index={i} navigation={props.navigation} workout={workout.id} step={step} />
+        return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout.id} step={step} />
     })
 
     return (
@@ -73,7 +92,7 @@ function WorkoutDetail(props) {
 
             <View style={styles.mainContent}>
                 <ScrollView style={{ width: '100%' }}>
-                    <List className="steps">
+                    <List style={styles.list} className="steps">
                         {items}
                     </List>
                     <Button 

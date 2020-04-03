@@ -39,11 +39,11 @@ function SettingsScreen(props) {
         <React.Fragment>
             <Header title="Settings" backButton={true} navigation={props.navigation} />
                 <View style={styles.mainContent}>
-                    <HangboardSelector />
+                    <HangboardSelector showHolds={true} showNonSelectedHolds={true}/>
                     <ScrollView style={{ width: '100%' }}>
-                    <List>
-                        {items}
-                    </List>
+                        <List>
+                            {items}
+                        </List>
                     </ScrollView>
                 </View>
         </React.Fragment>

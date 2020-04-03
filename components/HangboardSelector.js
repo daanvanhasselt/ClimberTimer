@@ -42,8 +42,8 @@ function HangboardSelector(props) {
                 onPress={() => showSelector(props)}
                 hangboard={props.selectedHangboard}
                 selectedHolds={props.selectedHangboard.selectedHolds}
-                showHolds={true}
-                showNonSelectedHolds={true} />
+                showHolds={props.showHolds}
+                showNonSelectedHolds={props.showNonSelectedHolds} />
         </React.Fragment>
     )
 }

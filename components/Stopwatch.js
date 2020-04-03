@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text } from 'native-base'
 import SoundManager from '../utils/SoundManager'
+import { pad, formatTime } from '../utils/Formatting'
 
 const states = {
     stopped: 0,
@@ -145,25 +146,12 @@ class Stopwatch extends React.Component {
         this.frameReq = requestAnimationFrame(this.run)
     }
 
-    // 3 -> 03
-    pad(num) {
-        return ("0"+num).slice(-2)
-    }
-    
-    // number of seconds -> [mm, ss, ms]
-    formatTime(secs) {
-        let minutes = Math.floor(secs / 60) % 60
-        let seconds = Math.floor(secs) % 60
-        let milliseconds = Math.floor((secs % 1) * 100)
-        return [this.pad(minutes), this.pad(seconds), this.pad(milliseconds)]
-    }
-
     render() {
         // cherry pick our data based on state
         const running = this.state.state !== states.stopped
-        const [countdownMinutes, countdownSeconds, countdownMilliseconds] = this.formatTime(this.state.countdownSecondsLeft)
-        const [workMinutes, workSeconds, workMilliseconds] = this.formatTime(this.state.workSecondsLeft)
-        const [restMinutes, restSeconds, restMilliseconds] = this.formatTime(this.state.restSecondsLeft)
+        const [countdownMinutes, countdownSeconds, countdownMilliseconds] = formatTime(this.state.countdownSecondsLeft)
+        const [workMinutes, workSeconds, workMilliseconds] = formatTime(this.state.workSecondsLeft)
+        const [restMinutes, restSeconds, restMilliseconds] = formatTime(this.state.restSecondsLeft)
         let m, s, ms, timerStyle, title;
 
         switch(this.state.state) {

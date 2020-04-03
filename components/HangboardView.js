@@ -11,7 +11,7 @@ const HangboardView = (props) => {
         },
         holdsContainer: {
             width: '100%',
-            height: '100%',
+            height: width / props.hangboard.aspect,
             position: 'absolute',
         },
         hold: {
@@ -44,7 +44,7 @@ const HangboardView = (props) => {
         const holdIsSelected = (props.selectedHolds || []).includes(hold.id)
 
         const style = [holdStyle.hold, styles.hold, holdIsSelected && styles.selectedHold]
-        return (props.showNonSelectedHolds || holdIsSelected) && <View key={i} style={style}></View>
+        return (props.showHolds && (props.showNonSelectedHolds || holdIsSelected)) && <View key={i} style={style}></View>
     })
 
     const holdsContainer = (

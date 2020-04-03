@@ -4,6 +4,7 @@ export default {
             id: 0,
             name: 'Beastmaker 1000',
             img: require('../assets/img/beastmaker-1000.jpg'),
+            aspect: (1024/301),
             selectedHolds: [],
             holds: [
                 {
@@ -391,6 +392,7 @@ export default {
             id: 1,
             name: 'Beastmaker 2000',
             img: require('../assets/img/beastmaker-2000.jpg'),
+            aspect: (1024/301),
             selectedHolds: [],
             holds: [],
             workouts: [
