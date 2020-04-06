@@ -13,7 +13,7 @@ const workout = hangboard.workouts[0]
 test('<WorkoutDetail /> renders 3 items', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout } }} />
+            <WorkoutDetail route={{params: { workout: workout.id } }} />
         </ReduxProvider>
     ))
     
@@ -24,7 +24,7 @@ test('<WorkoutDetail /> renders 3 items', () => {
 test('<WorkoutDetail /> renders more items after clicking add button', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout } }} />
+            <WorkoutDetail route={{params: { workout: workout.id } }} />
         </ReduxProvider>
     ))
     

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateStep } from '../state/Actions'
+import { updateStep, removeStep } from '../state/Actions'
 
 import { View, StyleSheet } from 'react-native'
 import { Text, Button, Icon } from 'native-base'
@@ -33,8 +33,11 @@ const styles = StyleSheet.create({
 })
 
 function WorkoutStep(props) {
-    const workout = props.route.params.workout
-    const step = props.route.params.step
+    const hangboard = props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
+    const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
+    const step = workout.steps.find(step => step.id === props.route.params.step)
+    if(step === undefined) return null
+
     let minutes = (duration) => Math.floor(duration / 60) % 60
     let seconds = (duration) => Math.floor(duration) % 60
         
@@ -54,7 +57,7 @@ function WorkoutStep(props) {
     const saveButton = (
         <Button success
             onPress={() => {
-                props.updateStep(props.route.params.workout.id, {
+                props.updateStep(hangboard.id, workout.id, {
                     id: step.id,
                     workDuration: (workMinutes * 60) + workSeconds,
                     restDuration: (restMinutes * 60) + restSeconds,
@@ -72,7 +75,7 @@ function WorkoutStep(props) {
 
             <View style={styles.editorContainer}>
                 <HangboardView 
-                    hangboard={props.route.params.hangboard} 
+                    hangboard={hangboard} 
                     showHolds={true} 
                     selectedHolds={holds}
                     onPress={()=> {
@@ -81,7 +84,7 @@ function WorkoutStep(props) {
 
                 <Modal style={styles.modal} isVisible={showHoldsModal}>
                     <HoldSelector 
-                        hangboard={props.route.params.hangboard} 
+                        hangboard={hangboard} 
                         selectedHolds={holds} 
                         setHolds={setHolds}
                         disableHangboardSwitch={true}
@@ -98,6 +101,16 @@ function WorkoutStep(props) {
                     setRestSeconds={setRestSeconds}
                     reps={reps}
                     setReps={setReps}/>
+                <Button 
+                    className="removeStep"
+                    full danger
+                    onPress={() => {
+                        // dispatch action
+                        props.navigation.goBack()
+                        props.removeStep(hangboard.id, workout.id, step)
+                    }}>
+                    <Text>Remove step</Text>
+                </Button>
             </View>
             
         </React.Fragment>
@@ -106,12 +119,12 @@ function WorkoutStep(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    
+    hangboards: state.hangboard.hangboards
 })
 
 // set state through props
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    updateStep
+    updateStep, removeStep
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutStep)

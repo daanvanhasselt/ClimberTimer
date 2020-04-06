@@ -58,7 +58,7 @@ function Item({ navigation, hangboard, workout, step }) {
     return (
         <ListItem style={styles.listItem}>
             <HangboardView
-                onPress={() => navigation.push('Step', { hangboard, workout, step })}
+                onPress={() => navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}
                 hangboard={hangboard}
                 selectedHolds={step.holds}
                 showHolds={true}
@@ -74,7 +74,7 @@ function Item({ navigation, hangboard, workout, step }) {
 
 function WorkoutDetail(props) {
     // retrieve the data from state
-    const workout = props.route.params.workout
+    const workout = props.hangboard.workouts.find(workout => workout.id === props.route.params.workout)
     const items = workout.steps && workout.steps.map((step, i) => {
         return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout} step={step} />
     })
@@ -98,7 +98,7 @@ function WorkoutDetail(props) {
                         full success
                         onPress={() => {
                             // dispatch action
-                            props.addStep(workout.id)
+                            props.addStep(props.hangboard.id, workout.id)
                         }}>
                         <Text>Add step</Text>
                     </Button>

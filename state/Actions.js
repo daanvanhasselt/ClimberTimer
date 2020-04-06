@@ -1,6 +1,8 @@
 export const SET_HANGBOARD = 'SET_HANGBOARD'
+
 export const ADD_STEP = 'ADD_STEP'
 export const UPDATE_STEP = 'UPDATE_STEP'
+export const REMOVE_STEP = 'REMOVE_STEP'
 
 export const SET_HOLD_SELECTION = 'SET_HOLD_SELECTION'
 export const TOGGLE_HOLD_SELECTION = 'TOGGLE_HOLD_SELECTION'
@@ -13,16 +15,27 @@ export function setHangboard(hangboard) {
     }
 }
 
-export function addStep(workout) {
+export function addStep(hangboard, workout) {
     return {
         type: ADD_STEP,
+        hangboard,
         workout
     }
 }
 
-export function updateStep(workout, step) {
+export function updateStep(hangboard, workout, step) {
     return {
         type: UPDATE_STEP,
+        hangboard,
+        workout,
+        step
+    }
+}
+
+export function removeStep(hangboard, workout, step) {
+    return {
+        type: REMOVE_STEP,
+        hangboard,
         workout,
         step
     }

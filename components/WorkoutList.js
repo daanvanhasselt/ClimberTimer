@@ -21,7 +21,7 @@ function Item({ navigation, workout }) {
     return (
     <ListItem 
         onPress={() => {
-            navigation.push('Workout', { workout: workout })
+            navigation.push('Workout', { workout: workout.id })
         }}>
         <Text>{workout.title}</Text>
     </ListItem>
