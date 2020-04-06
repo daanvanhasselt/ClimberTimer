@@ -4,7 +4,10 @@ import { Header } from 'react-native-elements'
 class AppHeader extends React.Component {
     render() {
         let leftComponent = null
-        if(this.props.backButton) {
+        if(this.props.customLeftButton) {
+            rightComponent = this.props.customLeftButton;
+        }
+        else if(this.props.backButton) {
             leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.goBack ? this.props.goBack() : this.props.navigation.goBack() }
         }
         else if(this.props.menuButton) {
@@ -12,7 +15,10 @@ class AppHeader extends React.Component {
         }
 
         let rightComponent = null
-        if(this.props.settingsButton) {
+        if(this.props.customRightButton) {
+            rightComponent = this.props.customRightButton;
+        }
+        else if(this.props.settingsButton) {
             rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Settings') }
         }
         else if(this.props.doneButton) {

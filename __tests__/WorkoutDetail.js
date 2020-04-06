@@ -6,10 +6,14 @@ import { RootStore } from '../state/TestStore'
 
 import WorkoutDetail from '../components/WorkoutDetail'
 
+const state = RootStore.getState()
+const hangboard = state.hangboard.hangboards[state.hangboard.selectedHangboard]
+const workout = hangboard.workouts[0]
+
 test('<WorkoutDetail /> renders 3 items', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout: 0 } }} />
+            <WorkoutDetail route={{params: { workout } }} />
         </ReduxProvider>
     ))
     
@@ -20,7 +24,7 @@ test('<WorkoutDetail /> renders 3 items', () => {
 test('<WorkoutDetail /> renders more items after clicking add button', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout: 0 } }} />
+            <WorkoutDetail route={{params: { workout } }} />
         </ReduxProvider>
     ))
     

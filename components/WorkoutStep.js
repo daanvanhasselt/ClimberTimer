@@ -9,6 +9,7 @@ import Modal from 'react-native-modal'
 import WorkoutStepEditor from './WorkoutStepEditor'
 import HangboardView from './HangboardView'
 import HoldSelector from './HoldSelector'
+import Header from './Header'
 
 const styles = StyleSheet.create({
     header: {
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
 })
 
 function WorkoutStep(props) {
+    const workout = props.route.params.workout
     const step = props.route.params.step
     let minutes = (duration) => Math.floor(duration / 60) % 60
     let seconds = (duration) => Math.floor(duration) % 60
@@ -45,29 +47,28 @@ function WorkoutStep(props) {
     const [showHoldsModal, setShowHoldsModal] = useState(false)
     const [holds, setHolds] = useState(step.holds)
 
+    const stepChanged = (workMinutes != minutes(step.workDuration)) || (workSeconds != seconds(step.workDuration)) || 
+                        (restMinutes != minutes(step.restDuration)) || (restSeconds != seconds(step.restDuration)) || 
+                        reps != step.reps || holds != step.holds
+
+    const saveButton = (
+        <Button success
+            onPress={() => {
+                props.updateStep(props.route.params.workout.id, {
+                    id: step.id,
+                    workDuration: (workMinutes * 60) + workSeconds,
+                    restDuration: (restMinutes * 60) + restSeconds,
+                    reps: reps,
+                    holds: holds
+                })
+                props.navigation.goBack()
+            }}>
+            {stepChanged && <Icon name='checkmark' />}
+        </Button>)
+
     return (
         <React.Fragment>
-            <View style={styles.header}>
-                <Button iconLeft light
-                    onPress={() => props.navigation.goBack()}>
-                    <Icon name='arrow-back' />
-                    <Text>Back</Text>
-                </Button>
-                <Button iconLeft light
-                    onPress={() => {
-                        props.updateStep(props.route.params.workout, {
-                            id: step.id,
-                            workDuration: (workMinutes * 60) + workSeconds,
-                            restDuration: (restMinutes * 60) + restSeconds,
-                            reps: reps,
-                            holds: holds
-                        })
-                        props.navigation.goBack()
-                    }}>
-                    <Icon name='save' />
-                    <Text>Save</Text>
-                </Button>
-            </View>
+            <Header title="Edit step" backButton={true} customRightButton={saveButton} navigation={props.navigation} />
 
             <View style={styles.editorContainer}>
                 <HangboardView 

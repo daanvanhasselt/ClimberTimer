@@ -5,6 +5,7 @@ import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, List, ListItem } from 'native-base'
 
 import HangboardSelector from './HangboardSelector'
+import Header from './Header'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -20,7 +21,7 @@ function Item({ navigation, workout }) {
     return (
     <ListItem 
         onPress={() => {
-            navigation.push('Workout', { workout: workout.id })
+            navigation.push('Workout', { workout: workout })
         }}>
         <Text>{workout.title}</Text>
     </ListItem>
@@ -36,10 +37,11 @@ function WorkoutList(props) {
 
     return (
         <View style={styles.mainContent}>
+            <Header title="Hangboard Training" backButton={false} menuButton={true} navigation={props.navigation} />
             <HangboardSelector />
             <ScrollView style={{ width: '100%' }}>
                 <List>
-                    {items}
+                {(items && items.length > 0) ? items : <ListItem><Text style={{marginLeft: 'auto', marginRight: 'auto'}}>No workouts</Text></ListItem>}
                 </List>
             </ScrollView>
         </View>

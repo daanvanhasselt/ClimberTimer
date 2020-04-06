@@ -7,6 +7,7 @@ import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
 
 import HangboardView from './HangboardView'
+import Header from './Header'
 import { formatTime } from '../utils/Formatting'
 
 const styles = StyleSheet.create({
@@ -73,31 +74,24 @@ function Item({ navigation, hangboard, workout, step }) {
 
 function WorkoutDetail(props) {
     // retrieve the data from state
-    const workout = props.hangboard.workouts.find((workout) => workout.id === props.route.params.workout)
+    const workout = props.route.params.workout
     const items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout.id} step={step} />
+        return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout} step={step} />
     })
+
+    const startButton = (<Button success
+                            onPress={() => props.navigation.goBack()}>
+                            <Icon name='play' />
+                        </Button>)
 
     return (
         <>
-            <View style={styles.header}>
-                <Button iconLeft light
-                    onPress={() => props.navigation.goBack()}>
-                    <Icon name='arrow-back' />
-                    <Text>Back</Text>
-                </Button>
-                <Text style={styles.headerText}>{workout.title}</Text>
-                <Button iconLeft success
-                    onPress={() => props.navigation.goBack()}>
-                    <Icon name='arrow-dropright-circle' />
-                    <Text>Start</Text>
-                </Button>
-            </View>
-
+            <Header title={workout.title} backButton={true} customRightButton={startButton} navigation={props.navigation} />
+            
             <View style={styles.mainContent}>
                 <ScrollView style={{ width: '100%' }}>
                     <List style={styles.list} className="steps">
-                        {items}
+                        {(items && items.length > 0) ? items : <ListItem><Text style={{marginLeft: 'auto', marginRight: 'auto'}}>No steps</Text></ListItem>}
                     </List>
                     <Button 
                         className="addStep"
