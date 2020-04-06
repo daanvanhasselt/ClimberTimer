@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ScrollView, View, StyleSheet } from 'react-native'
@@ -39,7 +39,11 @@ function SettingsScreen(props) {
         <React.Fragment>
             <Header title="Settings" backButton={true} navigation={props.navigation} />
                 <View style={styles.mainContent}>
-                    <HangboardSelector showHolds={true} showNonSelectedHolds={true}/>
+                    <HangboardSelector 
+                        showHolds={true} 
+                        showNonSelectedHolds={true}
+                        selectedHolds={props.hangboard.selectedHolds} />
+
                     <ScrollView style={{ width: '100%' }}>
                         <List>
                             {items}
