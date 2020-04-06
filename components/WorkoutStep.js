@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateStep, removeStep } from '../state/Actions'
 
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import { Text, Button, Icon } from 'native-base'
 import Modal from 'react-native-modal'
 import WorkoutStepEditor from './WorkoutStepEditor'
@@ -76,7 +76,8 @@ function WorkoutStep(props) {
             <View style={styles.editorContainer}>
                 <HangboardView 
                     hangboard={hangboard} 
-                    showHolds={true} 
+                    showHolds={true}
+                    showNonSelectedHolds={true}
                     selectedHolds={holds}
                     onPress={()=> {
                         setShowHoldsModal(!showHoldsModal)
@@ -105,9 +106,19 @@ function WorkoutStep(props) {
                     className="removeStep"
                     full danger
                     onPress={() => {
-                        // dispatch action
-                        props.navigation.goBack()
-                        props.removeStep(hangboard.id, workout.id, step)
+                        Alert.alert(
+                            'Remove step',
+                            'Are you sure?',
+                            [
+                              {text: 'Cancel', style: 'cancel'},
+                              {text: 'OK', onPress: () => {
+                                  // dispatch action
+                                props.navigation.goBack()
+                                props.removeStep(hangboard.id, workout.id, step)
+                              }},
+                            ],
+                            { cancelable: false }
+                        )
                     }}>
                     <Text>Remove step</Text>
                 </Button>

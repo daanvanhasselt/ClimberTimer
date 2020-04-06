@@ -29,7 +29,6 @@ const WorkoutReducer = (state = [], action) => {
                 return state.map(workout => {
                     if(workout.id !== action.workout) return workout
 
-                    console.log(action.step)
                     return {
                         ...workout,
                         steps: workout.steps.map(step => {
