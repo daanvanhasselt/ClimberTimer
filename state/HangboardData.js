@@ -310,6 +310,7 @@ export default {
             workouts: [
                 {
                     id: 0,
+                    locked: true,
                     title: 'Beasty 5A',
                     steps: [
                         {
@@ -343,46 +344,55 @@ export default {
                 },
                 {
                     id: 1,
+                    locked: true,
                     title: 'Beasty 5B',
                     steps: []
                 },
                 {
                     id: 2,
+                    locked: true,
                     title: 'Beasty 5C',
                     steps: []
                 },
                 {
                     id: 3,
+                    locked: true,
                     title: 'Beasty 6A',
                     steps: []
                 },
                 {
                     id: 4,
+                    locked: true,
                     title: 'Beasty 6B',
                     steps: []
                 },
                 {
                     id: 5,
+                    locked: true,
                     title: 'Beasty 6C',
                     steps: []
                 },
                 {
                     id: 6,
+                    locked: true,
                     title: 'Beasty 7A',
                     steps: []
                 },
                 {
                     id: 7,
+                    locked: true,
                     title: 'Beasty 7B',
                     steps: []
                 },
                 {
                     id: 8,
+                    locked: true,
                     title: 'Beasty 7B+',
                     steps: []
                 },
                 {
                     id: 9,
+                    locked: true,
                     title: 'Beasty 7C',
                     steps: []
                 },
@@ -398,67 +408,79 @@ export default {
             workouts: [
                 {
                     id: 0,
+                    locked: true,
                     title: 'Beasty 6Cish',
                     steps: []
                 },
                 {
                     id: 1,
+                    locked: true,
                     title: 'Beasty 7Aish',
                     steps: []
                 },
                 {
                     id: 2,
+                    locked: true,
                     title: 'Beasty 7Bish',
                     steps: []
                 },
                 {
                     id: 3,
+                    locked: true,
                     title: 'Beasty 7Cish',
                     steps: []
                 },
                 {
                     id: 4,
+                    locked: true,
                     title: 'Beasty 7C+ish',
                     steps: []
                 },
                 {
                     id: 5,
+                    locked: true,
                     title: 'Beasty 8Aish',
                     steps: []
                 },
                 {
                     id: 6,
+                    locked: true,
                     title: 'Beasty 8A+ish',
                     steps: []
                 },
                 {
                     id: 7,
+                    locked: true,
                     title: 'Crimpcentric Hard',
                     steps: []
                 },
                 {
                     id: 8,
+                    locked: true,
                     title: 'Crimpcentric Medium',
                     steps: []
-                }
-                ,
+                },
                 {
                     id: 9,
+                    locked: true,
                     title: 'Pocketcentric Hard',
                     steps: []
                 },
                 {
                     id: 10,
+                    locked: true,
                     title: 'Pocketcentric Medium',
                     steps: []
                 },
                 {
                     id: 11,
+                    locked: true,
                     title: 'Slopercentric Hard',
                     steps: []
                 },
                 {
                     id: 12,
+                    locked: true,
                     title: 'Slopercentric Medium',
                     steps: []
                 }

@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
-    list: {
+    center: {
+        marginLeft: 'auto', 
+        marginRight: 'auto'
     },
     listItem: {
         marginLeft: 0,
@@ -50,6 +52,13 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         height: 35,
         marginTop: 10
+    },
+    itemLabel: {
+    },
+    itemLabelLocked: {
+        color: '#888',
+        // fontWeight: 'bold',
+        // fontStyle: 'italic'
     }
 })
 
@@ -58,15 +67,15 @@ function Item({ navigation, hangboard, workout, step }) {
     return (
         <ListItem style={styles.listItem}>
             <HangboardView
-                onPress={() => navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}
+                onPress={() => !workout.locked && navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}
                 hangboard={hangboard}
                 selectedHolds={step.holds}
                 showHolds={true}
                 showNonSelectedHolds={false} />
             <View style={styles.itemLabelContainer}>
-                <Text>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                <Text>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                <Text>{"Reps: " + step.reps}</Text>
+                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
+                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
+                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Reps: " + step.reps}</Text>
             </View>
         </ListItem>
     )
@@ -91,9 +100,9 @@ function WorkoutDetail(props) {
             <View style={styles.mainContent}>
                 <ScrollView style={{ width: '100%' }}>
                     <List style={styles.list} className="steps">
-                        {(items && items.length > 0) ? items : <ListItem><Text style={{marginLeft: 'auto', marginRight: 'auto'}}>No steps</Text></ListItem>}
+                        {(items && items.length > 0) ? items : <ListItem><Text style={styles.center}>No steps</Text></ListItem>}
                     </List>
-                    <Button 
+                    {!workout.locked && <Button 
                         className="addStep"
                         full success
                         onPress={() => {
@@ -101,7 +110,7 @@ function WorkoutDetail(props) {
                             props.addStep(props.hangboard.id, workout.id)
                         }}>
                         <Text>Add step</Text>
-                    </Button>
+                    </Button>}
                 </ScrollView>
             </View>
         </>

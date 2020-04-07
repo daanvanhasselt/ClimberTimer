@@ -1,5 +1,6 @@
 import uuid from 'uuid'
 import {    SET_HANGBOARD, 
+            ADD_WORKOUT, UPDATE_WORKOUT, REMOVE_WORKOUT,
             ADD_STEP, UPDATE_STEP, REMOVE_STEP,
             SET_HOLD_SELECTION, CLEAR_HOLD_SELECTION, TOGGLE_HOLD_SELECTION 
         } from './Actions'
@@ -17,6 +18,9 @@ const HangboardReducer = (state = initialState, action) => {
                 selectedHangboard: action.hangboard
             }
 
+        case ADD_WORKOUT:
+        case UPDATE_WORKOUT:
+        case REMOVE_WORKOUT:
         case ADD_STEP:
         case UPDATE_STEP:
         case REMOVE_STEP:

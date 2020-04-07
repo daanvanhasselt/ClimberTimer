@@ -22,9 +22,6 @@ const styles = StyleSheet.create({
     },
     modal: {
         margin: 0,
-        flex:1,
-        paddingRight: 0,
-        alignItems: 'flex-start'
     },
     editorContainer: { 
         flex: 1,

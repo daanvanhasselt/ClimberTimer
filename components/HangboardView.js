@@ -55,7 +55,7 @@ const HangboardView = (props) => {
     return (
         <TouchableWithoutFeedback onPress={props.onPress}>
             <View style={styles.wrapper}>
-                <Image 
+                <Image
                     width={width} 
                     source={props.hangboard.img} />
                 {props.showHolds && holdsContainer}

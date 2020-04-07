@@ -8,36 +8,48 @@ import WorkoutDetail from '../components/WorkoutDetail'
 
 const state = RootStore.getState()
 const hangboard = state.hangboard.hangboards[state.hangboard.selectedHangboard]
-const workout = hangboard.workouts[0]
+const lockedWorkout = hangboard.workouts[0]
+const customWorkout = hangboard.workouts[1]
 
-test('<WorkoutDetail /> renders 3 items', () => {
+test('<WorkoutDetail /> renders a listitem for each step', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout: workout.id } }} />
+            <WorkoutDetail route={{params: { workout: lockedWorkout.id } }} />
         </ReduxProvider>
     ))
     
     const stepsList = tree.root.findByProps({className: "steps"})
-    expect(stepsList.props.children.length).toBe(3)
+    expect(stepsList.props.children.length).toBe(lockedWorkout.steps.length)
 })
 
-test('<WorkoutDetail /> renders more items after clicking add button', () => {
+test('<WorkoutDetail /> renders more items after clicking add button on custom workout', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
-            <WorkoutDetail route={{params: { workout: workout.id } }} />
+            <WorkoutDetail route={{params: { workout: customWorkout.id } }} />
         </ReduxProvider>
     ))
     
+    const numSteps = customWorkout.steps.length
     const stepsList = tree.root.findByProps({className: "steps"})
     const addStepButton = tree.root.findByProps({className: "addStep"})
     
     act(() => {
         addStepButton.props.onPress()
     })
-    expect(stepsList.props.children.length).toBe(4)
+    expect(stepsList.props.children.length).toBe(numSteps + 1)
 
     act(() => {
         addStepButton.props.onPress()
     })
-    expect(stepsList.props.children.length).toBe(5)
+    expect(stepsList.props.children.length).toBe(numSteps + 2)
+})
+
+test('<WorkoutDetail /> does not show an add button on locked workout', () => {
+    const tree = renderer.create((
+        <ReduxProvider store={RootStore}>
+            <WorkoutDetail route={{params: { workout: lockedWorkout.id } }} />
+        </ReduxProvider>
+    ))
+    
+    expect(tree.root.findAllByProps({className: "addStep"}).length).toBe(0)
 })

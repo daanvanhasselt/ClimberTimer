@@ -19,7 +19,8 @@ const RootStore = createStore(
                     workouts: [
                         {
                             id: 0,
-                            title: 'Test workout',
+                            locked: true,
+                            title: 'Built in test workout',
                             steps: [
                                 {
                                     id: 0,
@@ -46,6 +47,22 @@ const RootStore = createStore(
                                     reps: 3,
                                     holds:[
                                         4, 5
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 1,
+                            locked: false,
+                            title: 'Custom test workout',
+                            steps: [
+                                {
+                                    id: 0,
+                                    workDuration: 7,
+                                    restDuration: 3,
+                                    reps: 1,
+                                    holds:[
+                                        10, 11
                                     ]
                                 }
                             ]
