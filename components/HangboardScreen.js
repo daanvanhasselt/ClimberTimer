@@ -5,6 +5,7 @@ import Header from './Header'
 import WorkoutList from './WorkoutList'
 import WorkoutDetail from './WorkoutDetail'
 import WorkoutStep from './WorkoutStep'
+import BuiltInWorkoutEditor from './BuiltInWorkoutEditor'
 
 // navigation stack
 const Stack = createStackNavigator()
@@ -16,6 +17,7 @@ function HangboardScreen(props) {
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Workouts" component={WorkoutList} options={horizontalSlide}/>
                 <Stack.Screen name="Workout" component={WorkoutDetail} options={horizontalSlide}/>
+                <Stack.Screen name="Built-in workout" component={BuiltInWorkoutEditor} options={horizontalSlide}/>
                 <Stack.Screen name="Step" component={WorkoutStep} options={horizontalSlide}/>
             </Stack.Navigator>
         </>

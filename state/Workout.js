@@ -1,5 +1,6 @@
 import uuid from 'uuid'
 import { ADD_STEP, UPDATE_STEP, REMOVE_STEP, ADD_WORKOUT, UPDATE_WORKOUT, REMOVE_WORKOUT } from './Actions'
+import GripTypes from './GripTypes'
 
 const initialWorkout = () => ({
     id: uuid(),
@@ -13,7 +14,8 @@ const initialWorkoutStep = () => ({
     workDuration: 7,
     restDuration: 3,
     reps: 1,
-    holds: []
+    holds: [],
+    gripType: GripTypes.fourFingers
 })
 
 const WorkoutReducer = (state = [], action) => {

@@ -1,3 +1,5 @@
+import GripTypes from './GripTypes'
+
 export default {
     hangboards: [
         {
@@ -317,28 +319,61 @@ export default {
                             id: 0,
                             workDuration: 7,
                             restDuration: 3,
-                            reps: 5,
+                            reps: 1,
                             holds:[
                                 0, 1
-                            ]
+                            ],
+                            gripType: GripTypes.fourFingers
                         },
                         {
                             id: 1,
-                            workDuration: 6,
-                            restDuration: 4,
-                            reps: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
                             holds:[
-                                2, 3
-                            ]
+                                0, 1
+                            ],
+                            gripType: GripTypes.fourFingers
                         },
                         {
                             id: 2,
-                            workDuration: 5,
-                            restDuration: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                4, 5
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
                             reps: 3,
                             holds:[
                                 4, 5
-                            ]
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 3,
+                            holds:[
+                                4, 5
+                            ],
+                            gripType: GripTypes.fourFingerChisel
                         }
                     ]
                 },

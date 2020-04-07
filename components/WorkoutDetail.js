@@ -53,12 +53,16 @@ const styles = StyleSheet.create({
         height: 35,
         marginTop: 10
     },
-    itemLabel: {
+    gripTypeContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignContent: 'center',
+        // backgroundColor: 'red',
+        height: 10,
+        marginTop: 10
     },
-    itemLabelLocked: {
-        color: '#888',
-        // fontWeight: 'bold',
-        // fontStyle: 'italic'
+    itemLabel: {
     }
 })
 
@@ -72,10 +76,14 @@ function Item({ navigation, hangboard, workout, step }) {
                 selectedHolds={step.holds}
                 showHolds={true}
                 showNonSelectedHolds={false} />
-            <View style={styles.itemLabelContainer}>
-                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                <Text style={[styles.itemLabel, workout.locked && styles.itemLabelLocked]}>{"Reps: " + step.reps}</Text>
+            {workout.locked || 
+            (<View style={styles.itemLabelContainer}>
+                <Text style={styles.itemLabel}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
+                <Text style={styles.itemLabel}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
+                <Text style={styles.itemLabel}>{"Reps: " + step.reps}</Text>
+            </View>)}
+            <View style={styles.gripTypeContainer}>
+                <Text style={styles.itemLabel}>{step.gripType}</Text>
             </View>
         </ListItem>
     )
@@ -86,9 +94,23 @@ function WorkoutDetail(props) {
     const workout = props.hangboard.workouts.find(workout => workout.id === props.route.params.workout)
     if(workout === undefined) return null
 
-    const items = workout.steps && workout.steps.map((step, i) => {
+    let items = workout.steps && workout.steps.map((step, i) => {
         return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout} step={step} />
     })
+
+    // global editor listitem for work, rest and reps in case of locked workout
+    if(workout.locked && workout.steps && workout.steps.length > 0) {
+        const step = workout.steps[0]
+        const item = (  <ListItem key={-1} style={styles.listItem}
+                                onPress={() => props.navigation.push('Built-in workout', { hangboard: props.hangboard.id, workout: workout.id })}>
+                            <View style={styles.itemLabelContainer}>
+                                <Text style={styles.itemLabel}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
+                                <Text style={styles.itemLabel}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
+                                <Text style={styles.itemLabel}>{"Reps: " + step.reps}</Text>
+                            </View>
+                        </ListItem>)
+        items = [item, ...items]
+    }
 
     const startButton = (<Button success
                             onPress={() => props.navigation.goBack()}>

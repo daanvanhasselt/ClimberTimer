@@ -11,7 +11,18 @@ const hangboard = state.hangboard.hangboards[state.hangboard.selectedHangboard]
 const lockedWorkout = hangboard.workouts[0]
 const customWorkout = hangboard.workouts[1]
 
-test('<WorkoutDetail /> renders a listitem for each step', () => {
+test('<WorkoutDetail /> renders a listitem for each step for a custom workout', () => {
+    const tree = renderer.create((
+        <ReduxProvider store={RootStore}>
+            <WorkoutDetail route={{params: { workout: customWorkout.id } }} />
+        </ReduxProvider>
+    ))
+    
+    const stepsList = tree.root.findByProps({className: "steps"})
+    expect(stepsList.props.children.length).toBe(customWorkout.steps.length)
+})
+
+test('<WorkoutDetail /> renders a listitem for each step and 1 listitem for locked workout params', () => {
     const tree = renderer.create((
         <ReduxProvider store={RootStore}>
             <WorkoutDetail route={{params: { workout: lockedWorkout.id } }} />
@@ -19,7 +30,7 @@ test('<WorkoutDetail /> renders a listitem for each step', () => {
     ))
     
     const stepsList = tree.root.findByProps({className: "steps"})
-    expect(stepsList.props.children.length).toBe(lockedWorkout.steps.length)
+    expect(stepsList.props.children.length).toBe(lockedWorkout.steps.length + 1)
 })
 
 test('<WorkoutDetail /> renders more items after clicking add button on custom workout', () => {
