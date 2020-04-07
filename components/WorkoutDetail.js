@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addStep } from '../state/Actions'
+import { addStep, removeWorkout } from '../state/Actions'
 
-import { StyleSheet, ScrollView, View } from 'react-native'
+import { StyleSheet, ScrollView, View, Alert } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
 
 import HangboardView from './HangboardView'
@@ -84,6 +84,8 @@ function Item({ navigation, hangboard, workout, step }) {
 function WorkoutDetail(props) {
     // retrieve the data from state
     const workout = props.hangboard.workouts.find(workout => workout.id === props.route.params.workout)
+    if(workout === undefined) return null
+
     const items = workout.steps && workout.steps.map((step, i) => {
         return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout} step={step} />
     })
@@ -111,6 +113,26 @@ function WorkoutDetail(props) {
                         }}>
                         <Text>Add step</Text>
                     </Button>}
+                    {!workout.locked &&                 <Button 
+                    className="removeStep"
+                    full danger
+                    onPress={() => {
+                        Alert.alert(
+                            'Remove workout',
+                            'Are you sure?',
+                            [
+                              {text: 'Cancel', style: 'cancel'},
+                              {text: 'OK', onPress: () => {
+                                  // dispatch action
+                                props.navigation.goBack()
+                                props.removeWorkout(props.hangboard.id, workout)
+                              }},
+                            ],
+                            { cancelable: false }
+                        )
+                    }}>
+                        <Text>Remove workout</Text>
+                    </Button>}
                 </ScrollView>
             </View>
         </>
@@ -124,7 +146,7 @@ const mapStateToProps = (state) => ({
 
 // set state through props
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    addStep
+    addStep, removeWorkout
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutDetail)
