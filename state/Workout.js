@@ -15,7 +15,7 @@ const initialWorkoutStep = () => ({
     restDuration: 3,
     reps: 1,
     holds: [],
-    gripType: GripTypes.fourFingers
+    gripType: GripTypes.any
 })
 
 const WorkoutReducer = (state = [], action) => {

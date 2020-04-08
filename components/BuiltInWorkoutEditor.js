@@ -42,7 +42,8 @@ function BuiltInWorkoutEditor(props) {
     const [reps, setReps] = useState(step.reps)
 
     const stepChanged = (workMinutes != minutes(step.workDuration)) || (workSeconds != seconds(step.workDuration)) || 
-                        (restMinutes != minutes(step.restDuration)) || (restSeconds != seconds(step.restDuration))
+                        (restMinutes != minutes(step.restDuration)) || (restSeconds != seconds(step.restDuration)) ||
+                        (reps != step.reps)
 
     const saveButton = (
         <Button success

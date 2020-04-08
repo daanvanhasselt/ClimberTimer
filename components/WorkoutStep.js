@@ -4,9 +4,12 @@ import { bindActionCreators } from 'redux'
 import { updateStep, removeStep } from '../state/Actions'
 import GripTypes from '../state/GripTypes'
 
+import { minutes, seconds } from '../utils/Formatting'
+
 import { View, StyleSheet, Alert } from 'react-native'
 import { Text, Button, Icon, ActionSheet } from 'native-base'
 import Modal from 'react-native-modal'
+
 import WorkoutStepEditor from './WorkoutStepEditor'
 import HangboardView from './HangboardView'
 import HoldSelector from './HoldSelector'
@@ -35,9 +38,6 @@ function WorkoutStep(props) {
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
     const step = workout.steps.find(step => step.id === props.route.params.step)
     if(step === undefined) return null
-
-    let minutes = (duration) => Math.floor(duration / 60) % 60
-    let seconds = (duration) => Math.floor(duration) % 60
         
     const [workMinutes, setWorkMinutes] = useState(minutes(step.workDuration))
     const [workSeconds, setWorkSeconds] = useState(seconds(step.workDuration))

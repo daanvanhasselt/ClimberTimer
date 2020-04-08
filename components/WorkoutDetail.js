@@ -114,7 +114,9 @@ function WorkoutDetail(props) {
     }
 
     const startButton = (<Button success
-                            onPress={() => props.navigation.goBack()}>
+                            onPress={() => {
+                                props.navigation.push('Prepare', { hangboard: props.hangboard.id, workout: workout.id })
+                            }}>
                             <Icon name='play' />
                         </Button>)
 

@@ -3,7 +3,7 @@ import DurationPicker from './DurationPicker'
 
 function WorkoutStepEditor(props) {
     return (
-    <React.Fragment>
+    <>
         <DurationPicker 
             title="Work duration" 
             minutes={props.workMinutes}
@@ -23,7 +23,7 @@ function WorkoutStepEditor(props) {
             minutes={props.reps}
             setMinutes={props.setReps} />
             
-    </React.Fragment>)
+    </>)
 }
 
 export default WorkoutStepEditor

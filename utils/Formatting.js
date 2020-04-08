@@ -15,4 +15,16 @@ const formatTime = (secs) => {
     return [pad(minutes), pad(seconds), pad(milliseconds)]
 }
 
-export { pad, formatTime }
+// number of seconds -> minutes
+// 53 -> 0
+// 63 -> 1
+const minutes = (secs) => Math.floor(secs / 60) % 60
+
+// number of seconds -> seconds
+// 53 -> 53
+// 63 -> 3
+const seconds = (secs) => Math.floor(secs) % 60
+
+
+
+export { pad, formatTime, minutes, seconds }
