@@ -29,7 +29,7 @@ test('<Stopwatch /> with workDuration 0:03, restDuration 0:03, reps 2', () => {
     }
 
     const messages = {
-        idle: "-",
+        idle: "GET READY",
         countdown: "READY...",
         work: "WORK",
         rest: "REST",
@@ -105,5 +105,5 @@ test('<Stopwatch /> with workDuration 0:03, restDuration 0:03, reps 2', () => {
     timeTravel(frameTime)  // state switch costs 1 frame
 
     // BACK TO INITIAL STATE
-    checkState(buttonTitles.start, messages.done, reps, workMinutes, workSeconds, 0)
+    checkState(buttonTitles.start, messages.idle, reps, workMinutes, workSeconds, 0)
 })

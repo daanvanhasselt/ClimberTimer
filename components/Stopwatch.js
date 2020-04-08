@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity, TouchableOpacityBase } from 'react-native'
-import { Text } from 'native-base'
+import { Text, Icon } from 'native-base'
 import SoundManager from '../utils/SoundManager'
 import { pad, formatTime } from '../utils/Formatting'
 
@@ -241,40 +241,27 @@ class Stopwatch extends React.Component {
                 s = workSeconds
                 ms = workMilliseconds
                 timerStyle = styles.working
-                title = '-'
+                title = 'GET READY'
         }
         return (
             <View style={styles.contentContainer}>
-
-                {/* custom button */}
-                <TouchableOpacity 
-                    className="button"
-                    style={styles.buttonContainer}
-                    onPress={() => {
-                        if(running) {
-                            if(this.props.onStop) this.props.onStop()
-                            this.setState({ state: states.stopped })
-                        }
-                        else {
-                            this.setState({ state: (this.props.skipCountdown ? states.working : states.countdown) })
-                        }
-                    }}>
-                        
-                    <Text className="buttonTitle" style={styles.button}>{!running ? "START" : "STOP"}</Text>
-                </TouchableOpacity>
-                
-                {/* timers */}
-                <View style={[styles.timerContainer, timerStyle]}>
-                    {/* reps */}
-                    <View style={styles.repsContainer}>
-                        <Text className="reps" style={[styles.timerText, timerStyle, styles.repsText]}>
+               
+               {/* message */}
+               <View style={[styles.firstRow, timerStyle]}>
+                    <View style={[styles.repsContainer]}>
+                       <Text className="reps" style={[styles.timerText, timerStyle, styles.repsText]}>
                             {this.state.repsLeft}
                         </Text>
-                        <Text style={[styles.timerText, timerStyle, styles.repsSubText]}>
-                            reps
-                        </Text>
+                        <Icon style={[styles.repsIcon, timerStyle]} name="refresh"/> 
                     </View>
+                    <View style={[styles.titleContainer]}>
+                        <Text className="message" style={[styles.title, timerStyle]}>{title}</Text>
+                    </View>
+                    <View style={[styles.repsContainer]}></View>
+               </View>
 
+                {/* timers */}
+                <View style={[styles.timerContainer, timerStyle]}>
                     {/* timers */}
                     <Text className="minutes" style={[styles.timerText, timerStyle]}>
                         {m}
@@ -289,9 +276,24 @@ class Stopwatch extends React.Component {
                     </Text>
                 </View>
 
-                {/* bottom text */}
-                <Text className="message" style={[styles.title, timerStyle]}>{title}</Text>
-
+                {/* custom button */}
+                <TouchableOpacity 
+                    className="button"
+                    style={styles.buttonContainer}
+                    onPress={() => {
+                        if(running) {
+                            if(this.props.onStop) this.props.onStop()
+                            this.reset(() => {
+                                this.setState({ state: states.initial })
+                            })
+                        }
+                        else {
+                            this.setState({ state: (this.props.skipCountdown ? states.working : states.countdown) })
+                        }
+                    }}>
+                        
+                    <Text className="buttonTitle" style={styles.button}>{!running ? "START" : "STOP"}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -303,12 +305,18 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexDirection: 'column',
         flex: 1
-        // height: '100%'
     },
     buttonContainer: {
         flex: 1,
         width: '100%',
         backgroundColor: '#198fe3',
+    },
+    firstRow: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    titleContainer: {
+        flex: 5,
     },
     button: {
         padding: 12,
@@ -321,13 +329,16 @@ const styles = StyleSheet.create({
         flex: 2
     },
     repsContainer: {
-        padding: 10
+        flex: 2,
+        flexDirection: 'row',
+    },
+    repsIcon: {
+        alignSelf: 'center',
+        padding: 6
     },
     repsText: {
-        fontSize: 32
-    },
-    repsSubText: {
-        fontSize: 16,
+        fontSize: 32,
+        textAlign: 'right',
     },
     timerText: {
         fontSize: 60,
@@ -342,7 +353,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 32,
         fontFamily: 'Roboto',
-        flex: 1,
     },
     countdown: {
         backgroundColor: 'orange',
@@ -354,7 +364,7 @@ const styles = StyleSheet.create({
     },
     working: {
         backgroundColor: 'green',
-        color: 'white'
+        color: 'white',
     }
 })
 

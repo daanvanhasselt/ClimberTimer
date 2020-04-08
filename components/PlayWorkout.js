@@ -6,6 +6,7 @@ import { minutes, seconds, formatTime } from '../utils/Formatting'
 
 import { View, StyleSheet, ScrollView } from 'react-native'
 import { Text, List, ListItem } from 'native-base'
+import WorkoutStepListItem from './WorkoutStepListItem'
 
 import Header from './Header'
 import Stopwatch from './Stopwatch'
@@ -56,33 +57,6 @@ const styles = StyleSheet.create({
     }
 })
 
-
-// single step list item
-function Item({ hangboard, workout, step, active, onLayout }) {
-    return (
-        <ListItem
-            onLayout={event => {
-                const layout = event.nativeEvent.layout
-                onLayout && onLayout(layout)
-            }}
-            style={[styles.listItem, active && styles.listItemActive]}>
-            <HangboardView
-                hangboard={hangboard}
-                selectedHolds={step.holds}
-                showHolds={true}
-                showNonSelectedHolds={false} />
-            <View style={styles.itemLabelContainer}>
-                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Reps: " + step.reps}</Text>
-            </View>
-            <View style={styles.gripTypeContainer}>
-                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{step.gripType}</Text>
-            </View>
-        </ListItem>
-    )
-}
-
 function PlayWorkout(props) {
     const hangboard = props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
@@ -130,7 +104,7 @@ function PlayWorkout(props) {
     }, [currentStepIndex])
 
     let items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
+        return <WorkoutStepListItem key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
     })
 
     return (

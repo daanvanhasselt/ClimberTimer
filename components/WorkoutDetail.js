@@ -6,8 +6,8 @@ import { addStep, updateWorkout, removeWorkout } from '../state/Actions'
 import { StyleSheet, ScrollView, View, Alert } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
 
-import HangboardView from './HangboardView'
 import Header from './Header'
+import WorkoutStepListItem from './WorkoutStepListItem'
 import { formatTime } from '../utils/Formatting'
 
 const styles = StyleSheet.create({
@@ -35,60 +35,8 @@ const styles = StyleSheet.create({
     center: {
         marginLeft: 'auto', 
         marginRight: 'auto'
-    },
-    listItem: {
-        marginLeft: 0,
-        flex:1,
-        paddingRight: 0,
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-        borderBottomWidth: 2
-    },
-    itemLabelContainer: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignContent: 'center',
-        // backgroundColor: 'red',
-        height: 35,
-        marginTop: 10
-    },
-    gripTypeContainer: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignContent: 'center',
-        // backgroundColor: 'red',
-        height: 10,
-        marginTop: 10
-    },
-    itemLabel: {
     }
 })
-
-// single step list item
-function Item({ navigation, hangboard, workout, step }) {
-    return (
-        <ListItem 
-                style={styles.listItem}
-                onPress={() => !workout.locked && navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}>
-            <HangboardView
-                hangboard={hangboard}
-                selectedHolds={step.holds}
-                showHolds={true}
-                showNonSelectedHolds={false} />
-            {workout.locked || 
-            (<View style={styles.itemLabelContainer}>
-                <Text style={styles.itemLabel}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                <Text style={styles.itemLabel}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                <Text style={styles.itemLabel}>{"Reps: " + step.reps}</Text>
-            </View>)}
-            <View style={styles.gripTypeContainer}>
-                <Text style={styles.itemLabel}>{step.gripType}</Text>
-            </View>
-        </ListItem>
-    )
-}
 
 function WorkoutDetail(props) {
     // retrieve the data from state
@@ -96,20 +44,15 @@ function WorkoutDetail(props) {
     if(workout === undefined) return null
 
     let items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} index={i} navigation={props.navigation} hangboard={props.hangboard} workout={workout} step={step} />
+        return <WorkoutStepListItem key={i} hangboard={props.hangboard} workout={workout} step={step} showDurations={!workout.locked} 
+                    onPress={() => !workout.locked && props.navigation.push('Step', { hangboard: props.hangboard.id, workout: workout.id, step: step.id })}/>
     })
 
     // global editor listitem for work, rest and reps in case of locked workout
     if(workout.locked && workout.steps && workout.steps.length > 0) {
         const step = workout.steps[0]
-        const item = (  <ListItem key={-1} style={styles.listItem}
-                                onPress={() => props.navigation.push('Built-in workout', { hangboard: props.hangboard.id, workout: workout.id })}>
-                            <View style={styles.itemLabelContainer}>
-                                <Text style={styles.itemLabel}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                                <Text style={styles.itemLabel}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                                <Text style={styles.itemLabel}>{"Reps: " + step.reps}</Text>
-                            </View>
-                        </ListItem>)
+        const item = <WorkoutStepListItem key={-1} workout={workout} step={step} showDurations={true}
+                            onPress={() => props.navigation.push('Built-in workout', { hangboard: props.hangboard.id, workout: workout.id })}/>
         items = [item, ...items]
     }
 
