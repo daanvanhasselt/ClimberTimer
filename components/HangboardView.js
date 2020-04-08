@@ -52,16 +52,24 @@ const HangboardView = (props) => {
             {holdViews}
         </View>)
 
-    return (
-        <TouchableWithoutFeedback onPress={props.onPress}>
-            <View style={styles.wrapper}>
-                <Image
-                    width={width} 
-                    source={props.hangboard.img} />
-                {props.showHolds && holdsContainer}
-            </View>
-        </TouchableWithoutFeedback>
+    const view = (
+        <View style={styles.wrapper}>
+            <Image
+                width={width} 
+                source={props.hangboard.img} />
+            {props.showHolds && holdsContainer}
+        </View>
     )
+
+    if(props.onPress) {
+        return (
+            <TouchableWithoutFeedback onPress={props.onPress}>
+                {view}
+            </TouchableWithoutFeedback>
+        )
+    }
+
+    return view
 }
 
 export default HangboardView

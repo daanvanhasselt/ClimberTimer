@@ -69,9 +69,10 @@ const styles = StyleSheet.create({
 // single step list item
 function Item({ navigation, hangboard, workout, step }) {
     return (
-        <ListItem style={styles.listItem}>
+        <ListItem 
+                style={styles.listItem}
+                onPress={() => !workout.locked && navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}>
             <HangboardView
-                onPress={() => !workout.locked && navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}
                 hangboard={hangboard}
                 selectedHolds={step.holds}
                 showHolds={true}

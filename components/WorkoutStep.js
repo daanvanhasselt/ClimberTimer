@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateStep, removeStep } from '../state/Actions'
+import GripTypes from '../state/GripTypes'
 
 import { View, StyleSheet, Alert } from 'react-native'
-import { Text, Button, Icon } from 'native-base'
+import { Text, Button, Icon, ActionSheet } from 'native-base'
 import Modal from 'react-native-modal'
 import WorkoutStepEditor from './WorkoutStepEditor'
 import HangboardView from './HangboardView'
@@ -43,13 +44,14 @@ function WorkoutStep(props) {
     const [restMinutes, setRestMinutes] = useState(minutes(step.restDuration))
     const [restSeconds, setRestSeconds] = useState(seconds(step.restDuration))
     const [reps, setReps] = useState(step.reps)
+    const [gripType, setGripType] = useState(step.gripType)
 
     const [showHoldsModal, setShowHoldsModal] = useState(false)
     const [holds, setHolds] = useState(step.holds)
 
     const stepChanged = (workMinutes != minutes(step.workDuration)) || (workSeconds != seconds(step.workDuration)) || 
                         (restMinutes != minutes(step.restDuration)) || (restSeconds != seconds(step.restDuration)) || 
-                        reps != step.reps || holds != step.holds
+                        reps != step.reps || holds != step.holds || gripType != step.gripType
 
     const saveButton = (
         <Button success
@@ -59,12 +61,33 @@ function WorkoutStep(props) {
                     workDuration: (workMinutes * 60) + workSeconds,
                     restDuration: (restMinutes * 60) + restSeconds,
                     reps: reps,
-                    holds: holds
+                    holds: holds,
+                    gripType: gripType
                 })
                 props.navigation.goBack()
             }}>
             {stepChanged && <Icon name='checkmark' />}
-        </Button>)
+        </Button>
+    )
+
+    const showGripTypeSelector = () => {
+        const types = Object.values(GripTypes)
+        types.push("Cancel")
+
+        ActionSheet.show(
+            {
+                title: "Select grip",
+                options: types,
+                cancelButtonIndex: types.length - 1
+            },
+            (buttonIndex) => {
+                // cancel button tapped
+                if(buttonIndex >= types.length - 1) return
+
+                setGripType(types[buttonIndex])
+            }
+        )
+    }
 
     return (
         <React.Fragment>
@@ -88,6 +111,12 @@ function WorkoutStep(props) {
                         disableHangboardSwitch={true}
                         close={()=>setShowHoldsModal(false)} />
                 </Modal>
+
+                <Button full
+                    onPress={() => showGripTypeSelector()}>
+                    <Text>{gripType}</Text>
+                </Button>
+
                 <WorkoutStepEditor 
                     workMinutes={workMinutes} 
                     setWorkMinutes={setWorkMinutes}
