@@ -59,7 +59,7 @@ function PrepareWorkout(props) {
         <DurationPicker 
             title="Number of sets" 
             minutes={numSets}
-            setMinutes={setNumSets} />
+            setMinutes={(sets) => { setNumSets(Math.max(sets, 1)) }} />
 
         <DurationPicker 
             title="Rest between sets" 
