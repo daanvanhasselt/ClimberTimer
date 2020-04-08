@@ -40,74 +40,45 @@ const HangboardReducer = (state = initialState, action) => {
            
         case SET_HOLD_SELECTION:
             {
-                // find the selected board
-                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
-
-                // update its selected holds
-                updatedBoard.selectedHolds = action.holds
-
-                // create new hangboards array
-                const boards = state.hangboards.map((board) => {
-                    if(board.id === updatedBoard.id) {
-                        return updatedBoard
-                    }
-                    return board
-                })
-
-                // return state with new boards
                 return {
                     ...state,
-                    hangboards: boards
+                    hangboards: state.hangboards.map(hangboard => {
+                        if(hangboard.id !== state.selectedHangboard) return hangboard
+
+                        return {
+                            ...hangboard,
+                            selectedHolds: action.holds
+                        }
+                    })
                 }
             }
         case CLEAR_HOLD_SELECTION:
             {
-                // find the selected board
-                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
-
-                // update its selected holds
-                updatedBoard.selectedHolds = []
-
-                // create new hangboards array
-                const boards = state.hangboards.map((board) => {
-                    if(board.id === updatedBoard.id) {
-                        return updatedBoard
-                    }
-                    return board
-                })
-
-                // return state with new boards
-                return {
-                    ...state,
-                    hangboards: boards
+                const clearAction = {
+                    type: SET_HOLD_SELECTION,
+                    holds: []
                 }
+                return HangboardReducer(state, clearAction)
             }
         case TOGGLE_HOLD_SELECTION:
             {
-                // find the selected board
-                let updatedBoard = Object.assign({}, state.hangboards[state.selectedHangboard])
-
-                // update its selected holds
-                let searchIndex = updatedBoard.selectedHolds.indexOf(action.hold)
-                if(searchIndex === -1) {
-                    updatedBoard.selectedHolds.push(action.hold)
-                }
-                else {
-                    updatedBoard.selectedHolds.splice(searchIndex, 1)
-                }
-
-                // create new hangboards array
-                const boards = state.hangboards.map((board) => {
-                    if(board.id === updatedBoard.id) {
-                        return updatedBoard
-                    }
-                    return board
-                })
-
-                // return state with new boards
                 return {
                     ...state,
-                    hangboards: boards
+                    hangboards: state.hangboards.map(hangboard => {
+                        if(hangboard.id !== state.selectedHangboard) return hangboard
+
+                        const holds = hangboard.selectedHolds
+
+                        // toggle the hold
+                        let searchIndex = holds.indexOf(action.hold)
+                        if(searchIndex === -1) holds.push(action.hold)
+                        else holds.splice(searchIndex, 1)
+
+                        return {
+                            ...hangboard,
+                            selectedHolds: holds
+                        }
+                    })
                 }
             }
         default:
