@@ -33,7 +33,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2
     },
     listItemActive: {
-        backgroundColor: 'green'
+        backgroundColor: 'green',
+        fontWeight: 'bold',
+        color: 'white'
     },
     itemLabelContainer: {
         width: '100%',
@@ -73,12 +75,12 @@ function Item({ hangboard, workout, step, active, onLayout }) {
                 showHolds={true}
                 showNonSelectedHolds={false} />
             <View style={styles.itemLabelContainer}>
-                <Text style={styles.itemLabel}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
-                <Text style={styles.itemLabel}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
-                <Text style={styles.itemLabel}>{"Reps: " + step.reps}</Text>
+                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
+                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
+                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Reps: " + step.reps}</Text>
             </View>
             <View style={styles.gripTypeContainer}>
-                <Text style={styles.itemLabel}>{step.gripType}</Text>
+                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{step.gripType}</Text>
             </View>
         </ListItem>
     )
@@ -89,6 +91,7 @@ function PlayWorkout(props) {
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
 
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
+    const [highlightStepIndex, setHighlightStepIndex] = useState(0)
     const step = workout.steps[currentStepIndex]
     const nSteps = workout.steps.length
 
@@ -102,7 +105,15 @@ function PlayWorkout(props) {
         //      if there are more sets
         //          insert rest-only stopwatch with in-between-sets rest duration
         //          start next set
-        setCurrentStepIndex((currentStepIndex + 1) % nSteps)
+        const nextStepIndex = (currentStepIndex + 1) % nSteps
+        setCurrentStepIndex(nextStepIndex)
+        if(nextStepIndex === 0) {
+            setHighlightStepIndex(0)
+        }
+    }
+
+    const stepAlmostDone = () => {
+        setHighlightStepIndex(Math.min(highlightStepIndex + 1, nSteps))
     }
 
     const stopwatchStopped = () => {
@@ -113,13 +124,13 @@ function PlayWorkout(props) {
     const scrollRef = useRef(null)
 
     useEffect(() => {
-        const layout = itemLayouts[currentStepIndex]
+        const layout = itemLayouts[highlightStepIndex]
         if(layout === undefined) return
         scrollRef.current.scrollTo({ x: 0, y: layout.y })
-    }, [currentStepIndex])
+    }, [highlightStepIndex])
 
     let items = workout.steps && workout.steps.map((step, i) => {
-        return <Item key={i} hangboard={hangboard} workout={workout} step={step} active={i === currentStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
+        return <Item key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
     })
 
     return (
@@ -146,6 +157,7 @@ function PlayWorkout(props) {
                         restMinutes={restMinutes}
                         restSeconds={restSeconds}
                         reps={step.reps}
+                        onPreFinish={stepAlmostDone}
                         onFinish={stepDone}
                         onStop={stopwatchStopped} />
                 </View>

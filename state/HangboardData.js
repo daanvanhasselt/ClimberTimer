@@ -359,7 +359,7 @@ export default {
                             id: 4,
                             workDuration: 7,
                             restDuration: 3,
-                            reps: 3,
+                            reps: 1,
                             holds:[
                                 4, 5
                             ],
@@ -369,7 +369,7 @@ export default {
                             id: 5,
                             workDuration: 7,
                             restDuration: 3,
-                            reps: 3,
+                            reps: 1,
                             holds:[
                                 4, 5
                             ],

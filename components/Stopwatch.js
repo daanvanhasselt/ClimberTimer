@@ -126,6 +126,9 @@ class Stopwatch extends React.Component {
                         if(this.state.workSecondsLeft <= 0) {
                             const newRepsLeft = this.state.repsLeft - 1
                             if(newRepsLeft >= 1 || (newRepsLeft >= 0 && this.props.includeLastRest)) {  // potentially skip the last rest since we're done
+                                if(newRepsLeft <= 0 && this.props.includeLastRest && this.props.onPreFinish) {
+                                    this.props.onPreFinish()
+                                }
                                 this.setState({
                                     state: states.resting,
                                     workSecondsLeft: (this.props.workMinutes * 60) + this.props.workSeconds,    // reset initial work seconds
@@ -133,8 +136,14 @@ class Stopwatch extends React.Component {
                                 })
                             }
                             else {
+                                if(this.props.includeLastRest && this.props.onPreFinish) {
+                                    this.props.onPreFinish()
+                                }
+
                                 finish()
                             }
+
+                            
                         }
                     })
                 }
