@@ -46,24 +46,28 @@ class Stopwatch extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if(prevProps.workMinutes !== this.props.workMinutes || prevProps.workSeconds !== this.props.workSeconds ||
+            prevProps.restMinutes !== this.props.restMinutes || prevProps.restSeconds !== this.props.restSeconds ||
+            prevProps.reps !== this.props.reps) {
+                this.reset()
+        }
         if(prevProps.autoStart !== this.props.autoStart) {
             if(this.props.autoStart && (this.state.state === states.stopped || this.state.state === states.initial)) {
                 this.setState({
                     state: states.working
                 })
             }
-        }
-
-        if(prevProps.workMinutes !== this.props.workMinutes || prevProps.workSeconds !== this.props.workSeconds ||
-            prevProps.restMinutes !== this.props.restMinutes || prevProps.restSeconds !== this.props.restSeconds ||
-            prevProps.reps !== this.props.reps) {
-                this.reset()
+            else if(!this.props.autoStart && (this.state.state !== states.stopped && this.state.state !== states.initial)) {
+                this.setState({
+                    state: states.initial
+                })
             }
+        }
     }
 
     run(t) {
         const finish = () => {            
-            this.setState({ state: states.stopped }, () => {
+            this.setState({ state: states.initial }, () => {
                 this.reset(() => {
                     if(this.props.onFinish) {
                         this.props.onFinish()
@@ -286,7 +290,8 @@ class Stopwatch extends React.Component {
 const styles = StyleSheet.create({
     contentContainer: {
         flexDirection: 'column',
-        height: '100%'
+        flex: 1
+        // height: '100%'
     },
     buttonContainer: {
         flex: 1,
