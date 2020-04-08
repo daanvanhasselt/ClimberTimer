@@ -1,38 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { StyleSheet } from 'react-native'
 import { Header } from 'react-native-elements'
+import { Text, Input } from 'native-base'
 
-class AppHeader extends React.Component {
-    render() {
-        let leftComponent = null
-        if(this.props.customLeftButton) {
-            rightComponent = this.props.customLeftButton;
-        }
-        else if(this.props.backButton) {
-            leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => this.props.goBack ? this.props.goBack() : this.props.navigation.goBack() }
-        }
-        else if(this.props.menuButton) {
-            leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => this.props.navigation.toggleDrawer() }
-        }
+const styles = StyleSheet.create({
+    title: {
+        color: '#fff', 
+        fontWeight: 'bold',
+        width: '100%',
+        fontSize: 17
+    },
+    editableTitle: {
+        color: '#fff', 
+        fontSize: 17
+    }
+})
 
-        let rightComponent = null
-        if(this.props.customRightButton) {
-            rightComponent = this.props.customRightButton;
-        }
-        else if(this.props.settingsButton) {
-            rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => this.props.navigation.navigate('Settings') }
-        }
-        else if(this.props.doneButton) {
-            rightComponent = { icon: 'check', color: '#EEEEEE', onPress:() => this.props.done && this.props.done() }
-        }
+const AppHeader = (props) => {
+    let leftComponent = null
+    if(props.customLeftButton) {
+        rightComponent = props.customLeftButton;
+    }
+    else if(props.backButton) {
+        leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
+    }
+    else if(props.menuButton) {
+        leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => props.navigation.toggleDrawer() }
+    }
 
-        return (
-            <Header placement="left"
-                containerStyle={{ backgroundColor: '#2E2E2E' }}
-                leftComponent={leftComponent}
-                centerComponent={{ text: this.props.title, style: { color: '#fff', fontWeight: 'bold', fontSize: 17 } }}
-                rightComponent={rightComponent}/>
-            )
-        }
-}
+    let rightComponent = null
+    if(props.customRightButton) {
+        rightComponent = props.customRightButton;
+    }
+    else if(props.settingsButton) {
+        rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => props.navigation.navigate('Settings') }
+    }
+    else if(props.doneButton) {
+        rightComponent = { icon: 'check', color: '#EEEEEE', onPress:() => props.done && props.done() }
+    }
+
+    
+    const [editingTitle, setEditingTitle] = useState(false)
+    const [editedTitle, setEditedTitle] = useState(props.title)
+
+    let onTitlePress = null
+    if(props.titleChanged) {
+        onTitlePress = ()=>{ if(!editingTitle) setEditingTitle(true) }
+    }
+
+    let centerComponent = <Text style={styles.title} onPress={onTitlePress}>{props.title}</Text>
+    if(editingTitle) {
+        centerComponent = <Input style={styles.editableTitle} value={editedTitle} autoFocus={true} 
+                                    onChangeText={ text => setEditedTitle(text) } 
+                                    onEndEditing={ () => { 
+                                        setEditingTitle(false)
+                                        props.titleChanged(editedTitle) 
+                                    }}/>
+    }
+
+    return (
+        <Header placement="left"
+            containerStyle={{ backgroundColor: '#2E2E2E' }}
+            leftComponent={leftComponent}
+            centerComponent={centerComponent}
+            rightComponent={rightComponent}/>
+        )
+    }
 
 export default AppHeader

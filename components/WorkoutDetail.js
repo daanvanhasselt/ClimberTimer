@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addStep, removeWorkout } from '../state/Actions'
+import { addStep, updateWorkout, removeWorkout } from '../state/Actions'
 
 import { StyleSheet, ScrollView, View, Alert } from 'react-native'
 import { Text, Button, Icon, List, ListItem } from 'native-base'
@@ -119,7 +119,16 @@ function WorkoutDetail(props) {
 
     return (
         <>
-            <Header title={workout.title} backButton={true} customRightButton={startButton} navigation={props.navigation} />
+            <Header title={workout.title} backButton={true} customRightButton={startButton} navigation={props.navigation} 
+                titleChanged={ title => {
+                    // dont allow empty title
+                    if(title.trim().length === 0) title = "-"
+
+                    if(title === workout.title) return
+
+                    workout.title = title
+                    props.updateWorkout(props.hangboard.id, workout)
+                }} />
             
             <View style={styles.mainContent}>
                 <ScrollView style={{ width: '100%' }}>
@@ -135,24 +144,24 @@ function WorkoutDetail(props) {
                         }}>
                         <Text>Add step</Text>
                     </Button>}
-                    {!workout.locked &&                 <Button 
-                    className="removeStep"
-                    full danger
-                    onPress={() => {
-                        Alert.alert(
-                            'Remove workout',
-                            'Are you sure?',
-                            [
-                              {text: 'Cancel', style: 'cancel'},
-                              {text: 'OK', onPress: () => {
-                                  // dispatch action
-                                props.navigation.goBack()
-                                props.removeWorkout(props.hangboard.id, workout)
-                              }},
-                            ],
-                            { cancelable: false }
-                        )
-                    }}>
+                    {!workout.locked && <Button 
+                        className="removeStep"
+                        full danger
+                        onPress={() => {
+                            Alert.alert(
+                                'Remove workout',
+                                'Are you sure?',
+                                [
+                                {text: 'Cancel', style: 'cancel'},
+                                {text: 'OK', onPress: () => {
+                                    // dispatch action
+                                    props.navigation.goBack()
+                                    props.removeWorkout(props.hangboard.id, workout)
+                                }},
+                                ],
+                                { cancelable: false }
+                            )
+                        }}>
                         <Text>Remove workout</Text>
                     </Button>}
                 </ScrollView>
@@ -168,7 +177,7 @@ const mapStateToProps = (state) => ({
 
 // set state through props
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    addStep, removeWorkout
+    addStep, updateWorkout, removeWorkout
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutDetail)
