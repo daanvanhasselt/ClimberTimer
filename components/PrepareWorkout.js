@@ -63,6 +63,7 @@ function PrepareWorkout(props) {
 
         <DurationPicker 
             title="Rest between sets" 
+            disabled={numSets <= 1}
             minutes={restMinutes}
             setMinutes={setRestMinutes}
             seconds={restSeconds}

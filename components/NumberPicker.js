@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
         marginLeft: -10,
         marginRight: -10
     },
+    disabled: {
+        color: '#888'
+    },
     container: {
         flexDirection: 'row',
         alignItems: 'center'
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
     }
   })
 
-function DurationPicker({ value, valueSetter }) {
+function DurationPicker({ disabled, value, valueSetter }) {
     const setter = (v) => {
         if(valueSetter && v >= 0) {
             valueSetter(v)
@@ -41,20 +44,24 @@ function DurationPicker({ value, valueSetter }) {
             <Button 
                 className="decrement"
                 light style={styles.button}
+                disabled={disabled}
                 onPress={() => setter(value - 1)}>
-                <Text style={styles.buttonText}>-</Text>
+                <Text style={[styles.buttonText, disabled && styles.disabled]}>-</Text>
             </Button>
             <TextInput 
                 className="value"
                 keyboardType='number-pad'
+                style={[styles.input, disabled && styles.disabled]}
                 value={pad(value ? value : 0)}
-                onChangeText={(t) => setter(parseInt(t))}
-                style={styles.input}></TextInput>
+                editable={!disabled}
+                onChangeText={(t) => setter(parseInt(t))}>
+                </TextInput>
             <Button 
                 className="increment"
                 light style={styles.button}
+                disabled={disabled}
                 onPress={() => setter(value + 1)}>
-                <Text style={styles.buttonText}>+</Text>
+                <Text style={[styles.buttonText, disabled && styles.disabled]}>+</Text>
             </Button>
         </View>
     </React.Fragment>

@@ -30,13 +30,16 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         textAlign: 'center'
+    },
+    disabled: {
+        color: '#888'
     }
   })
 
-function DurationPicker({ title, minutes, setMinutes, seconds, setSeconds }) {
-    const firstPicker = <NumberPicker value={minutes} valueSetter={setMinutes}/>
-    const colon = <Text style={styles.colon}>:</Text>
-    const secondPicker = <NumberPicker value={seconds} valueSetter={setSeconds}/>
+function DurationPicker({ title, disabled, minutes, setMinutes, seconds, setSeconds }) {
+    const firstPicker = <NumberPicker disabled={disabled} value={minutes} valueSetter={setMinutes}/>
+    const colon = <Text style={[styles.colon, disabled && styles.disabled]}>:</Text>
+    const secondPicker = <NumberPicker disabled={disabled} value={seconds} valueSetter={setSeconds}/>
 
     return (
         <View style={styles.pickerContainer}>
