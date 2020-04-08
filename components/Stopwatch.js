@@ -181,7 +181,16 @@ class Stopwatch extends React.Component {
             }
             else {
                 // reset if we're not running so we stay up to date with props
-                if(this.state.state === states.initial) this.reset()
+                if(this.state.state === states.initial) {
+                    if(this.props.autoStart) {
+                        this.setState({
+                            state: states.working
+                        })
+                    }
+                    else {
+                        this.reset()
+                    }
+                }
             }
         }
 
@@ -197,12 +206,6 @@ class Stopwatch extends React.Component {
         const [workMinutes, workSeconds, workMilliseconds] = formatTime(this.state.workSecondsLeft)
         const [restMinutes, restSeconds, restMilliseconds] = formatTime(this.state.restSecondsLeft)
         let m, s, ms, timerStyle, title;
-
-        if(this.props.autoStart && this.state.state === states.initial) {
-            this.setState({
-                state: states.working
-            })
-        }
 
         switch(this.state.state) {
             case states.countdown:

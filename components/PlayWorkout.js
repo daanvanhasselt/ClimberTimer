@@ -18,9 +18,6 @@ const styles = StyleSheet.create({
     scrollviewContainer: {
         flex: 3
     },
-    scrollview: {
-
-    },
     stopwatchContainer: {
         flex: 1
     },
@@ -107,9 +104,6 @@ function PlayWorkout(props) {
         //          start next set
         const nextStepIndex = (currentStepIndex + 1) % nSteps
         setCurrentStepIndex(nextStepIndex)
-        if(nextStepIndex === 0) {
-            setHighlightStepIndex(0)
-        }
     }
 
     const stepAlmostDone = () => {
@@ -129,6 +123,12 @@ function PlayWorkout(props) {
         scrollRef.current.scrollTo({ x: 0, y: layout.y })
     }, [highlightStepIndex])
 
+    useEffect(() => {
+        if(currentStepIndex === 0) {
+            setHighlightStepIndex(0)
+        }
+    }, [currentStepIndex])
+
     let items = workout.steps && workout.steps.map((step, i) => {
         return <Item key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
     })
@@ -139,7 +139,6 @@ function PlayWorkout(props) {
             <View style={styles.container}>
                 <View style={styles.scrollviewContainer}>
                     <ScrollView 
-                        style={styles.scrollview}
                         ref={scrollRef}
                         scrollToOverflowEnabled={true}>
                         <List>
