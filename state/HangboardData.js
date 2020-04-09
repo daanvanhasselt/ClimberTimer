@@ -37,85 +37,7 @@ export default {
                 },
                 {
                     id: 2,
-                    name: 'Left #2 - 12mm big pocket',
-                    position: {
-                        x: 6.5,
-                        y: 27
-                    },
-                    size: {
-                        w: 13.5,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 3,
-                    name: 'Right #2 - 12mm big pocket',
-                    position: {
-                        x: 79.5,
-                        y: 27
-                    },
-                    size: {
-                        w: 13.5,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 4,
-                    name: 'Left #3 - 43mm big pocket',
-                    position: {
-                        x: 5.5,
-                        y: 47
-                    },
-                    size: {
-                        w: 13.5,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 5,
-                    name: 'Right #3 - 43mm big pocket',
-                    position: {
-                        x: 80.5,
-                        y: 47
-                    },
-                    size: {
-                        w: 13.5,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 6,
-                    name: 'Left #4 - 16mm big pocket',
-                    position: {
-                        x: 13,
-                        y: 71
-                    },
-                    size: {
-                        w: 14,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 7,
-                    name: 'Right #4 - 16mm big pocket',
-                    position: {
-                        x: 72,
-                        y: 71
-                    },
-                    size: {
-                        w: 14.5,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 8,
-                    name: 'Left #5 - hard sloper',
+                    name: 'Left #2 - hard sloper',
                     position: {
                         x: 25,
                         y: 11
@@ -127,8 +49,8 @@ export default {
                     cornerRadius: 10
                 },
                 {
-                    id: 9,
-                    name: 'Right #5 - hard sloper',
+                    id: 3,
+                    name: 'Right #2 - hard sloper',
                     position: {
                         x: 62.5,
                         y: 11
@@ -140,8 +62,112 @@ export default {
                     cornerRadius: 10
                 },
                 {
+                    id: 4,
+                    name: 'Left #3 - easy sloper',
+                    position: {
+                        x: 38,
+                        y: 11
+                    },
+                    size: {
+                        w: 10,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 5,
+                    name: 'Right #3 - easy sloper',
+                    position: {
+                        x: 51.25,
+                        y: 11
+                    },
+                    size: {
+                        w: 10,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 6,
+                    name: 'Left #4 - 12mm big pocket',
+                    position: {
+                        x: 6.5,
+                        y: 27
+                    },
+                    size: {
+                        w: 13.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 7,
+                    name: 'Right #4 - 12mm big pocket',
+                    position: {
+                        x: 79.5,
+                        y: 27
+                    },
+                    size: {
+                        w: 13.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 8,
+                    name: 'Left #5 - 28mm medium pocket',
+                    position: {
+                        x: 38.25,
+                        y: 27.5
+                    },
+                    size: {
+                        w: 10,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 9,
+                    name: 'Right #5 - 28mm medium pocket',
+                    position: {
+                        x: 51,
+                        y: 27.5
+                    },
+                    size: {
+                        w: 10,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
                     id: 10,
-                    name: 'Left #6 - 48mm small pocket',
+                    name: 'Left #6 - 43mm big pocket',
+                    position: {
+                        x: 5.5,
+                        y: 47
+                    },
+                    size: {
+                        w: 13.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 11,
+                    name: 'Right #6 - 43mm big pocket',
+                    position: {
+                        x: 80.5,
+                        y: 47
+                    },
+                    size: {
+                        w: 13.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 12,
+                    name: 'Left #7 - 48mm small pocket',
                     position: {
                         x: 21.5,
                         y: 47
@@ -153,37 +179,11 @@ export default {
                     cornerRadius: 10
                 },
                 {
-                    id: 11,
-                    name: 'Right #6 - 48mm small pocket',
+                    id: 13,
+                    name: 'Right #7 - 48mm small pocket',
                     position: {
                         x: 71,
                         y: 47
-                    },
-                    size: {
-                        w: 7,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 12,
-                    name: 'Left #7 - 22mm small pocket',
-                    position: {
-                        x: 29.75,
-                        y: 71
-                    },
-                    size: {
-                        w: 7,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 13,
-                    name: 'Right #7 - 22mm small pocket',
-                    position: {
-                        x: 63,
-                        y: 71
                     },
                     size: {
                         w: 7,
@@ -219,7 +219,59 @@ export default {
                 },
                 {
                     id: 16,
-                    name: 'Left #9 - 17mm small pocket',
+                    name: 'Left #9 - 16mm big pocket',
+                    position: {
+                        x: 13,
+                        y: 71
+                    },
+                    size: {
+                        w: 14,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 17,
+                    name: 'Right #9 - 16mm big pocket',
+                    position: {
+                        x: 72,
+                        y: 71
+                    },
+                    size: {
+                        w: 14.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 18,
+                    name: 'Left #10 - 22mm small pocket',
+                    position: {
+                        x: 29.75,
+                        y: 71
+                    },
+                    size: {
+                        w: 7,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 19,
+                    name: 'Right #10 - 22mm small pocket',
+                    position: {
+                        x: 63,
+                        y: 71
+                    },
+                    size: {
+                        w: 7,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 20,
+                    name: 'Left #11 - 17mm medium pocket',
                     position: {
                         x: 39,
                         y: 71
@@ -231,8 +283,8 @@ export default {
                     cornerRadius: 10
                 },
                 {
-                    id: 17,
-                    name: 'Right #9 - 22mm small pocket',
+                    id: 21,
+                    name: 'Right #11 - 17mm medium pocket',
                     position: {
                         x: 51,
                         y: 71
@@ -244,8 +296,8 @@ export default {
                     cornerRadius: 10
                 },
                 {
-                    id: 18,
-                    name: 'Middle #10 - 50mm big pocket',
+                    id: 22,
+                    name: 'Middle #12 - 50mm big pocket',
                     position: {
                         x: 42.5,
                         y: 47
@@ -255,59 +307,7 @@ export default {
                         h: 12
                     },
                     cornerRadius: 10
-                },
-                {
-                    id: 19,
-                    name: 'Left #11 - 28mm medium pocket',
-                    position: {
-                        x: 38.25,
-                        y: 27.5
-                    },
-                    size: {
-                        w: 10,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 20,
-                    name: 'Right #11 - 28mm medium pocket',
-                    position: {
-                        x: 51,
-                        y: 27.5
-                    },
-                    size: {
-                        w: 10,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 21,
-                    name: 'Left #12 - easy sloper',
-                    position: {
-                        x: 38,
-                        y: 11
-                    },
-                    size: {
-                        w: 10,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
-                {
-                    id: 22,
-                    name: 'Right #12 - easy sloper',
-                    position: {
-                        x: 51.25,
-                        y: 11
-                    },
-                    size: {
-                        w: 10,
-                        h: 12
-                    },
-                    cornerRadius: 10
-                },
+                }
             ],
             workouts: [
                 {
@@ -351,7 +351,7 @@ export default {
                             restDuration: 3,
                             reps: 1,
                             holds:[
-                                4, 5
+                                10, 11
                             ],
                             gripType: GripTypes.openThree
                         },
@@ -361,7 +361,7 @@ export default {
                             restDuration: 3,
                             reps: 1,
                             holds:[
-                                4, 5
+                                10, 11
                             ],
                             gripType: GripTypes.fourFingerChisel
                         },
@@ -371,7 +371,7 @@ export default {
                             restDuration: 3,
                             reps: 1,
                             holds:[
-                                4, 5
+                                10, 11
                             ],
                             gripType: GripTypes.fourFingerChisel
                         }
@@ -388,7 +388,141 @@ export default {
                             restDuration: 3,
                             reps: 1,
                             holds:[
-                                0, 1
+                                10, 11
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                4, 5
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                10, 11
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                10, 11
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    locked: true,
+                    title: 'Beasty 5C',
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                10, 11
+                            ],
+                            gripType: GripTypes.fourFingersCrimped
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                4, 5
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    locked: true,
+                    title: 'Beasty 6A',
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 5
                             ],
                             gripType: GripTypes.fourFingers
                         },
@@ -398,59 +532,453 @@ export default {
                             restDuration: 3,
                             reps: 1,
                             holds:[
-                                2, 3
+                                8, 9
                             ],
-                            gripType: GripTypes.fourFingers
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                10, 11
+                            ],
+                            gripType: GripTypes.fourFingersCrimped
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.frontTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.middleTwo
                         }
                     ]
-                },
-                {
-                    id: 2,
-                    locked: true,
-                    title: 'Beasty 5C',
-                    steps: []
-                },
-                {
-                    id: 3,
-                    locked: true,
-                    title: 'Beasty 6A',
-                    steps: []
                 },
                 {
                     id: 4,
                     locked: true,
                     title: 'Beasty 6B',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 5
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        }
+                    ]
                 },
                 {
                     id: 5,
                     locked: true,
                     title: 'Beasty 6C',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 5
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerChisel
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                18, 13
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingersCrimped
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 6,
                     locked: true,
                     title: 'Beasty 7A',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 17
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 19
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 7,
                     locked: true,
                     title: 'Beasty 7B',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 21
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                18, 19
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                    ]
                 },
                 {
                     id: 8,
                     locked: true,
                     title: 'Beasty 7B+',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 21
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                18, 19
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                    ]
                 },
                 {
                     id: 9,
                     locked: true,
                     title: 'Beasty 7C',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 17
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.openThree
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                18, 19
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 7
+                            ],
+                            gripType: GripTypes.fourFingerHalfCrimp
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                    ]
                 },
             ]
         },

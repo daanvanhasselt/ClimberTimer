@@ -78,21 +78,16 @@ function PlayWorkout(props) {
 
     const stepDone = () => {
         if(restingBetweenSets) {
-            console.log('stop resting between sets')
             setRestingBetweenSets(false)
             setCurrentStepIndex(0)
         }
         else {
-            if(currentStepIndex + 1 >= nSteps) {
-                console.log(`set done, sets left: ${setsLeft}`)
-    
+            if(currentStepIndex + 1 >= nSteps) {    
                 if(setsLeft > 1) {
-                    console.log('start resting between sets')
                     setRestingBetweenSets(true)
                     setSetsLeft(setsLeft - 1)
                 }
                 else {
-                    console.log('finished all sets')
                     setSetsLeft(numSets)
                 }
             }
@@ -107,25 +102,23 @@ function PlayWorkout(props) {
     }
 
     const stopwatchStopped = () => {
-        console.log('stopped by user')
+        setRestingBetweenSets(false)
+        setSetsLeft(numSets)
+        setCurrentStepIndex(0)
+        setHighlightStepIndex(0)
     }
 
     const [itemLayouts, setItemLayouts] = useState({})
     const scrollRef = useRef(null)
 
     useEffect(() => {
-        console.log(`highlight step index: ${highlightStepIndex}`)
-
         const layout = itemLayouts[highlightStepIndex]
         if(layout === undefined) return
         scrollRef.current.scrollTo({ x: 0, y: layout.y })
     }, [highlightStepIndex])
 
-    useEffect(() => {
-        console.log(`current step index: ${currentStepIndex}`)
-        
+    useEffect(() => {        
         if(currentStepIndex === 0) {
-            console.log(`step is 0. sets left: ${setsLeft}`)
             setHighlightStepIndex(0)
         }
     }, [currentStepIndex])
