@@ -988,7 +988,346 @@ export default {
             img: require('../assets/img/beastmaker-2000.jpg'),
             aspect: (1024/301),
             selectedHolds: [],
-            holds: [],
+            holds: [
+                {
+                    id: 0,
+                    name: 'Left #1 - Hard sloper',
+                    position: {
+                        x: 5,
+                        y: 12
+                    },
+                    size: {
+                        w: 13,
+                        h: 15
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 1,
+                    name: 'Right #1 - Hard sloper',
+                    position: {
+                        x: 81,
+                        y: 12
+                    },
+                    size: {
+                        w: 13,
+                        h: 15
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 2,
+                    name: 'Left #2 - Medium sloper',
+                    position: {
+                        x: 21,
+                        y: 12
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 3,
+                    name: 'Right #2 - Medium sloper',
+                    position: {
+                        x: 65.5,
+                        y: 12
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 4,
+                    name: 'Left #3 - Easy sloper',
+                    position: {
+                        x: 37,
+                        y: 12
+                    },
+                    size: {
+                        w: 11,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 5,
+                    name: 'Right #3 - Easy sloper',
+                    position: {
+                        x: 51,
+                        y: 12
+                    },
+                    size: {
+                        w: 11,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 6,
+                    name: 'Left #4 - 40mm medium pocket',
+                    position: {
+                        x: 38,
+                        y: 27
+                    },
+                    size: {
+                        w: 10,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 7,
+                    name: 'Right #4 - 20mm medium pocket',
+                    position: {
+                        x: 51.5,
+                        y: 27
+                    },
+                    size: {
+                        w: 10,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 8,
+                    name: 'Left #5 - 33mm big pocket',
+                    position: {
+                        x: 4.75,
+                        y: 46
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 9,
+                    name: 'Right #5 - 33mm big pocket',
+                    position: {
+                        x: 81.5,
+                        y: 46
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 10,
+                    name: 'Left #6 - 55mm deep mono',
+                    position: {
+                        x: 19.25,
+                        y: 45
+                    },
+                    size: {
+                        w: 3.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 11,
+                    name: 'Right #6 - 55mm deep mono',
+                    position: {
+                        x: 76.7,
+                        y: 45
+                    },
+                    size: {
+                        w: 3.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 12,
+                    name: 'Left #7 - 35/50mm small pocket',
+                    position: {
+                        x: 24.5,
+                        y: 46
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 13,
+                    name: 'Right #7 - 35/50mm small pocket',
+                    position: {
+                        x: 67.5,
+                        y: 46
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 14,
+                    name: 'Left #8 - 30mm small pocket',
+                    position: {
+                        x: 33.75,
+                        y: 46
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 15,
+                    name: 'Right #8 - 30mm small pocket',
+                    position: {
+                        x: 58.5,
+                        y: 46
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 16,
+                    name: 'Left #9 - 15mm big pocket',
+                    position: {
+                        x: 5,
+                        y: 71
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 17,
+                    name: 'Right #9 - 15mm big pocket',
+                    position: {
+                        x: 81.5,
+                        y: 71
+                    },
+                    size: {
+                        w: 13,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 18,
+                    name: 'Left #10 - 27mm shallow mono',
+                    position: {
+                        x: 19.5,
+                        y: 70.5
+                    },
+                    size: {
+                        w: 3.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 19,
+                    name: 'Right #10 - 27mm shallow mono',
+                    position: {
+                        x: 76.5,
+                        y: 70.5
+                    },
+                    size: {
+                        w: 3.5,
+                        h: 12
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 20,
+                    name: 'Left #11 - 20mm small pocket',
+                    position: {
+                        x: 24.5,
+                        y: 71
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 21,
+                    name: 'Right #11 - 20mm small pocket',
+                    position: {
+                        x: 67.5,
+                        y: 71
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 22,
+                    name: 'Left #12 - 22mm slopey small pocket',
+                    position: {
+                        x: 33.25,
+                        y: 71
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 23,
+                    name: 'Left #12 - 22mm slopey small pocket',
+                    position: {
+                        x: 59,
+                        y: 71
+                    },
+                    size: {
+                        w: 7.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 24,
+                    name: 'Middle #9 - 52mm big pocket',
+                    position: {
+                        x: 43,
+                        y: 46
+                    },
+                    size: {
+                        w: 13.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                },
+                {
+                    id: 25,
+                    name: 'Middle #10 - 21mm big pocket',
+                    position: {
+                        x: 41.5,
+                        y: 70
+                    },
+                    size: {
+                        w: 16.5,
+                        h: 13
+                    },
+                    cornerRadius: 10
+                }
+            ],
             workouts: [
                 {
                     id: 0,
