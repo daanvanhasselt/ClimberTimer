@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         paddingRight: 0,
         alignItems: 'flex-start',
         flexDirection: 'column',
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
     },
     listItemActive: {
         backgroundColor: 'green',
@@ -61,6 +61,11 @@ function PlayWorkout(props) {
     const hangboard = props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
 
+    const numSets = props.route.params.sets
+    const restBetweenSets = props.route.params.restBetweenSets
+    const [restingBetweenSets, setRestingBetweenSets] = useState(false)
+    
+    const [setsLeft, setSetsLeft] = useState(numSets)
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
     const [highlightStepIndex, setHighlightStepIndex] = useState(0)
     const step = workout.steps[currentStepIndex]
@@ -72,12 +77,29 @@ function PlayWorkout(props) {
     const restSeconds = seconds(step.restDuration)
 
     const stepDone = () => {
-        // TODO: at the end of a set,
-        //      if there are more sets
-        //          insert rest-only stopwatch with in-between-sets rest duration
-        //          start next set
-        const nextStepIndex = (currentStepIndex + 1) % nSteps
-        setCurrentStepIndex(nextStepIndex)
+        if(restingBetweenSets) {
+            console.log('stop resting between sets')
+            setRestingBetweenSets(false)
+            setCurrentStepIndex(0)
+        }
+        else {
+            if(currentStepIndex + 1 >= nSteps) {
+                console.log(`set done, sets left: ${setsLeft}`)
+    
+                if(setsLeft > 1) {
+                    console.log('start resting between sets')
+                    setRestingBetweenSets(true)
+                    setSetsLeft(setsLeft - 1)
+                }
+                else {
+                    console.log('finished all sets')
+                    setSetsLeft(numSets)
+                }
+            }
+
+            const nextStepIndex = (currentStepIndex + 1) % nSteps
+            setCurrentStepIndex(nextStepIndex)
+        } 
     }
 
     const stepAlmostDone = () => {
@@ -92,13 +114,18 @@ function PlayWorkout(props) {
     const scrollRef = useRef(null)
 
     useEffect(() => {
+        console.log(`highlight step index: ${highlightStepIndex}`)
+
         const layout = itemLayouts[highlightStepIndex]
         if(layout === undefined) return
         scrollRef.current.scrollTo({ x: 0, y: layout.y })
     }, [highlightStepIndex])
 
     useEffect(() => {
+        console.log(`current step index: ${currentStepIndex}`)
+        
         if(currentStepIndex === 0) {
+            console.log(`step is 0. sets left: ${setsLeft}`)
             setHighlightStepIndex(0)
         }
     }, [currentStepIndex])
@@ -121,10 +148,27 @@ function PlayWorkout(props) {
                     </ScrollView>
                 </View>
                 <View style={styles.stopwatchContainer}>
+                    {restingBetweenSets ? 
                     <Stopwatch
-                        skipCountdown={currentStepIndex !== 0}
-                        autoStart={currentStepIndex !== 0}
+                        skipCountdown={true}
+                        autoStart={true}
+                        includeLastRest={true}
+                        showSetsLeft={true}
+                        setsLeft={setsLeft}
+                        workMinutes={0}
+                        workSeconds={0}
+                        restMinutes={minutes(restBetweenSets)}
+                        restSeconds={seconds(restBetweenSets)}
+                        reps={1}
+                        onFinish={stepDone}
+                        onStop={stopwatchStopped} />
+                    :
+                    <Stopwatch
+                        skipCountdown={currentStepIndex !== 0 || (setsLeft !== numSets && setsLeft >= 1)}
+                        autoStart={currentStepIndex !== 0 || setsLeft !== numSets && setsLeft >= 1}
                         includeLastRest={currentStepIndex < nSteps - 1}
+                        showSetsLeft={true}
+                        setsLeft={setsLeft}
                         workMinutes={workMinutes}
                         workSeconds={workSeconds}
                         restMinutes={restMinutes}
@@ -133,6 +177,7 @@ function PlayWorkout(props) {
                         onPreFinish={stepAlmostDone}
                         onFinish={stepDone}
                         onStop={stopwatchStopped} />
+                    }
                 </View>
             </View>
         </>

@@ -125,7 +125,7 @@ class Stopwatch extends React.Component {
                     }, ()=>{
                         if(this.state.workSecondsLeft <= 0) {
                             const newRepsLeft = this.state.repsLeft - 1
-                            if(newRepsLeft >= 1 || (newRepsLeft >= 0 && this.props.includeLastRest)) {  // potentially skip the last rest since we're done
+                            if(newRepsLeft >= 1 || ((newRepsLeft >= 0 || this.props.reps <= 1) && this.props.includeLastRest)) {  // potentially skip the last rest since we're done
                                 if(newRepsLeft <= 0 && this.props.includeLastRest && this.props.onPreFinish) {
                                     this.props.onPreFinish()
                                 }
@@ -246,18 +246,46 @@ class Stopwatch extends React.Component {
         return (
             <View style={styles.contentContainer}>
                
+               {/* custom button */}
+               <TouchableOpacity 
+                    className="button"
+                    style={styles.buttonContainer}
+                    onPress={() => {
+                        if(running) {
+                            if(this.props.onStop) this.props.onStop()
+                            this.reset(() => {
+                                this.setState({ state: states.initial })
+                            })
+                        }
+                        else {
+                            this.setState({ state: (this.props.skipCountdown ? states.working : states.countdown) })
+                        }
+                    }}>
+                        
+                    <Text className="buttonTitle" style={styles.button}>{!running ? "START" : "STOP"}</Text>
+                </TouchableOpacity>
+
                {/* message */}
                <View style={[styles.firstRow, timerStyle]}>
                     <View style={[styles.repsContainer]}>
-                       <Text className="reps" style={[styles.timerText, timerStyle, styles.repsText]}>
-                            {this.state.repsLeft}
-                        </Text>
-                        <Icon style={[styles.repsIcon, timerStyle]} name="refresh"/> 
+                        {this.props.showSetsLeft && (
+                            <>
+                                <Text className="sets" style={[styles.timerText, timerStyle, styles.setsText]}>
+                                    {this.props.setsLeft}
+                                </Text>
+                                <Icon style={[styles.setsIcon, timerStyle]} name="refresh-circle"/> 
+                            </>)
+                        }
                     </View>
                     <View style={[styles.titleContainer]}>
                         <Text className="message" style={[styles.title, timerStyle]}>{title}</Text>
                     </View>
-                    <View style={[styles.repsContainer]}></View>
+                    <View style={[styles.repsContainer]}>
+                        <Text className="reps" style={[styles.timerText, timerStyle, styles.repsText]}>
+                            {this.state.repsLeft}
+                        </Text>
+                        <Icon style={[styles.repsIcon, timerStyle]} name="refresh"/> 
+                    </View>
                </View>
 
                 {/* timers */}
@@ -275,25 +303,6 @@ class Stopwatch extends React.Component {
                         {ms}
                     </Text>
                 </View>
-
-                {/* custom button */}
-                <TouchableOpacity 
-                    className="button"
-                    style={styles.buttonContainer}
-                    onPress={() => {
-                        if(running) {
-                            if(this.props.onStop) this.props.onStop()
-                            this.reset(() => {
-                                this.setState({ state: states.initial })
-                            })
-                        }
-                        else {
-                            this.setState({ state: (this.props.skipCountdown ? states.working : states.countdown) })
-                        }
-                    }}>
-                        
-                    <Text className="buttonTitle" style={styles.button}>{!running ? "START" : "STOP"}</Text>
-                </TouchableOpacity>
             </View>
         )
     }
@@ -334,9 +343,19 @@ const styles = StyleSheet.create({
     },
     repsIcon: {
         alignSelf: 'center',
-        padding: 6
+        padding: 6,
+        marginRight: 32
     },
     repsText: {
+        fontSize: 32,
+        textAlign: 'right',
+    },
+    setsIcon: {
+        alignSelf: 'center',
+        padding: 6,
+        // marginRight: 32
+    },
+    setsText: {
         fontSize: 32,
         textAlign: 'right',
     },
@@ -365,6 +384,7 @@ const styles = StyleSheet.create({
     working: {
         backgroundColor: 'green',
         color: 'white',
+        // borderWidth: 1
     }
 })
 

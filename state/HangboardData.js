@@ -381,7 +381,28 @@ export default {
                     id: 1,
                     locked: true,
                     title: 'Beasty 5B',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                0, 1
+                            ],
+                            gripType: GripTypes.fourFingers
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingers
+                        }
+                    ]
                 },
                 {
                     id: 2,

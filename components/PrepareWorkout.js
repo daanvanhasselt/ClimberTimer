@@ -76,10 +76,8 @@ function PrepareWorkout(props) {
             full success
             onPress={() => {
                 props.navigation.push('Play workout', { hangboard: hangboard.id, workout: workout.id, 
-                                                            params: {
-                                                                sets: numSets,
-                                                                restBetweenSets: (restMinutes * 60) + restSeconds
-                                                            }})
+                                                        sets: numSets, restBetweenSets: (restMinutes * 60) + restSeconds
+                })
             }}>
             <Text>Start workout</Text>
         </Button>

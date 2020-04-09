@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 const AppHeader = (props) => {
     let leftComponent = null
     if(props.customLeftButton) {
-        rightComponent = props.customLeftButton;
+        leftComponent = props.customLeftButton;
     }
     else if(props.backButton) {
         leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
