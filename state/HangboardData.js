@@ -343,7 +343,7 @@ export default {
                             holds:[
                                 14, 15
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -353,7 +353,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 4,
@@ -363,7 +363,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 5,
@@ -373,7 +373,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         }
                     ]
                 },
@@ -390,7 +390,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 1,
@@ -410,7 +410,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 3,
@@ -420,7 +420,7 @@ export default {
                             holds:[
                                 8, 9
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 4,
@@ -440,7 +440,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         }
                     ]
                 },
@@ -457,7 +457,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingersCrimped
+                            gripType: GripTypes.fourFingersCrimp
                         },
                         {
                             id: 1,
@@ -467,7 +467,7 @@ export default {
                             holds:[
                                 8, 9
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 2,
@@ -477,7 +477,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 3,
@@ -507,7 +507,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         }
                     ]
                 },
@@ -534,7 +534,7 @@ export default {
                             holds:[
                                 8, 9
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 2,
@@ -544,7 +544,7 @@ export default {
                             holds:[
                                 10, 11
                             ],
-                            gripType: GripTypes.fourFingersCrimped
+                            gripType: GripTypes.fourFingersCrimp
                         },
                         {
                             id: 3,
@@ -564,7 +564,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 5,
@@ -601,7 +601,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 2,
@@ -611,7 +611,7 @@ export default {
                             holds:[
                                 8, 9
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -631,7 +631,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 5,
@@ -641,7 +641,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         }
                     ]
                 },
@@ -668,7 +668,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerChisel
+                            gripType: GripTypes.fourFingersChisel
                         },
                         {
                             id: 2,
@@ -678,7 +678,7 @@ export default {
                             holds:[
                                 8, 9
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -698,7 +698,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingersCrimped
+                            gripType: GripTypes.fourFingersCrimp
                         },
                         {
                             id: 5,
@@ -735,7 +735,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 2,
@@ -745,7 +745,7 @@ export default {
                             holds:[
                                 8, 17
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -765,7 +765,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 5,
@@ -802,7 +802,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 2,
@@ -812,7 +812,7 @@ export default {
                             holds:[
                                 16, 21
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -832,7 +832,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 5,
@@ -869,7 +869,7 @@ export default {
                             holds:[
                                 6, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 2,
@@ -879,7 +879,7 @@ export default {
                             holds:[
                                 16, 21
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -899,7 +899,7 @@ export default {
                             holds:[
                                 6, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 5,
@@ -936,7 +936,7 @@ export default {
                             holds:[
                                 6, 17
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 2,
@@ -946,7 +946,7 @@ export default {
                             holds:[
                                 16, 17
                             ],
-                            gripType: GripTypes.openThree
+                            gripType: GripTypes.threeFingersOpen
                         },
                         {
                             id: 3,
@@ -966,7 +966,7 @@ export default {
                             holds:[
                                 6, 7
                             ],
-                            gripType: GripTypes.fourFingerHalfCrimp
+                            gripType: GripTypes.fourFingersHalfCrimp
                         },
                         {
                             id: 5,
@@ -1333,79 +1333,1010 @@ export default {
                     id: 0,
                     locked: true,
                     title: 'Beasty 6Cish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.fourFingersHalfChisel
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 5
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 1,
                     locked: true,
                     title: 'Beasty 7Aish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 9
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                6, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               14, 15
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 2,
                     locked: true,
                     title: 'Beasty 7Bish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 17
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                17, 7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               14, 23
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 3,
                     locked: true,
                     title: 'Beasty 7Cish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25, 17
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                17, 7
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               14, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 4,
                     locked: true,
                     title: 'Beasty 7C+ish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.fourFingersHalfCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               20, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 5,
                     locked: true,
                     title: 'Beasty 8Aish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.backThreeHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                0, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.frontThreeHalfCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.backTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               20, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 6,
                     locked: true,
                     title: 'Beasty 8A+ish',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.backThreeHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                0, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.frontThreeHalfCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                22, 23
+                            ],
+                            gripType: GripTypes.middleTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               22, 23
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 7,
                     locked: true,
                     title: 'Crimpcentric Hard',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 17
+                            ],
+                            gripType: GripTypes.backThreeHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 7,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        }
+                    ]
                 },
                 {
                     id: 8,
                     locked: true,
                     title: 'Crimpcentric Medium',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                8, 9
+                            ],
+                            gripType: GripTypes.backThreeHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        },
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 7,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               25
+                            ],
+                            gripType: GripTypes.fourFingersFullCrimp
+                        }
+                    ]
                 },
                 {
                     id: 9,
                     locked: true,
                     title: 'Pocketcentric Hard',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.backTwoHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                18, 23
+                            ],
+                            gripType: GripTypes.middleMono
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                22, 23
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12
+                            ],
+                            gripType: GripTypes.middleTwo
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               22, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 10,
                     locked: true,
                     title: 'Pocketcentric Medium',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwoHalfCrimp
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                14, 15
+                            ],
+                            gripType: GripTypes.frontTwo
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                20, 21
+                            ],
+                            gripType: GripTypes.middleTwo
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        }
+                        ,
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               14, 21
+                            ],
+                            gripType: GripTypes.frontTwo
+                        }
+                    ]
                 },
                 {
                     id: 11,
                     locked: true,
                     title: 'Slopercentric Hard',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                4
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                0, 1
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                12, 13
+                            ],
+                            gripType: GripTypes.backTwo
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 6,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                               2
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        }
+                    ]
                 },
                 {
                     id: 12,
                     locked: true,
                     title: 'Slopercentric Medium',
-                    steps: []
+                    steps: [
+                        {
+                            id: 0,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                4, 3
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 1,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 2,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 3,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2, 3
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        },
+                        {
+                            id: 4,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                16, 7
+                            ],
+                            gripType: GripTypes.threeFingersOpen
+                        },
+                        {
+                            id: 5,
+                            workDuration: 7,
+                            restDuration: 3,
+                            reps: 1,
+                            holds:[
+                                2
+                            ],
+                            gripType: GripTypes.fourFingersOpen
+                        }
+                    ]
                 }
             ]
         }
