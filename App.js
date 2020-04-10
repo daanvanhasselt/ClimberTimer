@@ -9,6 +9,8 @@ import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import { Root } from 'native-base'
 
+import { ScreenOrientation } from 'expo'
+
 import NavigationStack from './components/NavigationStack'
 
 function App () {
@@ -22,6 +24,8 @@ function App () {
         Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
         ...Ionicons.font,
       })
+
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
       setIsReady(true) 
     }
 
