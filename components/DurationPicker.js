@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     },
     pickerHeader: {
         // backgroundColor: 'red',
+        fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
         width: '100%',
@@ -37,9 +38,20 @@ const styles = StyleSheet.create({
   })
 
 function DurationPicker({ title, disabled, minutes, setMinutes, seconds, setSeconds }) {
-    const firstPicker = <NumberPicker disabled={disabled} value={minutes} valueSetter={setMinutes}/>
+    const firstPicker = <NumberPicker disabled={disabled} value={minutes} valueSetter={(v) => setMinutes(Math.max(0, v)) }/>
     const colon = <Text style={[styles.colon, disabled && styles.disabled]}>:</Text>
-    const secondPicker = <NumberPicker disabled={disabled} value={seconds} valueSetter={setSeconds}/>
+    const secondPicker = <NumberPicker disabled={disabled} value={seconds} valueSetter={(v) => {
+        let s = v
+        if(v >= 60) {
+            s = v - 60
+            setMinutes(minutes + 1)
+        }
+        else if(v < 0 && minutes > 0) {
+            s = v + 60
+            setMinutes(minutes - 1)
+        }
+        setSeconds(Math.max(0, s))
+    }}/>
 
     return (
         <View style={styles.pickerContainer}>
