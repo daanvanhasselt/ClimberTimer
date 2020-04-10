@@ -3,22 +3,36 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
+import { AsyncStorage } from 'react-native'
+import { persistStore, persistReducer } from 'redux-persist'
+
 import HangboardReducer from './Hangboard'
 
-const RootReducer = combineReducers({
+// Redux Persist Config
+const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage
+  }
+
+const rootReducer = combineReducers({
     hangboard: HangboardReducer
 })
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 //const middleware = [logger, thunk]
 const middleware = []
 
-const RootStore = createStore(
-    RootReducer,            // main reducer
+const rootStore = createStore(
+    persistedReducer,       // main reducer
     {},                     // initial state
     composeWithDevTools(applyMiddleware(...middleware)) // middleware
 )
 
+const persistor = persistStore(rootStore)
+
 export {
-    RootReducer,
-    RootStore
+    rootReducer,
+    rootStore,
+    persistor
 }

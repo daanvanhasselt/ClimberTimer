@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { Provider as ReduxProvider } from 'react-redux'
-import { RootStore } from './state/Root'
+import { rootStore, persistor } from './state/Root'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
@@ -33,8 +34,10 @@ function App () {
 
   return (
     <Root>
-      <ReduxProvider store={RootStore}>
-        <NavigationStack />
+      <ReduxProvider store={rootStore}>
+        <PersistGate loading={<AppLoading />} persistor={persistor}>
+          <NavigationStack />
+        </PersistGate>
       </ReduxProvider>
     </Root>
   )
