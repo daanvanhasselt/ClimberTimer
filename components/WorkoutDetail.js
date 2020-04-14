@@ -56,7 +56,7 @@ function WorkoutDetail(props) {
         items = [item, ...items]
     }
 
-    const startButton = (<Button success
+    const startButton = (<Button success disabled={!workout.steps || workout.steps.length == 0}
                             onPress={() => {
                                 props.navigation.push('Prepare', { hangboard: props.hangboard.id, workout: workout.id })
                             }}>
