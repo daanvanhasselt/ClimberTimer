@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignContent: 'center',
         // backgroundColor: 'red',
-        height: 10,
         marginTop: 10
     }
 })

@@ -25,7 +25,7 @@ function App () {
         ...Ionicons.font,
       })
 
-      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
       setIsReady(true) 
     }
 

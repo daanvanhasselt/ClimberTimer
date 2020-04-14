@@ -91,7 +91,25 @@ function WorkoutStep(props) {
 
     return (
         <React.Fragment>
-            <Header title="Edit step" backButton={true} customRightButton={saveButton} navigation={props.navigation} />
+            <Header title="Edit step" backButton={true} customRightButton={saveButton} navigation={props.navigation} goBack={()=> {
+                if(!stepChanged) {
+                    props.navigation.goBack()
+                    return
+                }
+
+                Alert.alert(
+                    'Discard changes',
+                    'Are you sure?',
+                    [
+                      {text: 'Cancel', style: 'cancel'},
+                      {text: 'OK', onPress: () => {
+                          // dispatch action
+                        props.navigation.goBack()
+                      }},
+                    ],
+                    { cancelable: false }
+                )
+            }} />
 
             <View style={styles.editorContainer}>
                 <HangboardView 

@@ -12,6 +12,14 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "io.pulseinteractive.climbertimer",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "io.pulseinteractive.climbertimer",
+      "versionCode": 1
+    }
   }
 }
