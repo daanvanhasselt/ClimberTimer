@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'react-native-scalable-image'
-import { Dimensions, TouchableWithoutFeedback, View, StyleSheet } from 'react-native'
+import { Dimensions, TouchableWithoutFeedback, TouchableOpacity, View, StyleSheet } from 'react-native'
 
 const HangboardView = (props) => {
     const width = props.width || Dimensions.get('window').width
@@ -44,7 +44,10 @@ const HangboardView = (props) => {
         const holdIsSelected = (props.selectedHolds || []).includes(hold.id)
 
         const style = [holdStyle.hold, styles.hold, holdIsSelected && styles.selectedHold]
-        return (props.showHolds && (props.showNonSelectedHolds || holdIsSelected)) && <View key={i} style={style}></View>
+        return (props.showHolds && (props.showNonSelectedHolds || holdIsSelected)) && 
+            ((props.onPress || !props.holdTapHandler) ? <View key={i} style={style}></View> : <TouchableOpacity key={i} style={style} onPress={(e) => {
+                props.holdTapHandler && props.holdTapHandler(hold.id)
+            }}></TouchableOpacity>)
     })
 
     const holdsContainer = (
@@ -52,23 +55,20 @@ const HangboardView = (props) => {
             {holdViews}
         </View>)
 
-    const view = (
+    const view = 
         <View style={styles.wrapper}>
             <Image
                 width={width} 
                 source={props.hangboard.img} />
             {props.showHolds && holdsContainer}
         </View>
-    )
 
-    if(props.onPress) {
+    if(props.onPress)
         return (
-            <TouchableWithoutFeedback onPress={props.onPress}>
+            <TouchableOpacity onPress={props.onPress}>
                 {view}
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         )
-    }
-
     return view
 }
 

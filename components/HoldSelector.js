@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { ScrollView, View, StyleSheet } from 'react-native'
 import { List, ListItem, Text } from 'native-base'
 import Header from './Header'
-import HangboardSelector from './HangboardSelector'
+import HangboardView from './HangboardView'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -63,11 +63,14 @@ function HoldSelector(props) {
         <React.Fragment>
             <Header title="Select Holds" menuButton={false} doneButton={true} done={props.close} navigation={props.navigation} />
                 <View style={styles.mainContent}>
-                    <HangboardSelector 
-                        showHolds={true} 
-                        showNonSelectedHolds={true} 
+                    <HangboardView
+                        hangboard={props.hangboard}
                         selectedHolds={props.selectedHolds}
-                        disableHangboardSwitch={props.disableHangboardSwitch}/>
+                        showHolds={true}
+                        showNonSelectedHolds={true}
+                        holdTapHandler={(id) => {
+                            toggleHold(id)
+                        }} />
                     <ScrollView>
                         <List>
                             {items}
