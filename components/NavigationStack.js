@@ -10,6 +10,7 @@ import { Divider } from 'react-native-elements'
 import TimerScreen from './TimerScreen'
 import SettingsScreen from './SettingsScreen'
 import HangboardScreen from './HangboardScreen'
+import CustomTrainingScreen from './CustomTrainingScreen'
 
 const styles = StyleSheet.create({
     container: {
@@ -51,6 +52,7 @@ function NavigationStack() {
             }} drawerContent={props => CustomDrawerContent(props)}>
                 <Drawer.Screen name="Simple Timer" component={TimerScreen} />
                 <Drawer.Screen name="Hangboard Training" component={HangboardScreen} />
+                <Drawer.Screen name="Custom Training" component={CustomTrainingScreen} />
                 <Drawer.Screen name="Settings" component={SettingsScreen} />
             </Drawer.Navigator>
         </NavigationContainer>

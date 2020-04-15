@@ -2339,6 +2339,12 @@ export default {
                     ]
                 }
             ]
+        },
+        {
+            id: 2,
+            custom: true,
+            name: 'Custom',
+            workouts: []
         }
     ],
     selectedHangboard: 0

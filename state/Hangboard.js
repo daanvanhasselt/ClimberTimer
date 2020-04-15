@@ -28,7 +28,7 @@ const HangboardReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     hangboards: state.hangboards.map(hangboard => {
-                        if(hangboard.id !== state.selectedHangboard) return hangboard
+                        if(hangboard.id !== action.hangboard) return hangboard
 
                         return { 
                             ...hangboard, 

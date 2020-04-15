@@ -8,13 +8,15 @@ import BuiltInWorkoutEditor from './BuiltInWorkoutEditor'
 import PrepareWorkout from './PrepareWorkout'
 import PlayWorkout from './PlayWorkout'
 
+import WorkoutContext from '../context/WorkoutContext'
+
 // navigation stack
 const Stack = createStackNavigator()
 const horizontalSlide = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
 
 function HangboardScreen(props) {
     return (
-        <>
+        <WorkoutContext.Provider value={props.custom}>
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Workouts" component={WorkoutList} options={horizontalSlide}/>
                 <Stack.Screen name="Workout" component={WorkoutDetail} options={horizontalSlide}/>
@@ -23,7 +25,7 @@ function HangboardScreen(props) {
                 <Stack.Screen name="Prepare" component={PrepareWorkout} options={horizontalSlide}/>
                 <Stack.Screen name="Play workout" component={PlayWorkout} options={horizontalSlide}/>
             </Stack.Navigator>
-        </>
+        </WorkoutContext.Provider>
     )
 }
 

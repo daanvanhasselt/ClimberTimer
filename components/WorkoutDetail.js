@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addStep, updateWorkout, removeWorkout } from '../state/Actions'
@@ -8,7 +8,8 @@ import { Text, Button, Icon, List, ListItem } from 'native-base'
 
 import Header from './Header'
 import WorkoutStepListItem from './WorkoutStepListItem'
-import { formatTime } from '../utils/Formatting'
+
+import WorkoutContext from '../context/WorkoutContext'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -39,26 +40,29 @@ const styles = StyleSheet.create({
 })
 
 function WorkoutDetail(props) {
+    const customWorkouts = useContext(WorkoutContext)
+    const hangboard = customWorkouts ? props.customHangboard : props.hangboard
+
     // retrieve the data from state
-    const workout = props.hangboard.workouts.find(workout => workout.id === props.route.params.workout)
+    const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
     if(workout === undefined) return null
 
     let items = workout.steps && workout.steps.map((step, i) => {
-        return <WorkoutStepListItem key={i} hangboard={props.hangboard} workout={workout} step={step} showDurations={!workout.locked} 
-                    onPress={() => !workout.locked && props.navigation.push('Step', { hangboard: props.hangboard.id, workout: workout.id, step: step.id })}/>
+        return <WorkoutStepListItem key={i} hangboard={hangboard} workout={workout} step={step} showDurations={!workout.locked} custom={customWorkouts}
+                    onPress={() => !workout.locked && props.navigation.push('Step', { hangboard: hangboard.id, workout: workout.id, step: step.id })}/>
     })
 
     // global editor listitem for work, rest and reps in case of locked workout
     if(workout.locked && workout.steps && workout.steps.length > 0) {
         const step = workout.steps[0]
         const item = <WorkoutStepListItem key={-1} workout={workout} step={step} showDurations={true}
-                            onPress={() => props.navigation.push('Built-in workout', { hangboard: props.hangboard.id, workout: workout.id })}/>
+                            onPress={() => props.navigation.push('Built-in workout', { hangboard: hangboard.id, workout: workout.id })}/>
         items = [item, ...items]
     }
 
     const startButton = (<Button success disabled={!workout.steps || workout.steps.length == 0}
                             onPress={() => {
-                                props.navigation.push('Prepare', { hangboard: props.hangboard.id, workout: workout.id })
+                                props.navigation.push('Prepare', { hangboard: hangboard.id, workout: workout.id })
                             }}>
                             <Icon name='play' />
                         </Button>)
@@ -73,7 +77,7 @@ function WorkoutDetail(props) {
                     if(title === workout.title) return
 
                     workout.title = title
-                    props.updateWorkout(props.hangboard.id, workout)
+                    props.updateWorkout(hangboard.id, workout)
                 }} />
             
             <View style={styles.mainContent}>
@@ -86,7 +90,7 @@ function WorkoutDetail(props) {
                         full success
                         onPress={() => {
                             // dispatch action
-                            props.addStep(props.hangboard.id, workout.id)
+                            props.addStep(hangboard.id, workout.id)
                         }}>
                         <Text>Add step</Text>
                     </Button>}
@@ -102,7 +106,7 @@ function WorkoutDetail(props) {
                                 {text: 'OK', onPress: () => {
                                     // dispatch action
                                     props.navigation.goBack()
-                                    props.removeWorkout(props.hangboard.id, workout)
+                                    props.removeWorkout(hangboard.id, workout)
                                 }},
                                 ],
                                 { cancelable: false }
@@ -118,7 +122,8 @@ function WorkoutDetail(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard]
+    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard],
+    customHangboard: state.hangboard.hangboards.find((hangboard) => hangboard.custom === true)
 })
 
 // set state through props

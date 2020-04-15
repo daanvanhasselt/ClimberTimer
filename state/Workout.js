@@ -28,6 +28,7 @@ const WorkoutReducer = (state = [], action) => {
 
         case UPDATE_WORKOUT:
             {
+                console.log(action)
                 return state.map(workout => {
                     if(workout.id !== action.workout.id) return workout
                     return { ...workout, ...action.workout }

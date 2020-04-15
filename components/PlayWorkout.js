@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { minutes, seconds, formatTime } from '../utils/Formatting'
+import { minutes, seconds } from '../utils/Formatting'
 
 import { View, StyleSheet, ScrollView } from 'react-native'
-import { Text, List, ListItem } from 'native-base'
+import { List, } from 'native-base'
 import WorkoutStepListItem from './WorkoutStepListItem'
 
 import Header from './Header'
 import Stopwatch from './Stopwatch'
-import HangboardView from './HangboardView'
+
+import WorkoutContext from '../context/WorkoutContext'
 
 const styles = StyleSheet.create({
     container: {
@@ -58,7 +59,8 @@ const styles = StyleSheet.create({
 })
 
 function PlayWorkout(props) {
-    const hangboard = props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
+    const customWorkouts = useContext(WorkoutContext)
+    const hangboard = customWorkouts ? props.customHangboard : props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
 
     const numSets = props.route.params.sets
@@ -124,7 +126,7 @@ function PlayWorkout(props) {
     }, [currentStepIndex])
 
     let items = workout.steps && workout.steps.map((step, i) => {
-        return <WorkoutStepListItem key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
+        return <WorkoutStepListItem key={i} hangboard={hangboard} workout={workout} step={step} active={i === highlightStepIndex} custom={customWorkouts} onLayout={layout => setItemLayouts({...itemLayouts, [i]: layout})} />
     })
 
     return (
@@ -179,7 +181,8 @@ function PlayWorkout(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboards: state.hangboard.hangboards
+    hangboards: state.hangboard.hangboards,
+    customHangboard: state.hangboard.hangboards.find((hangboard) => hangboard.custom === true)
 })
 
 // set state through props

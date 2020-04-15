@@ -35,10 +35,18 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         // backgroundColor: 'red',
         marginTop: 10
+    },
+    customMessageContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignContent: 'center',
+        // backgroundColor: 'red',
+        marginTop: 10
     }
 })
 
-function Item({ hangboard, workout, step, showDurations, active, onPress, onLayout }) {
+function Item({ hangboard, workout, step, showDurations, active, custom, onPress, onLayout }) {
     return (
         <ListItem 
                 style={[styles.listItem, active && styles.listItemActive]}
@@ -47,18 +55,25 @@ function Item({ hangboard, workout, step, showDurations, active, onPress, onLayo
                 const layout = event.nativeEvent.layout
                 onLayout && onLayout(layout)
             }}>
-            {hangboard && <HangboardView
+            
+            {(hangboard && !custom) && <HangboardView
                 hangboard={hangboard}
                 selectedHolds={step.holds}
                 showHolds={true}
                 showNonSelectedHolds={false} />}
+            
+            {custom && <View style={styles.customMessageContainer}>
+                <Text style={[styles.itemLabel, active && styles.listItemActive]}>{step.customMessage || "-"}</Text>
+            </View>}
+            
             {showDurations && 
             (<View style={styles.itemLabelContainer}>
                 <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Work: " + formatTime(step.workDuration).join(':')}</Text>
                 <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Rest: " + formatTime(step.restDuration).join(':')}</Text>
                 <Text style={[styles.itemLabel, active && styles.listItemActive]}>{"Reps: " + step.reps}</Text>
             </View>)}
-            {hangboard && <View style={styles.gripTypeContainer}>
+            
+            {(hangboard && !custom) && <View style={styles.gripTypeContainer}>
                 <Text style={[styles.itemLabel, active && styles.listItemActive]}>{step.gripType}</Text>
             </View>}
         </ListItem>

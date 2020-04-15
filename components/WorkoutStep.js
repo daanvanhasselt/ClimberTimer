@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateStep, removeStep } from '../state/Actions'
@@ -7,13 +7,15 @@ import GripTypes from '../state/GripTypes'
 import { minutes, seconds } from '../utils/Formatting'
 
 import { View, StyleSheet, Alert } from 'react-native'
-import { Text, Button, Icon, ActionSheet } from 'native-base'
+import { Text, Button, Icon, ActionSheet, Input, Item } from 'native-base'
 import Modal from 'react-native-modal'
 
 import WorkoutStepEditor from './WorkoutStepEditor'
 import HangboardView from './HangboardView'
 import HoldSelector from './HoldSelector'
 import Header from './Header'
+
+import WorkoutContext from '../context/WorkoutContext'
 
 const styles = StyleSheet.create({
     header: {
@@ -30,15 +32,20 @@ const styles = StyleSheet.create({
     editorContainer: { 
         flex: 1,
         backgroundColor: '#F5FCFF',
+    },
+    customMessageInput: {
+        height: 100
     }
 })
 
 function WorkoutStep(props) {
-    const hangboard = props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
+    const customWorkouts = useContext(WorkoutContext)
+    const hangboard = customWorkouts ? props.customHangboard : props.hangboards.find(hangboard => hangboard.id === props.route.params.hangboard)
     const workout = hangboard.workouts.find(workout => workout.id === props.route.params.workout)
     const step = workout.steps.find(step => step.id === props.route.params.step)
     if(step === undefined) return null
         
+    const [customMessage, setCustomMessage] = useState(step.customMessage || "")
     const [workMinutes, setWorkMinutes] = useState(minutes(step.workDuration))
     const [workSeconds, setWorkSeconds] = useState(seconds(step.workDuration))
     const [restMinutes, setRestMinutes] = useState(minutes(step.restDuration))
@@ -51,7 +58,8 @@ function WorkoutStep(props) {
 
     const stepChanged = (workMinutes != minutes(step.workDuration)) || (workSeconds != seconds(step.workDuration)) || 
                         (restMinutes != minutes(step.restDuration)) || (restSeconds != seconds(step.restDuration)) || 
-                        reps != step.reps || holds != step.holds || gripType != step.gripType
+                        reps != step.reps || holds != step.holds || gripType != step.gripType ||
+                        customMessage != (step.customMessage || "")
 
     const saveButton = (
         <Button success
@@ -60,9 +68,10 @@ function WorkoutStep(props) {
                     id: step.id,
                     workDuration: (workMinutes * 60) + workSeconds,
                     restDuration: (restMinutes * 60) + restSeconds,
-                    reps: reps,
-                    holds: holds,
-                    gripType: gripType
+                    reps,
+                    holds,
+                    gripType,
+                    customMessage
                 })
                 props.navigation.goBack()
             }}>
@@ -112,28 +121,37 @@ function WorkoutStep(props) {
             }} />
 
             <View style={styles.editorContainer}>
-                <HangboardView 
-                    hangboard={hangboard} 
-                    showHolds={true}
-                    showNonSelectedHolds={true}
-                    selectedHolds={holds}
-                    onPress={()=> {
-                        setShowHoldsModal(!showHoldsModal)
-                    }}/>
-
-                <Modal style={styles.modal} isVisible={showHoldsModal}>
-                    <HoldSelector 
+                {customWorkouts || <React.Fragment>
+                    <HangboardView 
                         hangboard={hangboard} 
-                        selectedHolds={holds} 
-                        setHolds={setHolds}
-                        disableHangboardSwitch={true}
-                        close={()=>setShowHoldsModal(false)} />
-                </Modal>
+                        showHolds={true}
+                        showNonSelectedHolds={true}
+                        selectedHolds={holds}
+                        onPress={()=> {
+                            setShowHoldsModal(!showHoldsModal)
+                        }}/>
 
-                <Button full
-                    onPress={() => showGripTypeSelector()}>
-                    <Text>{gripType}</Text>
-                </Button>
+                    <Modal style={styles.modal} isVisible={showHoldsModal}>
+                        <HoldSelector 
+                            hangboard={hangboard} 
+                            selectedHolds={holds} 
+                            setHolds={setHolds}
+                            disableHangboardSwitch={true}
+                            close={()=>setShowHoldsModal(false)} />
+                    </Modal>
+
+                    <Button full
+                        onPress={() => showGripTypeSelector()}>
+                        <Text>{gripType}</Text>
+                    </Button>
+                </React.Fragment>}
+
+                {customWorkouts && <Item style={styles.customMessageInput}>
+                    <Input style={styles.editableTitle} value={customMessage} placeholder={"Workout step description"}
+                                    onChangeText={ text => {
+                                        setCustomMessage(text)
+                                    } }/>
+                </Item>}
 
                 <WorkoutStepEditor 
                     workMinutes={workMinutes} 
@@ -174,7 +192,8 @@ function WorkoutStep(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboards: state.hangboard.hangboards
+    hangboards: state.hangboard.hangboards,
+    customHangboard: state.hangboard.hangboards.find((hangboard) => hangboard.custom === true)
 })
 
 // set state through props

@@ -9,8 +9,8 @@ import { setHangboard } from '../state/Actions'
 import HangboardView from './HangboardView'
 
 function HangboardSelector(props) {
-    // hangboard names
-    const hangboardSelectionTitles = props.hangboards.map((board) => board.name )
+    // hangboard names (dont display the custom hangboard)
+    const hangboardSelectionTitles = props.hangboards.filter((board) => !board.custom).map((board) => board.name)
     hangboardSelectionTitles.push("Cancel")
 
     // show the selector

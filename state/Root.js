@@ -31,6 +31,9 @@ const rootStore = createStore(
 
 const persistor = persistStore(rootStore)
 
+// clear persisted storage and only use initial state
+persistor.purge()
+
 export {
     rootReducer,
     rootStore,

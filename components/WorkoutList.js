@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addWorkout } from '../state/Actions'
@@ -8,6 +8,8 @@ import { Text, List, ListItem, Footer, FooterTab, Button, Icon } from 'native-ba
 
 import HangboardSelector from './HangboardSelector'
 import Header from './Header'
+
+import WorkoutContext from '../context/WorkoutContext'
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -35,22 +37,25 @@ function Item({ navigation, workout }) {
 }
 
 function WorkoutList(props) {
+    const customWorkouts = useContext(WorkoutContext)
+    const hangboard = customWorkouts ? props.customHangboard : props.hangboard
+
     const modes = {
         builtin: 0,
         custom: 1
     }
-    const [mode, setMode] = useState(modes.builtin)
+    const [mode, setMode] = useState(customWorkouts ? modes.custom : modes.builtin)
 
     // workouts for selected hangboard and mode
-    const workouts = props.hangboard.workouts.filter((workout) => ((mode === modes.builtin && workout.locked === true) || (mode === modes.custom && workout.locked == false)))
+    const workouts = hangboard.workouts.filter((workout) => ((mode === modes.builtin && workout.locked === true) || (mode === modes.custom && workout.locked == false)))
     const items = workouts.map((workout, i) => {
         return <Item key={i} navigation={props.navigation} workout={workout}/>
     })
 
     return (
         <View style={styles.mainContent}>
-            <Header title="Hangboard Training" backButton={false} menuButton={true} navigation={props.navigation} />
-            <HangboardSelector />
+            <Header title={customWorkouts ? "Custom Training" : "Hangboard Training"} backButton={false} menuButton={true} navigation={props.navigation} />
+            {customWorkouts || <HangboardSelector />}
 
 
             <ScrollView style={{ width: '100%' }}>
@@ -63,13 +68,13 @@ function WorkoutList(props) {
                         full success
                         onPress={() => {
                             // dispatch action
-                            props.addWorkout(props.hangboard.id)
+                            props.addWorkout(hangboard.id)
                         }}>
                         <Text>Add workout</Text>
                     </Button>}
             </ScrollView>
 
-            <Footer>
+            {customWorkouts || <Footer>
                 <FooterTab>
 
                     <Button vertical active={mode == modes.builtin}
@@ -83,7 +88,7 @@ function WorkoutList(props) {
                     <Text>Custom</Text>
                     </Button>
                 </FooterTab>
-            </Footer>
+            </Footer>}
 
         </View>
     )
@@ -91,7 +96,8 @@ function WorkoutList(props) {
 
 // get state through props
 const mapStateToProps = (state) => ({
-    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard]
+    hangboard: state.hangboard.hangboards[state.hangboard.selectedHangboard],
+    customHangboard: state.hangboard.hangboards.find((hangboard) => hangboard.custom === true)
 })
 
 // set state through props
