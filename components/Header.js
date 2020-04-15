@@ -17,15 +17,17 @@ const styles = StyleSheet.create({
 })
 
 const AppHeader = (props) => {
+    const highlightColor = 'rgba(0, 0, 0, 0.25)'
+
     let leftComponent = null
     if(props.customLeftButton) {
         leftComponent = props.customLeftButton;
     }
     else if(props.backButton) {
-        leftComponent = { icon: 'arrow-back', color: '#EEEEEE', onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
+        leftComponent = { icon: 'arrow-back', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
     }
     else if(props.menuButton) {
-        leftComponent = { icon: 'menu', color: '#EEEEEE', onPress:() => props.navigation.toggleDrawer() }
+        leftComponent = { icon: 'menu', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.navigation.toggleDrawer() }
     }
 
     let rightComponent = null
@@ -33,10 +35,10 @@ const AppHeader = (props) => {
         rightComponent = props.customRightButton;
     }
     else if(props.settingsButton) {
-        rightComponent = { icon: 'settings', color: '#EEEEEE', onPress:() => props.navigation.navigate('Settings') }
+        rightComponent = { icon: 'settings', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.navigation.navigate('Settings') }
     }
     else if(props.doneButton) {
-        rightComponent = { icon: 'check', color: '#EEEEEE', onPress:() => props.done && props.done() }
+        rightComponent = { icon: 'check', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.done && props.done() }
     }
 
     
