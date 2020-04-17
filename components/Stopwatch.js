@@ -1,4 +1,5 @@
 import React from 'react'
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake'
 import { View, StyleSheet, TouchableOpacity, TouchableOpacityBase } from 'react-native'
 import { Text, Icon } from 'native-base'
 import SoundManager from '../utils/SoundManager'
@@ -38,11 +39,13 @@ class Stopwatch extends React.Component {
 
     componentDidMount() {
         this.reset()
-        this.frameReq = requestAnimationFrame(this.run)        
+        this.frameReq = requestAnimationFrame(this.run)
+        activateKeepAwake()
     }
 
     componentWillUnmount() {
         cancelAnimationFrame(this.frameReq)
+        deactivateKeepAwake()
     }
 
     componentDidUpdate(prevProps, prevState) {
