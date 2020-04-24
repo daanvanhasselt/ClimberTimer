@@ -8,6 +8,8 @@ import HangboardSelector from './HangboardSelector'
 
 import { toggleHoldSelection, clearHoldSelection, setHoldSelection } from '../state/Actions'
 
+import Svg, { Circle } from 'react-native-svg'
+
 const styles = StyleSheet.create({
     mainContent: {
       flex: 1,
@@ -27,6 +29,16 @@ function Item({ hold, onPress, selected }) {
 }
 
 function SettingsScreen(props) {
+    return (
+        <Svg
+            width="100"
+            height="100"
+            viewBox="0 0 100 100" // Has to be the same of the original svg file
+            >
+            <Circle cx="50" cy="50" r="45" stroke="blue" strokeWidth="2.5" fill="green" />
+        </Svg>
+    )
+
     const holds = props.hangboard.holds || []
     const items = holds.map((hold, i) => {
         return <Item key={i} hold={hold} selected={props.hangboard.selectedHolds.includes(hold.id)}
