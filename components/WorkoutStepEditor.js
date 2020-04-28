@@ -5,15 +5,13 @@ import DurationPicker from './DurationPicker'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: 'white',
-        // borderRadius: 40,
-        // borderWidth: 2,
-        // margin: 10
+        backgroundColor: 'white',
+        borderRadius: 20,
+        width: '85%',
+        marginTop: 25
     },
     row: {
         width: '100%',
-        paddingLeft: 25,
-        paddingRight: 25,
         flexDirection: 'row',
         flex: 1
     },
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'blue'
     },
     divider: {
-        backgroundColor: 'red',
+        backgroundColor: '#6E57FB',
         alignSelf: 'center',
         height: '75%',
         width: 8,

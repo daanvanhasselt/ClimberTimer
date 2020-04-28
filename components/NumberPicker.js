@@ -27,22 +27,26 @@ function DurationPicker({ vertical, disabled, value, valueSetter }) {
     const styles = StyleSheet.create({
         input: {
             height: 70,
-            fontSize: 40,
-            textAlign: 'center'
+            fontSize: vertical ? 40 : 50,
+            textAlign: 'center',
+            color: '#6E57FB',
+            marginLeft: vertical ? 0 : 10,
+            marginRight: vertical ? 0 : 10
         },
         disabled: {
             color: '#888'
         },
         container: {
             flexDirection: vertical ? 'column-reverse' : 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: vertical ? '33%' : '100%'
         },
         button: {
             width: 44,
             height: 44,
             alignItems: 'center',
             justifyContent: 'center',
-            // backgroundColor: '#dedede'
         },
         buttonText: {
             fontSize: 32,
@@ -89,8 +93,7 @@ function DurationPicker({ vertical, disabled, value, valueSetter }) {
                 onPressOut={() => setDecrementing(false) }
                 onPress={() => valueSetter(value - 1)}>
                 <View style={styles.button}>
-                    {/* <Text style={[styles.buttonText, disabled && styles.disabled]}>-</Text> */}
-                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-down"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="md-remove-circle"/>}
+                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-down"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-remove-circle"/>}
                 </View>
             </TouchableOpacity>
             <TextInput 
@@ -110,7 +113,7 @@ function DurationPicker({ vertical, disabled, value, valueSetter }) {
                 onPress={() => valueSetter(value + 1)}>
                 <View style={styles.button}>
                     {/* <Text style={[styles.buttonText, disabled && styles.disabled]}>+</Text> */}
-                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-up"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="md-add-circle"/>}
+                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-up"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-add-circle"/>}
                 </View>
             </TouchableOpacity>
         </View>

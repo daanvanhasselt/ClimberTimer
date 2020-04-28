@@ -6,17 +6,19 @@ import NumberPicker from './NumberPicker'
 
 const styles = StyleSheet.create({
     pickerContainer: {
-        width: '33%',
-        alignItems: 'center'
     },
     picker: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%'
     },
     colon: {
         width: 20,
-        fontSize: 32,
-        textAlign: 'center'
+        fontSize: 50,
+        textAlign: 'center',
+        color: '#6E57FB',
+        top: -5
     },
     disabled: {
         color: '#888'

@@ -1,33 +1,38 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { Header } from 'react-native-elements'
-import { Text, Input } from 'native-base'
-
-const styles = StyleSheet.create({
-    title: {
-        color: '#fff', 
-        fontWeight: 'bold',
-        width: '100%',
-        fontSize: 17
-    },
-    editableTitle: {
-        color: '#fff', 
-        fontSize: 17
-    }
-})
+// import { Header } from 'react-native-elements'
+import { Text, Input, Header, Left, Body, Right, Button, Icon, Title } from 'native-base'
 
 const AppHeader = (props) => {
     const highlightColor = 'rgba(0, 0, 0, 0.25)'
+    
+    const styles = StyleSheet.create({
+        header: {
+            marginTop: 20
+        },
+        title: {
+        },
+        editableTitle: {
+            color: '#fff', 
+            fontSize: 17
+        },
+        body: {
+            paddingLeft: props.backButton ? 0 : 40
+        },
+        backButton: {
+            marginRight: -20
+        }
+    })
 
     let leftComponent = null
     if(props.customLeftButton) {
         leftComponent = props.customLeftButton;
     }
     else if(props.backButton) {
-        leftComponent = { icon: 'arrow-back', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
+        //leftComponent = { icon: 'arrow-back', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
     }
     else if(props.menuButton) {
-        leftComponent = { icon: 'menu', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.navigation.toggleDrawer() }
+        // leftComponent = { icon: 'menu', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.navigation.toggleDrawer() }
     }
 
     let rightComponent = null
@@ -50,7 +55,7 @@ const AppHeader = (props) => {
         onTitlePress = ()=>{ if(!editingTitle) setEditingTitle(true) }
     }
 
-    let centerComponent = <Text style={styles.title} onPress={onTitlePress}>{props.title}</Text>
+    let centerComponent = <Title onPress={onTitlePress} style={styles.title}>{props.title}</Title>
     if(editingTitle) {
         centerComponent = <Input style={styles.editableTitle} value={editedTitle} autoFocus={true} 
                                     onChangeText={ text => setEditedTitle(text) } 
@@ -61,11 +66,22 @@ const AppHeader = (props) => {
     }
 
     return (
-        <Header placement="left"
-            containerStyle={{ backgroundColor: '#2E2E2E' }}
-            leftComponent={leftComponent}
-            centerComponent={centerComponent}
-            rightComponent={rightComponent}/>
+        <Header transparent style={styles.header}>
+            {props.backButton && <Left style={styles.backButton}>
+                <Button transparent
+                    onPress={() => props.goBack ? props.goBack() : props.navigation.goBack()}>
+                    <Icon name="arrow-back" />
+                </Button>
+            </Left>}
+            <Body style={styles.body}>
+                {centerComponent}
+            </Body>
+            <Right>
+                <Button style={{backgroundColor:'rgba(0, 0, 0, 0)', elevation: 0}}>
+                    <Icon name="md-more" />
+                </Button>
+            </Right>
+        </Header>
         )
     }
 

@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { Container, Content } from 'native-base'
 import Header from './Header'
 
 import Stopwatch from './Stopwatch'
 import WorkoutStepEditor from './WorkoutStepEditor'
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#6E57FB'
+    },
     mainContent: {
-      backgroundColor: '#F5FCFF',
       flex: 1,
       alignItems: 'center'
     },
@@ -31,8 +34,8 @@ function TimerScreen(props) {
     const [reps, setReps] = useState(10)
     
     return (
-        <React.Fragment>
-            <Header title="ClimberTimer" menuButton={true} settingsButton={true} navigation={props.navigation} />
+        <Container style={styles.container}>
+            <Header title="ClimberTimer" backButton={true} settingsButton={true} navigation={props.navigation} />
             <View style={styles.mainContent}>
                 <View style={styles.pickers}>
                     <WorkoutStepEditor 
@@ -47,17 +50,8 @@ function TimerScreen(props) {
                         reps={reps}
                         setReps={setReps}/>
                 </View>
-                
-                <View style={styles.stopwatchContainer}>
-                    <Stopwatch 
-                        workMinutes={workMinutes} 
-                        workSeconds={workSeconds} 
-                        restMinutes={restMinutes} 
-                        restSeconds={restSeconds} 
-                        reps={reps}/>
-                </View>
             </View>
-        </React.Fragment>
+        </Container>
     )
 }
 
