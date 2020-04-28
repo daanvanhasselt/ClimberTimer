@@ -1,38 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import { Text, Button } from 'native-base'
+import { Text, Button, Icon } from 'native-base'
 import { pad } from '../utils/Formatting'
-
-const styles = StyleSheet.create({
-    input: {
-        // backgroundColor: 'purple',
-        width: 80,
-        height: 70,
-        fontSize: 38,
-        textAlign: 'center',
-        marginLeft: -5,
-        marginRight: -5
-    },
-    disabled: {
-        color: '#888'
-    },
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    button: {
-        width: 44,
-        height: 44,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#dedede'
-    },
-    buttonText: {
-        fontSize: 24,
-        textAlign: 'center',
-        fontWeight: 'bold'
-    }
-  })
 
 function useInterval(callback, delay) {
     const savedCallback = useRef();
@@ -54,8 +23,35 @@ function useInterval(callback, delay) {
     }, [delay])
 }
 
-function DurationPicker({ disabled, value, valueSetter }) {
-    const maxDelay = 200
+function DurationPicker({ vertical, disabled, value, valueSetter }) {
+    const styles = StyleSheet.create({
+        input: {
+            height: 70,
+            fontSize: 40,
+            textAlign: 'center'
+        },
+        disabled: {
+            color: '#888'
+        },
+        container: {
+            flexDirection: vertical ? 'column-reverse' : 'row',
+            alignItems: 'center'
+        },
+        button: {
+            width: 44,
+            height: 44,
+            alignItems: 'center',
+            justifyContent: 'center',
+            // backgroundColor: '#dedede'
+        },
+        buttonText: {
+            fontSize: 32,
+            textAlign: 'center',
+            fontWeight: 'bold'
+        }
+    })
+
+    const maxDelay = 150
     const minDelay = 50
     const delayMultiplier = 0.85
     
@@ -93,7 +89,8 @@ function DurationPicker({ disabled, value, valueSetter }) {
                 onPressOut={() => setDecrementing(false) }
                 onPress={() => valueSetter(value - 1)}>
                 <View style={styles.button}>
-                    <Text style={[styles.buttonText, disabled && styles.disabled]}>-</Text>
+                    {/* <Text style={[styles.buttonText, disabled && styles.disabled]}>-</Text> */}
+                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-down"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="md-remove-circle"/>}
                 </View>
             </TouchableOpacity>
             <TextInput 
@@ -112,7 +109,8 @@ function DurationPicker({ disabled, value, valueSetter }) {
                 onPressOut={() => setIncrementing(false) }
                 onPress={() => valueSetter(value + 1)}>
                 <View style={styles.button}>
-                    <Text style={[styles.buttonText, disabled && styles.disabled]}>+</Text>
+                    {/* <Text style={[styles.buttonText, disabled && styles.disabled]}>+</Text> */}
+                    {vertical ? <Icon style={[styles.buttonText, disabled && styles.disabled]} name="ios-arrow-up"/> : <Icon style={[styles.buttonText, disabled && styles.disabled]} name="md-add-circle"/>}
                 </View>
             </TouchableOpacity>
         </View>

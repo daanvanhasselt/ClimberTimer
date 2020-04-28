@@ -6,30 +6,16 @@ import NumberPicker from './NumberPicker'
 
 const styles = StyleSheet.create({
     pickerContainer: {
-        // backgroundColor: 'blue',
-        flex: 1,
-        width: '100%',
+        width: '33%',
         alignItems: 'center'
     },
-    pickerHeader: {
-        // backgroundColor: 'red',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        width: '100%',
-        marginTop: 20,
-        marginBottom: 10
-    },
     picker: {
-        // backgroundColor: 'green',
         flexDirection: 'row',
+        alignItems: 'center'
     },
     colon: {
         width: 20,
         fontSize: 32,
-        marginTop: 12,
-        marginLeft: 10,
-        marginRight: 10,
         textAlign: 'center'
     },
     disabled: {
@@ -37,10 +23,10 @@ const styles = StyleSheet.create({
     }
   })
 
-function DurationPicker({ title, disabled, minutes, setMinutes, seconds, setSeconds }) {
-    const firstPicker = <NumberPicker disabled={disabled} value={minutes} valueSetter={(v) => setMinutes(Math.max(0, v)) }/>
+function DurationPicker({ style, vertical, disabled, minutes, setMinutes, seconds, setSeconds }) {
+    const firstPicker = <NumberPicker disabled={disabled} vertical={vertical} value={minutes} valueSetter={(v) => setMinutes(Math.max(0, v)) }/>
     const colon = <Text style={[styles.colon, disabled && styles.disabled]}>:</Text>
-    const secondPicker = <NumberPicker disabled={disabled} value={seconds} valueSetter={(v) => {
+    const secondPicker = <NumberPicker disabled={disabled} vertical={vertical} value={seconds} valueSetter={(v) => {
         let s = v
         if(v >= 60) {
             s = v - 60
@@ -54,8 +40,7 @@ function DurationPicker({ title, disabled, minutes, setMinutes, seconds, setSeco
     }}/>
 
     return (
-        <View style={styles.pickerContainer}>
-            <Text style={styles.pickerHeader}>{title}</Text>
+        <View style={[styles.pickerContainer, style]}>
             <View style={styles.picker}>
                 {firstPicker}
                 {seconds !== undefined && colon}
