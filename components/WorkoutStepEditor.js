@@ -19,24 +19,22 @@ const styles = StyleSheet.create({
         flex: 1
     },
     picker: {
-        // backgroundColor: 'green',
+        flex: 3,
         justifyContent: 'center',
-        flex: 3
+        // backgroundColor: 'red'
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        // width: '40%',
         flex: 2,
+        fontSize: 20,
+        fontWeight: 'bold',
         alignSelf: 'center',
         // backgroundColor: 'blue'
     },
     divider: {
         backgroundColor: '#6E57FB',
         alignSelf: 'center',
-        height: '75%',
-        width: 8,
-        marginLeft: 20,
+        height: '65%',
+        width: 6,
         marginRight: 20
     },
     invisibleDivider: {

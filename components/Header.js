@@ -24,17 +24,6 @@ const AppHeader = (props) => {
         }
     })
 
-    let leftComponent = null
-    if(props.customLeftButton) {
-        leftComponent = props.customLeftButton;
-    }
-    else if(props.backButton) {
-        //leftComponent = { icon: 'arrow-back', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.goBack ? props.goBack() : props.navigation.goBack() }
-    }
-    else if(props.menuButton) {
-        // leftComponent = { icon: 'menu', color: '#EEEEEE', underlayColor: highlightColor, onPress:() => props.navigation.toggleDrawer() }
-    }
-
     let rightComponent = null
     if(props.customRightButton) {
         rightComponent = props.customRightButton;
@@ -77,7 +66,7 @@ const AppHeader = (props) => {
                 {centerComponent}
             </Body>
             <Right>
-                <Button style={{backgroundColor:'rgba(0, 0, 0, 0)', elevation: 0}}>
+                <Button style={{backgroundColor:'rgba(0, 0, 0, 0)', elevation: 0}} onPress={() => props.navigation.navigate('Settings')}>
                     <Icon name="md-more" />
                 </Button>
             </Right>

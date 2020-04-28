@@ -29,7 +29,7 @@ function DurationPicker({ vertical, disabled, value, valueSetter }) {
             height: 70,
             fontSize: vertical ? 40 : 50,
             textAlign: 'center',
-            color: '#6E57FB',
+            color: vertical ? '#6E57FB' : '#BDBDBD',
             marginLeft: vertical ? 0 : 10,
             marginRight: vertical ? 0 : 10
         },
@@ -51,7 +51,8 @@ function DurationPicker({ vertical, disabled, value, valueSetter }) {
         buttonText: {
             fontSize: 32,
             textAlign: 'center',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: vertical ? '#BDBDBD' : '#6E57FB'
         }
     })
 

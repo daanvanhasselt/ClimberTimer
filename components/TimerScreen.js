@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Container, Content } from 'native-base'
+import { Container, Button, Text } from 'native-base'
 import Header from './Header'
+import Footer from './Footer'
 
 import Stopwatch from './Stopwatch'
 import WorkoutStepEditor from './WorkoutStepEditor'
@@ -22,6 +23,17 @@ const styles = StyleSheet.create({
         // backgroundColor: 'purple',
         flex: 1,
         width: '100%'
+    },
+    startButton: {
+        marginTop: 22,
+        marginBottom: 22,
+        width: '50%',
+        textAlign: 'center',
+        backgroundColor: '#E5AD29',
+    },
+    startButtonText: {
+        width: '100%',
+        textAlign: 'center'
     }
   })
 
@@ -50,7 +62,11 @@ function TimerScreen(props) {
                         reps={reps}
                         setReps={setReps}/>
                 </View>
+                <Button style={styles.startButton}>
+                    <Text style={styles.startButtonText}>Start</Text>
+                </Button>
             </View>
+            <Footer/>
         </Container>
     )
 }
